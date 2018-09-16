@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mzhotel.roleResource.mapper.RoleResourceRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.mzhotel.roleResource.dto.RoleResourceRelation" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ROLE_CODE" property="roleCode" jdbcType="VARCHAR" />
+    <result column="RESOURCE_CODE" property="resourceCode" jdbcType="VARCHAR" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_DATE" property="createdDate" jdbcType="DATE" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_DATE" property="updatedDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ROLE_CODE, RESOURCE_CODE, CREATED_BY, CREATED_DATE, UPDATED_BY, UPDATED_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_ROLE_RESOURCE_RELATION
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_ROLE_RESOURCE_RELATION
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.mzhotel.roleResource.dto.RoleResourceRelation" >
+    insert into T_ROLE_RESOURCE_RELATION (ID, ROLE_CODE, RESOURCE_CODE, 
+      CREATED_BY, CREATED_DATE, UPDATED_BY, 
+      UPDATED_DATE)
+    values (#{id,jdbcType=VARCHAR}, #{roleCode,jdbcType=VARCHAR}, #{resourceCode,jdbcType=VARCHAR}, 
+      #{createdBy,jdbcType=VARCHAR}, #{createdDate,jdbcType=DATE}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mzhotel.roleResource.dto.RoleResourceRelation" >
+    insert into T_ROLE_RESOURCE_RELATION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="roleCode != null" >
+        ROLE_CODE,
+      </if>
+      <if test="resourceCode != null" >
+        RESOURCE_CODE,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdDate != null" >
+        CREATED_DATE,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedDate != null" >
+        UPDATED_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCode != null" >
+        #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceCode != null" >
+        #{resourceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate,jdbcType=DATE},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null" >
+        #{updatedDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mzhotel.roleResource.dto.RoleResourceRelation" >
+    update T_ROLE_RESOURCE_RELATION
+    <set >
+      <if test="roleCode != null" >
+        ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceCode != null" >
+        RESOURCE_CODE = #{resourceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        CREATED_DATE = #{createdDate,jdbcType=DATE},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null" >
+        UPDATED_DATE = #{updatedDate,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mzhotel.roleResource.dto.RoleResourceRelation" >
+    update T_ROLE_RESOURCE_RELATION
+    set ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+      RESOURCE_CODE = #{resourceCode,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_DATE = #{createdDate,jdbcType=DATE},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_DATE = #{updatedDate,jdbcType=DATE}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getAssignResourceByRole">
+    select * from T_ROLE_RESOURCE_RELATION t
+    <where>
+      <if test = "roleCodeNotHasResource != null and roleCodeNotHasResource != ''">
+        and RESOURCE_CODE not in (select RESOURCE_CODE from T_ROLE_RESOURCE_RELATION where ROLE_CODE = #{roleCodeNotHasResource})
+      </if>
+      <if test = "roleCodeHasResource != null and roleCodeHasResource != ''">
+        and RESOURCE_CODE in (select RESOURCE_CODE from T_ROLE_RESOURCE_RELATION where ROLE_CODE = #{roleCodeHasResource})
+      </if>
+    </where>
+  </select>
+</mapper>

@@ -1,0 +1,22 @@
+package com.mzhotel.storehouse.mapper;
+
+import com.mzhotel.storehouse.dto.QueryStorehouse;
+import com.mzhotel.storehouse.dto.Storehouse;
+
+import java.util.List;
+
+public interface StorehouseMapper {
+    int deleteByPrimaryKey(String id);
+
+    int insert(Storehouse record);
+
+    int insertSelective(Storehouse record);
+
+    Storehouse selectByPrimaryKey(String id);
+
+    int updateByPrimaryKeySelective(Storehouse record);
+
+    int updateByPrimaryKey(Storehouse record);
+
+    List<Storehouse> getStroehouse(QueryStorehouse queryStorehouse);
+}

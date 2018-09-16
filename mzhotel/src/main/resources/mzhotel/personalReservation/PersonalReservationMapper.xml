@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mzhotel.personalReservation.mapper.PersonalReservationMapper" >
+  <resultMap id="BaseResultMap" type="com.mzhotel.personalReservation.dto.PersonalReservation" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="AREA" property="area" jdbcType="VARCHAR" />
+    <result column="ROOM_CODE" property="roomCode" jdbcType="VARCHAR" />
+    <result column="DINNER_TIME_CODE" property="dinnerTimeCode" jdbcType="VARCHAR" />
+    <result column="CONTACT_USER" property="contactUser" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_DATE" property="createdDate" jdbcType="DATE" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_DATE" property="updatedDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, AREA, ROOM_CODE, DINNER_TIME_CODE, CONTACT_USER, REMARK, CREATED_BY, CREATED_DATE, 
+    UPDATED_BY, UPDATED_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_PERSONAL_RESERVATION
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_PERSONAL_RESERVATION
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.mzhotel.personalReservation.dto.PersonalReservation" >
+    insert into T_PERSONAL_RESERVATION (ID, AREA, ROOM_CODE, 
+      DINNER_TIME_CODE, CONTACT_USER, REMARK, 
+      CREATED_BY, CREATED_DATE, UPDATED_BY, 
+      UPDATED_DATE)
+    values (#{id,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{roomCode,jdbcType=VARCHAR}, 
+      #{dinnerTimeCode,jdbcType=VARCHAR}, #{contactUser,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createdBy,jdbcType=VARCHAR}, #{createdDate,jdbcType=DATE}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mzhotel.personalReservation.dto.PersonalReservation" >
+    insert into T_PERSONAL_RESERVATION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="area != null" >
+        AREA,
+      </if>
+      <if test="roomCode != null" >
+        ROOM_CODE,
+      </if>
+      <if test="dinnerTimeCode != null" >
+        DINNER_TIME_CODE,
+      </if>
+      <if test="contactUser != null" >
+        CONTACT_USER,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdDate != null" >
+        CREATED_DATE,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedDate != null" >
+        UPDATED_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="roomCode != null" >
+        #{roomCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dinnerTimeCode != null" >
+        #{dinnerTimeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contactUser != null" >
+        #{contactUser,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate,jdbcType=DATE},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null" >
+        #{updatedDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mzhotel.personalReservation.dto.PersonalReservation" >
+    update T_PERSONAL_RESERVATION
+    <set >
+      <if test="area != null" >
+        AREA = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="roomCode != null" >
+        ROOM_CODE = #{roomCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dinnerTimeCode != null" >
+        DINNER_TIME_CODE = #{dinnerTimeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contactUser != null" >
+        CONTACT_USER = #{contactUser,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        CREATED_DATE = #{createdDate,jdbcType=DATE},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null" >
+        UPDATED_DATE = #{updatedDate,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mzhotel.personalReservation.dto.PersonalReservation" >
+    update T_PERSONAL_RESERVATION
+    set AREA = #{area,jdbcType=VARCHAR},
+      ROOM_CODE = #{roomCode,jdbcType=VARCHAR},
+      DINNER_TIME_CODE = #{dinnerTimeCode,jdbcType=VARCHAR},
+      CONTACT_USER = #{contactUser,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_DATE = #{createdDate,jdbcType=DATE},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_DATE = #{updatedDate,jdbcType=DATE}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

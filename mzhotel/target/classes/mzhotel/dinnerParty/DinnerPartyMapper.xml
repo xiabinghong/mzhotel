@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mzhotel.dinnerParty.mapper.DinnerPartyMapper" >
+  <resultMap id="BaseResultMap" type="com.mzhotel.dinnerParty.dto.DinnerParty" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="DINNER_PARTY_TYPE" property="dinnerPartyType" jdbcType="VARCHAR" />
+    <result column="DINNER_PARTY_USER" property="dinnerPartyUser" jdbcType="VARCHAR" />
+    <result column="TEL" property="tel" jdbcType="VARCHAR" />
+    <result column="CONSUMPTION_ITEM" property="consumptionItem" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_DATE" property="createdDate" jdbcType="DATE" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_DATE" property="updatedDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, DINNER_PARTY_TYPE, DINNER_PARTY_USER, TEL, CONSUMPTION_ITEM, REMARK, CREATED_BY, 
+    CREATED_DATE, UPDATED_BY, UPDATED_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_DINNER_PARTY
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_DINNER_PARTY
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.mzhotel.dinnerParty.dto.DinnerParty" >
+    insert into T_DINNER_PARTY (ID, DINNER_PARTY_TYPE, DINNER_PARTY_USER, 
+      TEL, CONSUMPTION_ITEM, REMARK, 
+      CREATED_BY, CREATED_DATE, UPDATED_BY, 
+      UPDATED_DATE)
+    values (#{id,jdbcType=VARCHAR}, #{dinnerPartyType,jdbcType=VARCHAR}, #{dinnerPartyUser,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{consumptionItem,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createdBy,jdbcType=VARCHAR}, #{createdDate,jdbcType=DATE}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mzhotel.dinnerParty.dto.DinnerParty" >
+    insert into T_DINNER_PARTY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="dinnerPartyType != null" >
+        DINNER_PARTY_TYPE,
+      </if>
+      <if test="dinnerPartyUser != null" >
+        DINNER_PARTY_USER,
+      </if>
+      <if test="tel != null" >
+        TEL,
+      </if>
+      <if test="consumptionItem != null" >
+        CONSUMPTION_ITEM,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdDate != null" >
+        CREATED_DATE,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedDate != null" >
+        UPDATED_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="dinnerPartyType != null" >
+        #{dinnerPartyType,jdbcType=VARCHAR},
+      </if>
+      <if test="dinnerPartyUser != null" >
+        #{dinnerPartyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="consumptionItem != null" >
+        #{consumptionItem,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate,jdbcType=DATE},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null" >
+        #{updatedDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mzhotel.dinnerParty.dto.DinnerParty" >
+    update T_DINNER_PARTY
+    <set >
+      <if test="dinnerPartyType != null" >
+        DINNER_PARTY_TYPE = #{dinnerPartyType,jdbcType=VARCHAR},
+      </if>
+      <if test="dinnerPartyUser != null" >
+        DINNER_PARTY_USER = #{dinnerPartyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="consumptionItem != null" >
+        CONSUMPTION_ITEM = #{consumptionItem,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        CREATED_DATE = #{createdDate,jdbcType=DATE},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null" >
+        UPDATED_DATE = #{updatedDate,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mzhotel.dinnerParty.dto.DinnerParty" >
+    update T_DINNER_PARTY
+    set DINNER_PARTY_TYPE = #{dinnerPartyType,jdbcType=VARCHAR},
+      DINNER_PARTY_USER = #{dinnerPartyUser,jdbcType=VARCHAR},
+      TEL = #{tel,jdbcType=VARCHAR},
+      CONSUMPTION_ITEM = #{consumptionItem,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_DATE = #{createdDate,jdbcType=DATE},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_DATE = #{updatedDate,jdbcType=DATE}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

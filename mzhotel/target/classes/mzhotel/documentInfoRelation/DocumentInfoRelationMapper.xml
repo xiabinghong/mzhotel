@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mzhotel.documentInfoRelation.mapper.DocumentInfoRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.mzhotel.documentInfoRelation.dto.DocumentInfoRelation" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="DOCUMENT_ID" property="documentId" jdbcType="VARCHAR" />
+    <result column="RELATION_ID" property="relationId" jdbcType="VARCHAR" />
+    <result column="RELATION_TYPE" property="relationType" jdbcType="VARCHAR" />
+    <result column="RELATION_CODE" property="relationCode" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_DATE" property="createdDate" jdbcType="DATE" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_DATE" property="updatedDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, DOCUMENT_ID, RELATION_ID, RELATION_TYPE, RELATION_CODE, REMARK, CREATED_BY, CREATED_DATE, 
+    UPDATED_BY, UPDATED_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_DOCUMENT_INFO_RELATION
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_DOCUMENT_INFO_RELATION
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.mzhotel.documentInfoRelation.dto.DocumentInfoRelation" >
+    insert into T_DOCUMENT_INFO_RELATION (ID, DOCUMENT_ID, RELATION_ID, 
+      RELATION_TYPE, RELATION_CODE, REMARK, 
+      CREATED_BY, CREATED_DATE, UPDATED_BY, 
+      UPDATED_DATE)
+    values (#{id,jdbcType=VARCHAR}, #{documentId,jdbcType=VARCHAR}, #{relationId,jdbcType=VARCHAR}, 
+      #{relationType,jdbcType=VARCHAR}, #{relationCode,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createdBy,jdbcType=VARCHAR}, #{createdDate,jdbcType=DATE}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mzhotel.documentInfoRelation.dto.DocumentInfoRelation" >
+    insert into T_DOCUMENT_INFO_RELATION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="documentId != null" >
+        DOCUMENT_ID,
+      </if>
+      <if test="relationId != null" >
+        RELATION_ID,
+      </if>
+      <if test="relationType != null" >
+        RELATION_TYPE,
+      </if>
+      <if test="relationCode != null" >
+        RELATION_CODE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdDate != null" >
+        CREATED_DATE,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedDate != null" >
+        UPDATED_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="documentId != null" >
+        #{documentId,jdbcType=VARCHAR},
+      </if>
+      <if test="relationId != null" >
+        #{relationId,jdbcType=VARCHAR},
+      </if>
+      <if test="relationType != null" >
+        #{relationType,jdbcType=VARCHAR},
+      </if>
+      <if test="relationCode != null" >
+        #{relationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate,jdbcType=DATE},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null" >
+        #{updatedDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mzhotel.documentInfoRelation.dto.DocumentInfoRelation" >
+    update T_DOCUMENT_INFO_RELATION
+    <set >
+      <if test="documentId != null" >
+        DOCUMENT_ID = #{documentId,jdbcType=VARCHAR},
+      </if>
+      <if test="relationId != null" >
+        RELATION_ID = #{relationId,jdbcType=VARCHAR},
+      </if>
+      <if test="relationType != null" >
+        RELATION_TYPE = #{relationType,jdbcType=VARCHAR},
+      </if>
+      <if test="relationCode != null" >
+        RELATION_CODE = #{relationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        CREATED_DATE = #{createdDate,jdbcType=DATE},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null" >
+        UPDATED_DATE = #{updatedDate,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mzhotel.documentInfoRelation.dto.DocumentInfoRelation" >
+    update T_DOCUMENT_INFO_RELATION
+    set DOCUMENT_ID = #{documentId,jdbcType=VARCHAR},
+      RELATION_ID = #{relationId,jdbcType=VARCHAR},
+      RELATION_TYPE = #{relationType,jdbcType=VARCHAR},
+      RELATION_CODE = #{relationCode,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_DATE = #{createdDate,jdbcType=DATE},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_DATE = #{updatedDate,jdbcType=DATE}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
