@@ -19,6 +19,10 @@
                         <div class="panel-body" style="padding-bottom:10px;">
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label class="col-sm-1 control-label text-right">账号</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="user.id">
+                                    </div>
                                     <label class="col-sm-1 control-label text-right">用户名称</label>
                                     <div class="col-sm-3">
                                         <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="user.userName">
@@ -28,7 +32,26 @@
                                         <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="user.password">
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label text-right">联系方式</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="resource.tel">
+                                    </div>
+                                    <label class="col-sm-1 control-label text-right">地址</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="resource.address">
+                                    </div>
+                                    <label class="col-sm-1 control-label text-right">状态</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="resource.state">
+                                    </div>
+                                    <label class="col-sm-1 control-label text-right">备注</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="resource.remark">
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="col-md-12 text-center" style="margin:20px;">
@@ -44,5 +67,5 @@
 </div>
 <%@include file="../common/common.jsp"%>
 <script type = "text/javascript">
-    seajs.use('../../js/user/userEdit');
+    seajs.use('../../../sm/js/user/userEdit');
 </script>

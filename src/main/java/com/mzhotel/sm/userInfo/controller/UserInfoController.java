@@ -1,5 +1,7 @@
 package com.mzhotel.sm.userInfo.controller;
 
+import com.mzhotel.sm.login.dto.QueryUserInfo;
+import com.mzhotel.sm.pageUtil.PageResult;
 import com.mzhotel.sm.userInfo.dto.UserInfo;
 import com.mzhotel.sm.userInfo.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,7 @@ public class UserInfoController {
         return userInfoService.insertSelective(record);
     }
 
-    @RequestMapping(value = "/getOneUser",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public UserInfo selectByPrimaryKey(@PathVariable(value = "id") String id) {
         return userInfoService.selectByPrimaryKey(id);
     }
@@ -42,5 +44,10 @@ public class UserInfoController {
     @RequestMapping(value = "/updateByPrimaryKey",method = RequestMethod.POST)
     public int updateByPrimaryKey(@RequestBody @Valid UserInfo record) {
         return userInfoService.updateByPrimaryKey(record);
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public PageResult<UserInfo> queryPage(QueryUserInfo queryUserInfo) {
+        return userInfoService.queryPage(queryUserInfo);
     }
 }

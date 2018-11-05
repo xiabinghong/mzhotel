@@ -18,8 +18,8 @@ public interface RoleService {
 
     int updateByPrimaryKeySelective(Role record);
 
-    Role updateByPrimaryKey(Role record);
-    
+    int updateByPrimaryKey(Role record);
+
     List<Role> getRoleList(QueryRole queryRole);
 
     PageResult<Role> getRole(QueryRole queryRole);

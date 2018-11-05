@@ -32,7 +32,35 @@
                                         <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="resource.resourceType">
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label text-right">页面地址</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="resource.url">
+                                    </div>
+                                    <label class="col-sm-1 control-label text-right">父级资源</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="resource.resource_parent">
+                                    </div>
+                                    <label class="col-sm-1 control-label text-right">操作类型</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="resource.action">
+                                    </div>
                             </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label text-right">状态</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="resource.state">
+                                    </div>
+                                    <label class="col-sm-1 control-label text-right">排序</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="resource.order">
+                                    </div>
+                                    <label class="col-sm-1 control-label text-right">备注</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="resource.remark">
+                                    </div>
+                                </div>
                         </div>
                     </div>
                     <div class="col-md-12 text-center" style="margin:20px;">

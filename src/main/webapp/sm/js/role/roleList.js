@@ -82,3 +82,5 @@ define(function (require, exports) {
     }]);
     window.angular.bootstrap(document, [moduleName]);
 });
+
+

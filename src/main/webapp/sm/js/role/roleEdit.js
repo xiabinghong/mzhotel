@@ -67,4 +67,4 @@ define(function (require, exports) {
         $scope.init();
     }]);
     window.angular.bootstrap(document, [moduleName]);
-});
+})

@@ -24,4 +24,6 @@ public interface UserInfoMapper {
     UserInfo getUserInfoByUserName(QueryUserInfo queryUserInfo);
 
     List<Role> getRoleInfo(QueryUserInfo queryUserInfo);
+
+    List<UserInfo> getUserInfo(QueryUserInfo queryUserInfo);
 }

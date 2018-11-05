@@ -211,4 +211,9 @@
       where role.ROLE_CODE = userrole.ROLE_CODE and userrole.user_id = user.user_id
       and user.user_id = #{userId,jdbcType=VARCHAR}
   </select>
+
+  <select id="getUserInfo" parameterType="com.mzhotel.sm.login.dto.QueryUserInfo"
+          resultType="com.mzhotel.sm.userInfo.dto.UserInfo">
+    select * from T_USER t
+  </select>
 </mapper>

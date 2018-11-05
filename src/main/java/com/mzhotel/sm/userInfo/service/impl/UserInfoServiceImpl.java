@@ -2,10 +2,12 @@ package com.mzhotel.sm.userInfo.service.impl;
 
 import com.mzhotel.sm.common.ContextHolderUtils;
 import com.mzhotel.sm.login.dto.QueryUserInfo;
+import com.mzhotel.sm.pageUtil.PageResult;
 import com.mzhotel.sm.role.dto.Role;
 import com.mzhotel.sm.userInfo.dto.UserInfo;
 import com.mzhotel.sm.userInfo.mapper.UserInfoMapper;
 import com.mzhotel.sm.userInfo.service.UserInfoService;
+import com.mzhotel.sm.util.MyBatisDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,9 @@ public class UserInfoServiceImpl implements UserInfoService{
 
     @Autowired
     UserInfoMapper userInfoMapper;
+
+    @Autowired
+    MyBatisDAO<UserInfo> myBatisDAO;
 
     public String getCurrUser() {
         HttpSession session = ContextHolderUtils.getSession();
@@ -32,6 +37,16 @@ public class UserInfoServiceImpl implements UserInfoService{
     @Override
     public List<Role> getRoleInfo(QueryUserInfo queryUserInfo){
         return userInfoMapper.getRoleInfo(queryUserInfo);
+    }
+
+    @Override
+    public List<UserInfo> getUserInfo(QueryUserInfo queryUserInfo){
+        return userInfoMapper.getUserInfo(queryUserInfo);
+    }
+
+    @Override
+    public PageResult<UserInfo> queryPage(QueryUserInfo queryUserInfo){
+        return myBatisDAO.selectPage(getUserInfo(queryUserInfo),queryUserInfo.getPageNum(),queryUserInfo.getPageSize());
     }
 
     @Transactional

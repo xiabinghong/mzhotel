@@ -45,9 +45,6 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.mzhotel.sm.role.dto.Role" >
-    <selectKey keyProperty="id" resultType="java.lang.String" keyColumn="id" order="BEFORE">
-      select sys_guid() from dual
-    </selectKey>
     insert into T_ROLE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -180,4 +177,23 @@
       UPDATED_DATE = #{updatedDate,jdbcType=DATE}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="getRole" parameterType="com.mzhotel.sm.role.dto.QueryRole"
+          resultType="com.mzhotel.sm.role.dto.Role">
+    select
+    t.*,
+    created.username createdName,
+    updated.username updatedName,
+    info.SAVE_NAME saveName
+    from T_ROLE t
+    left join t_user created on created.user_id = t.created_by
+    left join t_user updated on updated.user_id = t.updated_by
+    left join T_DOCUMENT_INFO_RELATION relation on relation.RELATION_ID = t.id and relation.RELATION_TYPE='ROLE'
+    left join T_DOCUMENT_INFO info on info.id = relation.DOCUMENT_ID
+    <where>
+      <if test="id">
+        and id = #{id,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
 </mapper>

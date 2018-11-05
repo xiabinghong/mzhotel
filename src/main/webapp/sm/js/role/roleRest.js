@@ -11,4 +11,4 @@ define(function(require,exports){
             getRoleList:{isArray:true,method:"GET",url:appname+"/role/getRoleList"}
         })
     }])
-});
+})

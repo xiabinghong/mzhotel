@@ -1,59 +1,55 @@
 define(function (require, exports) {
-    var moduleName = "userModule";
-    var moduleApp = angular.module(moduleName,[]);
-    moduleApp.controller("userEditController", ["$scope", "$http", function ($scope, $http) {
+    var moduleName = "userEditModule";
+    require("../app.directives");
+    require("./userRest");
+    require("../tools/ng-file-upload");
+    var moduleApp = angular.module(moduleName, ["common", "StoreManager.REST"]);
+    moduleApp.controller("userEditController", ["$scope", "$http", "$UrlUtils", "UserAPI","Upload", function ($scope, $http, $UrlUtils,UserAPI,Upload) {
         $scope.query = {};
+        $scope.file = null;
         $scope.pageSetting = {
-            disabled: true
+            disabled: true,
+            loading: false
         };
-        var params = {
-            id:null
-        };
+        var params = $UrlUtils.getParameters();
         $scope.user = {};
         $scope.init = function () {
-            if (params.id) {
-                $http({
-                    method: "GET",
-                    url: "/mzhotel/user/selectByPrimaryKey",
-                    data: params.id
-                }).then(function successCallback(result) {
+            if (params && params.id) {
+                UserAPI.get({id: params.id}, function (result) {
                     $scope.user = result;
-                }, function errorCallback() {
-
-                })
+                });
             } else {
                 $scope.pageSetting.disabled = false;
             }
         }
         $scope.save = function () {
             if (params.id) {
-                $http({
-                    method: "POST",
-                    url: "/mzhotel/user/update",
-                    data: $scope.user
-                }).then(function successCallback(result) {
-                    params.id = result.data.id;
+                UserAPI.update({id: params.id}, $scope.user, function (result) {
+                    params.id = result.id;
                     $scope.pageSetting.disabled = true;
-                    $scope.user = result.data;
                     alert("更新成功");
-                }, function errorCallback() {
-                    alert("更新失败");
-                })
+                    callback();
+                }).$promise.finally(function () {
+                    $scope.pageSetting.loading = false;
+                });
             } else {
-                $http({
-                    method: "POST",
-                    url: "/mzhotel/user/insert",
-                    data: $scope.user
-                }).then(function successCallback(result) {
-                    params.id = result.data.id;
+                UserAPI.save($scope.user, function (result) {
+                    params.id = result.id;
                     $scope.pageSetting.disabled = true;
-                    $scope.user = result.data;
                     alert("新增成功");
-                }, function errorCallback() {
-                    alert("新增失败");
-                })
+                    callback();
+                }).$promise.finally(function () {
+                    $scope.pageSetting.loading = false;
+                });
+            }
+        };
+
+        function callback() {
+            if (self.opener && self.opener.doCallback) {
+                self.opener.doCallback();
             }
         }
+
         $scope.cancel = function () {
             $scope.pageSetting.disabled = true;
             $scope.init();
@@ -67,4 +63,4 @@ define(function (require, exports) {
         $scope.init();
     }]);
     window.angular.bootstrap(document, [moduleName]);
-})
+});

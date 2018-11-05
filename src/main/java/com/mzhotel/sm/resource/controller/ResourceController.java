@@ -15,10 +15,10 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/resource")
 public class ResourceController {
-    
+
     @Autowired
     ResourceService resourceService;
-    
+
     @Autowired
     UserInfoService userInfoService;
 
@@ -27,7 +27,7 @@ public class ResourceController {
         userInfoService.getCurrUser();
         return resourceService.getResourceList(queryResource);
     }
-    
+
     @RequestMapping(method = RequestMethod.GET)
     public PageResult<Resource> getResource(QueryResource queryResource) {
         return resourceService.getResource(queryResource);
@@ -63,5 +63,7 @@ public class ResourceController {
                                   @RequestBody @Valid Resource record){
         return resourceService.updateByPrimaryKey(record);
     }
+
+
     
 }

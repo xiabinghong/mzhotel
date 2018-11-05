@@ -3,6 +3,7 @@ package com.mzhotel.sm.role.mapper;
 import com.mzhotel.sm.role.dto.QueryRole;
 import com.mzhotel.sm.role.dto.Role;
 
+
 import java.util.List;
 
 public interface RoleMapper {

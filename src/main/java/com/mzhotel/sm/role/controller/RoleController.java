@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/role")
 public class RoleController {
-    
+
     @Autowired
     RoleService roleService;
 
@@ -27,12 +27,12 @@ public class RoleController {
         userInfoService.getCurrUser();
         return roleService.getRoleList(queryRole);
     }
+
     @RequestMapping(method = RequestMethod.GET)
     public PageResult<Role> getRole(QueryRole queryRole) {
         return roleService.getRole(queryRole);
     }
-
-    @RequestMapping(method = RequestMethod.DELETE)
+    @RequestMapping(value="/{id}",method = RequestMethod.DELETE)
     public int deleteByPrimaryKey(@PathVariable(value = "id") String id){
         return roleService.deleteByPrimaryKey(id);
     }
@@ -59,9 +59,11 @@ public class RoleController {
     }
 
     @RequestMapping(value="/updateByPrimaryKey",method = RequestMethod.DELETE)
-    public Role updateByPrimaryKey(@PathVariable(value = "id") String id,
+    public int updateByPrimaryKey(@PathVariable(value = "id") String id,
                                   @RequestBody @Valid Role record){
         return roleService.updateByPrimaryKey(record);
     }
-    
+
+
+
 }

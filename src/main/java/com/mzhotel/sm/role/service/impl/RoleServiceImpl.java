@@ -1,13 +1,10 @@
 package com.mzhotel.sm.role.service.impl;
 
-import com.mzhotel.sm.documentInfoRelation.dto.DocumentInfoRelation;
 import com.mzhotel.sm.documentInfoRelation.service.DocumentInfoRelationService;
 import com.mzhotel.sm.pageUtil.PageResult;
 import com.mzhotel.sm.role.dto.Role;
 import com.mzhotel.sm.role.mapper.RoleMapper;
 import com.mzhotel.sm.role.service.RoleService;
-import com.mzhotel.sm.role.dto.QueryRole;
-import com.mzhotel.sm.role.dto.Role;
 import com.mzhotel.sm.role.dto.QueryRole;
 import com.mzhotel.sm.role.dto.Role;
 import com.mzhotel.sm.userInfo.service.UserInfoService;
@@ -18,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -26,6 +22,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Autowired
     RoleMapper roleMapper;
+
     @Autowired
     UserInfoService userInfoService;
 
@@ -36,7 +33,6 @@ public class RoleServiceImpl implements RoleService {
     DocumentInfoRelationService documentInfoRelationService;
 
     private static final String mapper = "RoleMapper";
-
 
     @Override
     @Transactional
@@ -54,9 +50,10 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional
-    public int insert(Role record) {
+    public int insert(Role record){
         return roleMapper.insert(record);
     }
+
     @Override
     @Transactional
     public int insertSelective(Role record){
@@ -76,11 +73,8 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional
-    public Role updateByPrimaryKey(Role record) {
-        Assert.notNull(record,"更新对象不能为空!");
-        Assert.isTrue(StringUtils.trimToNull(record.getId()) != null,"更新对象主键不能为空!");
-        roleMapper.updateByPrimaryKey(record);
-        return getOneRole(record.getId());
+    public int updateByPrimaryKey(Role record) {
+        return  roleMapper.updateByPrimaryKey(record);
     }
 
     @Override

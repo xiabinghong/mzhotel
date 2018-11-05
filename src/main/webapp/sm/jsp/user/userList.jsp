@@ -26,14 +26,9 @@
             </div>
             <div class="panel">
                 <div align="right" style="padding-top: 10px;">
-
-                        <input class="btn btn-info" type="button" ng-click="add();" value="新增">
-
-
-                        <input class="btn btn-info" type="button" ng-click="view(choiceItem);" value="查看">
-
-                        <input class="btn btn-info" type="button" ng-click="delete(choiceItem)" value="删除">
-
+                    <input class="btn btn-info" type="button" ng-click="add();" value="新增">
+                    <input class="btn btn-info" type="button" ng-click="view(choiceItem);" value="查看">
+                    <input class="btn btn-info" type="button" ng-click="delete(choiceItem)" value="删除">
                 </div>
                 <div class="panel-body">
                     <div class="responsive-table">
@@ -58,6 +53,7 @@
                                             ng-repeat="list in userList"
                                             ng-class="{'current-tr':choiceItem.id == list.id}"
                                             ng-click="choiceViewItem(list)"
+                                            ng-dblclick="view(list)"
                                             data-ng-dbclick="choiceViewItem(list)">
                                             <td ng-bind="$index+1"></td>
                                             <td ng-bind="list.userId"></td>
@@ -67,7 +63,7 @@
                                             <td ng-bind="list.state"></td>
                                             <td ng-bind="list.remark"></td>
                                             <td ng-bind="list.createdBy"></td>
-                                            <td ng-bind="list.createdDate"></td>
+                                            <td ng-bind="list.createdDate | date:'yyyy-mm-dd'"></td>
                                             <td ng-bind="list.updatedBy"></td>
                                             <td ng-bind="list.updateByDate"></td>
                                         </tr>
@@ -83,5 +79,5 @@
 </div>
 <%@include file="../common/common.jsp"%>
 <script type = "text/javascript">
-    seajs.use('../../js/user/userList');
+    seajs.use('../../../sm/js/user/userList');
 </script>

@@ -10,4 +10,4 @@ define(function(require,exports){
             remove:{method:"DELETE"}
         })
     }])
-});
+})
