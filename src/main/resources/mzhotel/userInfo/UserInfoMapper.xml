@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mzhotel.sm.userInfo.mapper.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mzhotel.sm.userInfo.dto.UserInfo" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="USERNAME" property="username" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="TEL" property="tel" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_DATE" property="createdDate" jdbcType="DATE" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_DATE" property="updatedDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USER_ID, USERNAME, PASSWORD, TEL, ADDRESS, STATE, REMARK, CREATED_BY, CREATED_DATE, 
+    UPDATED_BY, UPDATED_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_USER
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_USER
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.mzhotel.sm.userInfo.dto.UserInfo" >
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+      select sys_guid() from dual
+    </selectKey>
+    insert into T_USER (ID, USER_ID, USERNAME, 
+      PASSWORD, TEL, ADDRESS, 
+      STATE, REMARK, CREATED_BY, 
+      CREATED_DATE, UPDATED_BY, UPDATED_DATE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, 
+      #{createdDate,jdbcType=DATE}, #{updatedBy,jdbcType=VARCHAR}, #{updatedDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mzhotel.sm.userInfo.dto.UserInfo" >
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+        select sys_guid() from dual
+    </selectKey>
+    insert into T_USER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="username != null" >
+        USERNAME,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="tel != null" >
+        TEL,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdDate != null" >
+        CREATED_DATE,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedDate != null" >
+        UPDATED_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate,jdbcType=DATE},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null" >
+        #{updatedDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mzhotel.sm.userInfo.dto.UserInfo" >
+    update T_USER
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        CREATED_DATE = #{createdDate,jdbcType=DATE},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null" >
+        UPDATED_DATE = #{updatedDate,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mzhotel.sm.userInfo.dto.UserInfo" >
+    update T_USER
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      USERNAME = #{username,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      TEL = #{tel,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_DATE = #{createdDate,jdbcType=DATE},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_DATE = #{updatedDate,jdbcType=DATE}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectUserByLogin" parameterType="com.mzhotel.sm.login.dto.QueryUserInfo"
+          resultMap="BaseResultMap">
+      select * from t_user
+      <where>
+          AND STATE = '1'
+          <if test="userId != null and userId != ''">
+              and user_id = #{userId,jdbcType = VARCHAR}
+          </if>
+          <if test="password != null and password != ''">
+            and password = #{password,jdbcType = VARCHAR}
+          </if>
+          <if test="username != null and username != '' ">
+            and username = #{username,jdbcType = VARCHAR}
+          </if>
+      </where>
+  </select>
+  <select id="getUserInfoByUserName" parameterType="com.mzhotel.sm.login.dto.QueryUserInfo"
+          resultMap="BaseResultMap">
+    select * from t_user
+    <where>
+      AND STATE = '1'
+      <if test="userName != null and userName != '' ">
+        and username = #{userName,jdbcType = VARCHAR}
+      </if>
+    </where>
+  </select>
+  <select id="getRoleInfo" parameterType="com.mzhotel.sm.login.dto.QueryUserInfo"
+        resultType="com.mzhotel.sm.role.dto.Role">
+      select role.* from t_role role,T_USER_ROLE_RELATION userrole,t_user USER
+      where role.ROLE_CODE = userrole.ROLE_CODE and userrole.user_id = user.user_id
+      and user.user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+</mapper>

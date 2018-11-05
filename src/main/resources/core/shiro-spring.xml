@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 缓存管理器 使用Ehcache实现 -->
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:core/ehcache.xml" />
+    </bean>
+    <bean id="custom_Realm" class="com.mzhotel.sm.realm.CustomRealm">
+        <!--<property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                <property name="hashAlgorithmName" value="MD5"/>
+                <property name="storedCredentialsHexEncoded" value="true"/>
+                <property name="hashIterations" value="1" />
+            </bean>
+        </property>-->
+    </bean>
+    <!-- 安全管理器  ref对象-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="custom_Realm"/>
+    </bean>
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+    <!-- shiro filter -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- 安全管理器必须的 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 身份认证失败   认证提交的地址 -->
+        <property name="loginUrl" value="/index.jsp"/>
+        <!-- 权限认证失败    没有权限认证提交的地址 -->
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+        <!-- Shiro连接约束配置,即过滤链的定义 -->
+        <property name="filterChainDefinitions">
+            <value>
+                <!-- 对静态资源设置匿名访问 -->
+                /login = anon
+                <!-- /** = authc 所有url都必须认证通过才可以访问 -->
+                /admin* = authc
+            </value>
+        </property>
+    </bean>
+    <!-- Shiro生命周期处理器 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
+</beans>

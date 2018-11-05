@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mzhotel.sm.storehouse.mapper.StorehouseMapper" >
+  <resultMap id="BaseResultMap" type="com.mzhotel.sm.storehouse.dto.Storehouse" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="AREA" property="area" jdbcType="VARCHAR" />
+    <result column="ROOM" property="room" jdbcType="VARCHAR" />
+    <result column="GOODS_TYPE" property="goodsType" jdbcType="VARCHAR" />
+    <result column="GOODS_NAME" property="goodsName" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_DATE" property="createdDate" jdbcType="DATE" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_DATE" property="updatedDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, AREA, ROOM, GOODS_TYPE, GOODS_NAME, AMOUNT, STATE, REMARK, CREATED_BY, CREATED_DATE, 
+    UPDATED_BY, UPDATED_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_STOREHOUSE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_STOREHOUSE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.mzhotel.sm.storehouse.dto.Storehouse" >
+    <selectKey keyProperty="id" resultType="java.lang.String" keyColumn="id" order="BEFORE">
+            select sys_guid() from dual
+    </selectKey>
+    insert into T_STOREHOUSE (ID, AREA, ROOM, 
+      GOODS_TYPE, GOODS_NAME, AMOUNT, 
+      STATE, REMARK, CREATED_BY, 
+      CREATED_DATE, UPDATED_BY, UPDATED_DATE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{room,jdbcType=VARCHAR}, 
+      #{goodsType,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
+      #{state,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, 
+      #{createdDate,jdbcType=DATE}, #{updatedBy,jdbcType=VARCHAR}, #{updatedDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mzhotel.sm.storehouse.dto.Storehouse" >
+    insert into T_STOREHOUSE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="area != null" >
+        AREA,
+      </if>
+      <if test="room != null" >
+        ROOM,
+      </if>
+      <if test="goodsType != null" >
+        GOODS_TYPE,
+      </if>
+      <if test="goodsName != null" >
+        GOODS_NAME,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdDate != null" >
+        CREATED_DATE,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedDate != null" >
+        UPDATED_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null" >
+        #{room,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null" >
+        #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate,jdbcType=DATE},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null" >
+        #{updatedDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mzhotel.sm.storehouse.dto.Storehouse" >
+    update T_STOREHOUSE
+    <set >
+      <if test="area != null" >
+        AREA = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null" >
+        ROOM = #{room,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null" >
+        GOODS_TYPE = #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        CREATED_DATE = #{createdDate,jdbcType=DATE},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null" >
+        UPDATED_DATE = #{updatedDate,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mzhotel.sm.storehouse.dto.Storehouse" >
+    update T_STOREHOUSE
+    set AREA = #{area,jdbcType=VARCHAR},
+      ROOM = #{room,jdbcType=VARCHAR},
+      GOODS_TYPE = #{goodsType,jdbcType=VARCHAR},
+      GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      STATE = #{state,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_DATE = #{createdDate,jdbcType=DATE},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_DATE = #{updatedDate,jdbcType=DATE}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getStorehouse" parameterType="com.mzhotel.sm.storehouse.dto.QueryStorehouse"
+          resultType="com.mzhotel.sm.storehouse.dto.Storehouse">
+      select
+      t.*,
+      created.username createdName,
+      updated.username updatedName,
+      info.SAVE_NAME saveName
+      from t_storehouse t
+      left join t_user created on created.user_id = t.created_by
+      left join t_user updated on updated.user_id = t.updated_by
+      left join T_DOCUMENT_INFO_RELATION relation on relation.RELATION_ID = t.id and relation.RELATION_TYPE='STORE_HOUSE'
+      left join T_DOCUMENT_INFO info on info.id = relation.DOCUMENT_ID
+      <where>
+          <if test="id">
+               and id = #{id,jdbcType=VARCHAR}
+          </if>
+          <if test="goodsName">
+               and GOODS_NAME like '%'||#{goodsName,jdbcType=VARCHAR}||'%'
+          </if>
+      </where>
+  </select>
+</mapper>
