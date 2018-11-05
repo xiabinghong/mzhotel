@@ -11,4 +11,4 @@ define(function(require,exports){
             getResourceList:{isArray:true,method:"GET",url:appname+"/resource/getResourceList"}
         })
     }])
-});
+})
