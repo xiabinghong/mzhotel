@@ -6,26 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="description" content="12">
-    <meta name="author" content="12">
-    <meta name="keyword" content="12">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>XXXXXX</title>
-    <!-- start: Css -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-    <!-- plugins -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/plugins/font-awesome.min.css"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/plugins/simple-line-icons.css"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/plugins/animate.min.css"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/plugins/fullcalendar.min.css"/>
-    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
-    <!-- end: Css -->
-</head>
-<body>
-<div ng-app="storeManagerApp" ng-controller="storeManagerController">
+<%@include file="../common/header_inner.jsp"%>
+<div ng-controller="dinnerManagerController">
     <div class="col-md-12 padding-0 form-element">
         <div class="col-md-12">
             <div class="panel form-element-padding">
@@ -81,11 +63,9 @@
                                             <td>备注</td>
                                             <td>创建人</td>
                                             <td>创建时间</td>
-                                            <td>修改人</td>
-                                            <td>修改时间</td>
                                         </tr>
-                                        <tr align="center" ng-show="DinnerPartyManagerList"
-                                            ng-repeat="list in DinnerPartyManagerList"
+                                        <tr align="center" ng-show="dinnerPartyManagerList"
+                                            ng-repeat="list in dinnerPartyManagerList"
                                             ng-class="{'current-tr':choiceItem.id == list.id}"
                                             ng-click="choiceViewItem(list)"
                                             data-ng-dbclick="choiceViewItem(list)">
@@ -96,11 +76,13 @@
                                             <td ng-bind="list.consumptionItem"></td>
                                             <td ng-bind="list.remark"></td>
                                             <td ng-bind="list.createdBy"></td>
-                                            <td ng-bind="list.createdDate"></td>
-                                            <td ng-bind="list.updatedBy"></td>
-                                            <td ng-bind="list.updatedDate"></td>
+                                            <td ng-bind="list.createdDate | date : 'yyyy-MM-dd HH:mm:ss'"></td>
                                         </tr>
                                     </table>
+                                    <div ng-show="!dinnerPartyManagerList || dinnerPartyManagerList.length == 0">未查询到相关数据</div>
+                                    <div class="widget-toolbar">
+                                        <ug-pagination page-info="pageSetting" load-parameter="query"></ug-pagination>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -110,23 +92,7 @@
         </div>
     </div>
 </div>
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-<script src="${pageContext.request.contextPath}/js/html5shiv.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/respond.min.js"></script>
-<![endif]-->
-<!-- start: Javascript -->
-<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.ui.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/tools/bootstrap.js"></script>
-<!-- plugins -->
-<script src="${pageContext.request.contextPath}/js/plugins/jquery.nicescroll.js"></script>
-<!-- custom -->
-<script src="${pageContext.request.contextPath}/js/main.js"></script>
-<script src="${pageContext.request.contextPath}/js/tools/angular.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/tools/angular-resource.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/tools/angular-animate.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/tools/ui-bootstrap-tpls.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/storeManager/storeManagerList.js"></script>
-</body>
-</html>
+<%@include file="../common/common.jsp"%>
+<script type = "text/javascript">
+    seajs.use('../../../sm/js/dinnerManager/dinnerManagerList');
+</script>

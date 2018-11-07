@@ -43,11 +43,8 @@
                                             <td>联系方式</td>
                                             <td>地址</td>
                                             <td>状态</td>
-                                            <td>备注</td>
                                             <td>创建人</td>
                                             <td>创建时间</td>
-                                            <td>修改人</td>
-                                            <td>修改时间</td>
                                         </tr>
                                         <tr align="center" ng-show="userList"
                                             ng-repeat="list in userList"
@@ -61,11 +58,8 @@
                                             <td ng-bind="list.tel"></td>
                                             <td ng-bind="list.address"></td>
                                             <td ng-bind="list.state"></td>
-                                            <td ng-bind="list.remark"></td>
                                             <td ng-bind="list.createdBy"></td>
                                             <td ng-bind="list.createdDate | date:'yyyy-mm-dd'"></td>
-                                            <td ng-bind="list.updatedBy"></td>
-                                            <td ng-bind="list.updateByDate"></td>
                                         </tr>
                                     </table>
                                 </div>

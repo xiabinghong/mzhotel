@@ -60,14 +60,8 @@
                                             <td>角色名</td>
                                             <td>角色编号</td>
                                             <td>角色类型</td>
-                                            <td>父级角色</td>
-                                            <td>状态</td>
-                                            <td>排序</td>
-                                            <td>备注</td>
                                             <td>创建人</td>
                                             <td>创建时间</td>
-                                            <td>修改人</td>
-                                            <td>修改时间</td>
                                         </tr>
                                         <tr align="center" ng-show="roleList"
                                             ng-repeat="list in roleList"
@@ -79,14 +73,8 @@
                                             <td ng-bind="list.roleName"></td>
                                             <td ng-bind="list.roleCode"></td>
                                             <td ng-bind="list.roleType"></td>
-                                            <td ng-bind="list.roleParent"></td>
-                                            <td ng-bind="list.state"></td>
-                                            <td ng-bind="list.orderNo"></td>
-                                            <td ng-bind="list.remark"></td>
                                             <td ng-bind="list.createdBy"></td>
                                             <td ng-bind="list.createdDate | date:'yyyy-MM-dd HH:mm:ss'"></td>
-                                            <td ng-bind="list.updatedBy"></td>
-                                            <td ng-bind="list.updatedDate | date:'yyyy-MM-dd HH:mm:ss'"></td>
                                         </tr>
                                     </table>
                                     <div ng-show="!roleList || roleList.length == 0">未查询到相关数据</div>

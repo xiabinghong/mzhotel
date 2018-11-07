@@ -6,26 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="description" content="12">
-    <meta name="author" content="12">
-    <meta name="keyword" content="12">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>明珠酒店仓库管理</title>
-    <!-- start: Css -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-    <!-- plugins -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/plugins/font-awesome.min.css"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/plugins/simple-line-icons.css"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/plugins/animate.min.css"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/plugins/fullcalendar.min.css"/>
-    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
-    <!-- end: Css -->
-</head>
+<%@include file="../common/header_inner.jsp"%>
 <body>
-    <div ng-app="dinnerPartyEditApp" ng-controller="dinnerPartyEditController" style="align-content: left;">
+    <div ng-controller="dinnerPartyEditController" style="align-content: center;">
         <div class="form-element">
             <div class="col-md-12 padding-0">
                 <form>
@@ -63,55 +46,6 @@
                                         <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="dinnerParty.remark">
                                     </div>
                                 </div>
-
-                                </div>
-                                <%--<div class="form-group">
-                                    <label class="col-sm-1 control-label text-right">名称</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-model="dinnerParty.area">
-                                    </div>
-                                    <label class="col-sm-1 control-label text-right">名称</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-model="dinnerParty.area">
-                                    </div>
-                                    <label class="col-sm-1 control-label text-right">名称</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control">
-                                            <option>option one</option>
-                                            <option>option two</option>
-                                            <option>option three</option>
-                                            <option>option four</option>
-                                        </select>
-                                    </div>
-                                </div>--%>
-                                <%--<div class="form-group">
-                                    <label class="col-sm-1 control-label text-right">名称</label>
-                                    <div class="col-sm-11">
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-1 control-label text-right">单选</label>
-                                    <div class="col-sm-11">
-                                        <div class="col-sm-1 padding-0">
-                                            <input type="radio" name="option">
-                                            条件一 </div>
-                                        <div class="col-sm-1 padding-0">
-                                            <input type="radio" name="option">
-                                            条件二 </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-1 control-label text-right">复选</label>
-                                    <div class="col-sm-11">
-                                        <div class="col-sm-1 padding-0">
-                                            <input type="checkbox" name="option">
-                                            条件一 </div>
-                                        <div class="col-sm-1 padding-0">
-                                            <input type="checkbox" name="option">
-                                            条件二 </div>
-                                    </div>
-                                </div>--%>
                             </div>
                         </div>
                     </div>
@@ -189,22 +123,8 @@
         </div>
         <!-- /.modal -->
     </div>
-    <!--[if lt IE 9]>
-    <script src="${pageContext.request.contextPath}/js/html5shiv.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/respond.min.js"></script>
-    <![endif]-->
-<!-- start: Javascript -->
-<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.ui.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/tools/bootstrap.js"></script>
-<!-- plugins -->
-<script src="${pageContext.request.contextPath}/js/plugins/jquery.nicescroll.js"></script>
-<!-- custom -->
-<script src="${pageContext.request.contextPath}/js/main.js"></script>
-    <script src="${pageContext.request.contextPath}/js/tools/angular.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/tools/angular-resource.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/tools/angular-animate.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/tools/ui-bootstrap-tpls.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/storeManager/storeManagerEdit.js"></script>
 </body>
-</html>
+<%@include file="../common/common.jsp"%>
+<script type = "text/javascript">
+    seajs.use('../../../sm/js/dinnerManager/dinnerManagerEdit');
+</script>
