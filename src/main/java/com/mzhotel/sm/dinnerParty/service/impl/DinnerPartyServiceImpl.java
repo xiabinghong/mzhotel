@@ -18,7 +18,7 @@ import java.util.List;
 public class DinnerPartyServiceImpl implements DinnerPartyService {
 
     @Autowired
-    DinnerPartyMapper DinnerPartyMapper;
+    DinnerPartyMapper dinnerPartyMapper;
 
     @Autowired
     UserInfoService userInfoService;
@@ -29,52 +29,41 @@ public class DinnerPartyServiceImpl implements DinnerPartyService {
     @Autowired
     DocumentInfoRelationService documentInfoRelationService;
 
-    private static final String mapper = "DinnerPartyMapper";
-
-    
     @Override
     @Transactional
-    public int deleteByPrimaryKey(String id){
-        return DinnerPartyMapper.deleteByPrimaryKey(id);
+    public int deleteByPrimaryKey(String id) {
+        return dinnerPartyMapper.deleteByPrimaryKey(id);
     }
 
     @Override
     @Transactional
-    public int insert(DinnerParty record){
-        return DinnerPartyMapper.insert(record);
+    public DinnerParty insert(DinnerParty record) {
+        int result = dinnerPartyMapper.insert(record);
+        if (result == 1) {
+            return getOneDinnerParty(record.getId());
+        }
+        return null;
     }
 
     @Override
     @Transactional
-    public int insertSelective(DinnerParty record){
-        return DinnerPartyMapper.insertSelective(record);
+    public DinnerParty update(DinnerParty record) {
+        int result = dinnerPartyMapper.updateByPrimaryKeySelective(record);
+        if(result == 1){
+            return getOneDinnerParty(record.getId());
+        }
+        return null;
     }
 
-    @Override
-    public DinnerParty selectByPrimaryKey(String id){
-        return DinnerPartyMapper.selectByPrimaryKey(id);
-    }
-
-    @Override
-    @Transactional
-    public int updateByPrimaryKeySelective(DinnerParty record){
-        return DinnerPartyMapper.updateByPrimaryKeySelective(record);
-    }
-
-    @Override
-    @Transactional
-    public int updateByPrimaryKey(DinnerParty record){
-        return DinnerPartyMapper.updateByPrimaryKey(record);
-    }
     @Override
     public List<DinnerParty> getDinnerPartyList(QueryDinnerParty queryDinnerParty) {
-        return DinnerPartyMapper.getDinnerParty(queryDinnerParty);
+        return dinnerPartyMapper.getDinnerParty(queryDinnerParty);
     }
 
     @Override
     public PageResult<DinnerParty> getDinnerParty(QueryDinnerParty queryDinnerParty) {
-        List<DinnerParty> DinnerPartyList = getDinnerPartyList(queryDinnerParty);
-        return myBatisDAO.queryPage(DinnerPartyList,queryDinnerParty.getPageNum(), queryDinnerParty.getPageSize());
+        List<DinnerParty> dinnerPartyList = getDinnerPartyList(queryDinnerParty);
+        return myBatisDAO.queryPage(dinnerPartyList, queryDinnerParty.getPageNum(), queryDinnerParty.getPageSize());
     }
 
     @Override
@@ -82,7 +71,7 @@ public class DinnerPartyServiceImpl implements DinnerPartyService {
         if (id == null) {
             return null;
         }
-        return DinnerPartyMapper.selectByPrimaryKey(id);
+        return dinnerPartyMapper.selectByPrimaryKey(id);
     }
 
 

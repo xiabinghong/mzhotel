@@ -11,15 +11,9 @@ public interface DinnerPartyService {
 
     int deleteByPrimaryKey(String id);
 
-    int insert(DinnerParty record);
+    DinnerParty insert(DinnerParty record);
 
-    int insertSelective(DinnerParty record);
-
-    DinnerParty selectByPrimaryKey(String id);
-
-    int updateByPrimaryKeySelective(DinnerParty record);
-
-    int updateByPrimaryKey(DinnerParty record);
+    DinnerParty update(DinnerParty record);
 
     List<DinnerParty> getDinnerPartyList(QueryDinnerParty queryDinnerParty);
 
