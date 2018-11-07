@@ -3,7 +3,7 @@ define(function (require, exports) {
     require("../app.directives");
     require("./dinnerManagerRest");
     var moduleApp = angular.module(moduleName, ["common", "DinnerManager.REST"]);
-    moduleApp.controller("dinnerManagerController", ["$scope", "$http", "$dialog", "DinnerManagerAPI", function ($scope, $http, $dialog, DinnerManagerAPI) {
+    moduleApp.controller("dinnerManagerController", ["$scope", "$dialog", "DinnerManagerAPI", function ($scope, $dialog, DinnerManagerAPI) {
         $scope.query = {};
         $scope.dinnerPartyManagerList = {};
         $scope.choiceItem = null;
@@ -38,13 +38,13 @@ define(function (require, exports) {
         };
         $scope.add = function () {
             $dialog.modal({
-                url: "../dinnerManager/dinnerManagerEdit.jsp",
+                url: "../dinnerParty/dinnerManagerEdit.jsp",
             });
         };
         $scope.view = function (item) {
             if (item && item.id) {
                 $dialog.modal({
-                    url: "../dinnerManager/dinnerManagerEdit.jsp",
+                    url: "../dinnerParty/dinnerManagerEdit.jsp",
                     params: {
                         id: item.id
                     }
@@ -67,15 +67,6 @@ define(function (require, exports) {
             } else {
                 alert("请选择单据");
             }
-        };
-        $scope.innerStore = function () {
-
-        };
-        $scope.outStore = function () {
-
-        };
-        $scope.storeLog = function () {
-
         };
         $scope.init();
         window.doCallback = function () {

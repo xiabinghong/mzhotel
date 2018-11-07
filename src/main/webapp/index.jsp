@@ -61,11 +61,11 @@
                 <shiro:hasPermission name="DINNER_MANAGER_ENUM:ENUM:VIEW">
                     <li class=" ripple"> <a class="tree-toggle nav-header"><span class="fa fa-calendar-o"></span> 宴会信息管理 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
                         <ul class="nav nav-list tree">
-                            <shiro:hasPermission name="DINNER:ENUM:VIEW">
-                                <li><a href="javascript:void(0);" ng-click="transPage('/mzhotel/sm\jsp/dinnerParty/dinnerManagerList.jsp>宴会信息</a></li>
-                            </shiro:hasPermission>
+
+                                <li><a href="javascript:void(0);" ng-click="transPage('/mzhotel/sm/jsp/dinnerParty/dinnerManagerList.jsp')">宴会信息</a></li>
+
                             <shiro:hasPermission name="SHORT_MESSAGE_ENUM:ENUM:VIEW">
-                                <li><a href="javascript:void(0);" >短信管理 </a> </li>
+                                <li><a href="javascript:void(0);">短信管理 </a> </li>
                             </shiro:hasPermission>
                         </ul>
                     </li>
