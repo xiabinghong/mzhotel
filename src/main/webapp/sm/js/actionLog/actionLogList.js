@@ -3,7 +3,7 @@ define(function (require, exports) {
     require("../app.directives");
     require("./actionLogRest");
     var moduleApp = angular.module(moduleName, ["common", "ActionLog.REST"]);
-    moduleApp.controller("actionLogController", ["$scope", "$http", "$dialog", "ActionLogAPI","$UrlUtils", function ($scope, $http, $dialog, ActionLogAPI,$UrlUtils) {
+    moduleApp.controller("actionLogController", ["$scope", "$http", "$dialog", "ActionLogAPI", "$UrlUtils", function ($scope, $http, $dialog, ActionLogAPI, $UrlUtils) {
         $scope.query = {};
         $scope.actionLogList = {};
         $scope.params = $UrlUtils.getParameters();

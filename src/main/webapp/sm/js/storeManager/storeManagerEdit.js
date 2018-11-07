@@ -4,12 +4,12 @@ define(function (require, exports) {
     require("./storeManagerRest");
     require("../tools/ng-file-upload");
     require("../document/documentInfoRest");
-    var moduleApp = angular.module(moduleName, ["common", "StoreManager.REST","DocumentInfo.REST","ngFileUpload"]);
-    moduleApp.controller("storehouseEditController", ["$scope", "$http", "$UrlUtils", "StoreManagerAPI","DocumentInfoAPI","Upload", function ($scope, $http, $UrlUtils, StoreManagerAPI,DocumentInfoAPI,Upload) {
+    var moduleApp = angular.module(moduleName, ["common", "StoreManager.REST", "DocumentInfo.REST", "ngFileUpload"]);
+    moduleApp.controller("storehouseEditController", ["$scope", "$http", "$UrlUtils", "StoreManagerAPI", "DocumentInfoAPI", "Upload", function ($scope, $http, $UrlUtils, StoreManagerAPI, DocumentInfoAPI, Upload) {
         $scope.query = {};
         $scope.file = null;
         $scope.documentInfo = {};
-        $scope.documentInfo.url=null;
+        $scope.documentInfo.url = null;
         $scope.pageSetting = {
             disabled: true,
             loading: false
@@ -25,13 +25,13 @@ define(function (require, exports) {
                 $scope.pageSetting.disabled = false;
             }
         }
-        $scope.uploadFile = function(){
+        $scope.uploadFile = function () {
             console.log($scope.file);
             Upload.upload({
-                method:"POST",
-                url:appname+"/documentInfo/upload",
-                file:$scope.file
-            }).success(function(result){
+                method: "POST",
+                url: appname + "/documentInfo/upload",
+                file: $scope.file
+            }).success(function (result) {
                 $scope.documentInfo = result;
 
             })

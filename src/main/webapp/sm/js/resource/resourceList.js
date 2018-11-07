@@ -2,8 +2,8 @@ define(function (require, exports) {
     var moduleName = "resourceListModule";
     require("../app.directives");
     require("./resourceRest");
-    var moduleApp = angular.module(moduleName,["common","Resource.REST"]);
-    moduleApp.controller("resourceListController", ["$scope", "$http","ResourceAPI","$dialog", function ($scope, $http,ResourceAPI,$dialog) {
+    var moduleApp = angular.module(moduleName, ["common", "Resource.REST"]);
+    moduleApp.controller("resourceListController", ["$scope", "ResourceAPI", "$dialog", function ($scope, ResourceAPI, $dialog) {
         $scope.query = {};
         $scope.resourceList = {};
         $scope.choiceItem = null;
@@ -11,7 +11,7 @@ define(function (require, exports) {
             pageSize: 10,
             pageNum: 1
         };
-        $scope.getResourceList = function(){
+        $scope.getResourceList = function () {
             $scope.resourceList = {};
             $scope.queryBtnLoading = true;
             $scope.choiceItem = null;
@@ -24,10 +24,10 @@ define(function (require, exports) {
                 $scope.resourceList = angular.copy(result.data);
                 $scope.pageSetting = result.pageBean;
                 $scope.pageSetting.loadData = $scope.getResourceList;
-            }).$promise.finally(function(){
+            }).$promise.finally(function () {
                 $scope.queryBtnLoading = false;
             });
-        }
+        };
         $scope.init = function () {
             $scope.getResourceList();
         };
@@ -64,15 +64,6 @@ define(function (require, exports) {
             } else {
                 alert("请选择单据");
             }
-        };
-        $scope.innerStore = function () {
-
-        };
-        $scope.outStore = function () {
-
-        };
-        $scope.storeLog = function () {
-
         };
         $scope.init();
         window.doCallback = function () {

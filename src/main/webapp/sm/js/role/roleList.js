@@ -2,8 +2,8 @@ define(function (require, exports) {
     var moduleName = "roleModule";
     require("../app.directives");
     require("./roleRest");
-    var moduleApp = angular.module(moduleName, ["common", "role.REST"]);
-    moduleApp.controller("roleListController", ["$scope", "$http", "$dialog", "roleAPI", function ($scope, $http, $dialog, roleAPI) {
+    var moduleApp = angular.module(moduleName, ["common", "Role.REST"]);
+    moduleApp.controller("roleListController", ["$scope", "$dialog", "RoleAPI", function ($scope, $dialog, RoleAPI) {
         $scope.query = {};
         $scope.roleList = {};
         $scope.choiceItem = null;
@@ -11,11 +11,11 @@ define(function (require, exports) {
             pageSize: 10,
             pageNum: 1
         };
-        $scope.getRoleList = function(){
+        $scope.getRoleList = function () {
             $scope.roleList = {};
             $scope.queryBtnLoading = true;
             $scope.choiceItem = null;
-            roleAPI.query({
+            RoleAPI.query({
                 roleName: $scope.query.roleName,
                 roleType: $scope.query.roleType,
                 pageNum: $scope.pageSetting.pageNum,
@@ -24,7 +24,7 @@ define(function (require, exports) {
                 $scope.roleList = angular.copy(result.data);
                 $scope.pageSetting = result.pageBean;
                 $scope.pageSetting.loadData = $scope.getRoleList;
-            }).$promise.finally(function(){
+            }).$promise.finally(function () {
                 $scope.queryBtnLoading = false;
             });
         }
@@ -56,7 +56,7 @@ define(function (require, exports) {
         };
         $scope.delete = function (item) {
             if (item && item.id) {
-                roleAPI.remove({
+                RoleAPI.remove({
                     id: item.id
                 }, function () {
                     alert("单据删除成功");
@@ -65,15 +65,6 @@ define(function (require, exports) {
             } else {
                 alert("请选择单据");
             }
-        };
-        $scope.innerStore = function () {
-
-        };
-        $scope.outStore = function () {
-
-        };
-        $scope.storeLog = function () {
-
         };
         $scope.init();
         window.doCallback = function () {

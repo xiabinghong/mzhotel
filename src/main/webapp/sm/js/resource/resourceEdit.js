@@ -1,6 +1,6 @@
 define(function (require, exports) {
     var moduleName = "resourceModule";
-    var moduleApp = angular.module(moduleName,[]);
+    var moduleApp = angular.module(moduleName, []);
     moduleApp.controller("resourceEditController", ["$scope", "$http", function ($scope, $http) {
         $scope.query = {};
         $scope.resourceList = {};
@@ -8,7 +8,7 @@ define(function (require, exports) {
             disabled: true
         };
         var params = {
-            id:null
+            id: null
         };
         $scope.resource = {};
         $scope.init = function () {
@@ -54,18 +54,18 @@ define(function (require, exports) {
                     alert("新增失败");
                 })
             }
-        }
+        };
         $scope.cancel = function () {
             $scope.pageSetting.disabled = true;
             $scope.init();
-        }
+        };
         $scope.close = function () {
             window.close();
-        }
+        };
         $scope.edit = function () {
             $scope.pageSetting.disabled = false;
-        }
+        };
         $scope.init();
     }]);
     window.angular.bootstrap(document, [moduleName]);
-})
+});

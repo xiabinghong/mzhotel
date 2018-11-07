@@ -1,13 +1,13 @@
 define(function (require, exports) {
     var moduleName = "roleModule";
-    var moduleApp = angular.module(moduleName,[]);
+    var moduleApp = angular.module(moduleName, []);
     moduleApp.controller("roleEditController", ["$scope", "$http", function ($scope, $http) {
         $scope.query = {};
         $scope.pageSetting = {
             disabled: true
         };
         var params = {
-            id:null
+            id: null
         };
         $scope.role = {};
         $scope.init = function () {

@@ -365,7 +365,7 @@ ngFileUpload.service('UploadBase', ['$http', '$q', '$timeout', function ($http, 
         return str;
     };
 
-    this.urlToBlob = function(url) {
+    this.urlToBlob = function (url) {
         var defer = $q.defer();
         $http({url: url, method: 'get', responseType: 'arraybuffer'}).then(function (resp) {
             var arrayBufferView = new Uint8Array(resp.data);
@@ -756,6 +756,7 @@ ngFileUpload.directive('ngfSelect', ['$parse', '$timeout', '$compile', 'Upload',
         unwatches.push(attr.$observe('accept', function () {
             fileElem.attr('accept', attrGetter('accept'));
         }));
+
         function bindAttrToFileInput(fileElem, label) {
             function updateId(val) {
                 fileElem.attr('id', 'ngf-' + val);
@@ -1604,6 +1605,7 @@ ngFileUpload.service('UploadValidate', ['UploadDataUrl', '$q', '$timeout', funct
                 img.on('error', error);
 
                 var secondsCounter = 0;
+
                 function checkLoadErrorInCaseOfNoCallback() {
                     $timeout(function () {
                         if (img[0].parentNode) {
@@ -1819,7 +1821,9 @@ ngFileUpload.service('UploadResize', ['UploadValidate', '$q', function (UploadVa
                         try {
                             dataUrl = upload.restoreExif(url, dataUrl);
                         } catch (e) {
-                            setTimeout(function () {throw e;}, 1);
+                            setTimeout(function () {
+                                throw e;
+                            }, 1);
                         }
                     }
                     try {

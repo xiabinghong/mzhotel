@@ -11,7 +11,7 @@ define(function (require, exports) {
             pageSize: 10,
             pageNum: 1
         };
-        $scope.getDinnerPartyList = function(){
+        $scope.getDinnerPartyList = function () {
             $scope.dinnerPartyManagerList = {};
             $scope.queryBtnLoading = true;
             $scope.choiceItem = null;
@@ -26,7 +26,7 @@ define(function (require, exports) {
                 $scope.dinnerPartyManagerList = angular.copy(result.data);
                 $scope.pageSetting = result.pageBean;
                 $scope.pageSetting.loadData = $scope.getDinnerPartyList;
-            }).$promise.finally(function(){
+            }).$promise.finally(function () {
                 $scope.queryBtnLoading = false;
             });
         }

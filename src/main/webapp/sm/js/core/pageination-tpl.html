@@ -10,9 +10,12 @@
                 </select>
                 页数
             </span>
-            <button class="pages" ng-click="skipPage(curPage-1)" ng-disabled="curPage==1"><i class="fa fa-angle-left"></i></button>
-            <button class="pages" ng-repeat="item in pageList" ng-bind="item.num" ng-click="skipPage(item.num)" ng-disabled="page.isOmit || item.num==curPage"></button>
-            <button class="pages" ng-click="skipPage(curPage+1)" ng-disabled="curPage==pages"><i class="fa fa-angle-right"></i></button>
+            <button class="pages" ng-click="skipPage(curPage-1)" ng-disabled="curPage==1"><i
+                    class="fa fa-angle-left"></i></button>
+            <button class="pages" ng-repeat="item in pageList" ng-bind="item.num" ng-click="skipPage(item.num)"
+                    ng-disabled="page.isOmit || item.num==curPage"></button>
+            <button class="pages" ng-click="skipPage(curPage+1)" ng-disabled="curPage==pages"><i
+                    class="fa fa-angle-right"></i></button>
         </div>
     </div>
     <div class="page-informations">

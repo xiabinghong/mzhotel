@@ -4,21 +4,21 @@ define(function (require, exports) {
     require("./storeManagerRest");
     require("../tools/ng-file-upload");
     require("../document/documentInfoRest");
-    var moduleApp = angular.module(moduleName, ["common", "StoreManager.REST","DocumentInfo.REST","ngFileUpload"]);
-    moduleApp.controller("storehouseActionController", ["$scope", "$http", "$UrlUtils", "StoreManagerAPI","DocumentInfoAPI","Upload", function ($scope, $http, $UrlUtils, StoreManagerAPI,DocumentInfoAPI,Upload) {
+    var moduleApp = angular.module(moduleName, ["common", "StoreManager.REST", "DocumentInfo.REST", "ngFileUpload"]);
+    moduleApp.controller("storehouseActionController", ["$scope", "$http", "$UrlUtils", "StoreManagerAPI", "DocumentInfoAPI", "Upload", function ($scope, $http, $UrlUtils, StoreManagerAPI, DocumentInfoAPI, Upload) {
         $scope.query = {};
         $scope.file = null;
         $scope.documentInfo = {};
         $scope.actionLog = {};
-        $scope.documentInfo.url=null;
+        $scope.documentInfo.url = null;
         $scope.pageSetting = {
             disabled: true,
             loading: false
         };
         $scope.params = $UrlUtils.getParameters();
         $scope.actionLog = {
-            parentId : $scope.params.id,
-            actionType : "STORE_ACTION_TYPE"
+            parentId: $scope.params.id,
+            actionType: "STORE_ACTION_TYPE"
         };
         $scope.actionName = $scope.params.action == "INNER_STORE" ? "入库" : "出库"
         $scope.storehouse = {};

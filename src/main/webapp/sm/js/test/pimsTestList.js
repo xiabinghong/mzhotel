@@ -26,7 +26,7 @@ app.controller("pimsTestController", function ($scope, $http) {
 
         })
     };
-    $scope.addUser = function(){
+    $scope.addUser = function () {
         $http({
             method: "POST",
             url: "/mzhotel/userInfo/insert",

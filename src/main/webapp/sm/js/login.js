@@ -1,18 +1,18 @@
 define(function (require, exports) {
     var moduleName = "loginModule";
-    var moduleApp = angular.module(moduleName,[]);
+    var moduleApp = angular.module(moduleName, []);
     moduleApp.controller("loginEditController", ["$scope", "$http", function ($scope, $http) {
         $scope.user = {};
-        $scope.submit = function(){
+        $scope.submit = function () {
             $http({
                 method: "POST",
                 url: "/mzhotel/login/login",
                 data: $scope.user
             }).then(function successCallback(result) {
                 console.log(result);
-                if(result.data.DATA == "SUCCESS"){
+                if (result.data.DATA == "SUCCESS") {
                     window.location.href = appname + "/index.jsp";
-                }else{
+                } else {
                     alert("账户或密码错误，请重新输入");
                 }
             }, function errorCallback() {

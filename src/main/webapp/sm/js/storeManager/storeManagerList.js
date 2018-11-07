@@ -3,8 +3,8 @@ define(function (require, exports) {
     require("../app.directives");
     require("./storeManagerRest");
     require("../actionLog/actionLogRest");
-    var moduleApp = angular.module(moduleName, ["common", "StoreManager.REST","ActionLog.REST"]);
-    moduleApp.controller("storeManagerController", ["$scope", "$http", "$dialog", "StoreManagerAPI","ActionLogAPI", function ($scope, $http, $dialog, StoreManagerAPI,ActionLogAPI) {
+    var moduleApp = angular.module(moduleName, ["common", "StoreManager.REST", "ActionLog.REST"]);
+    moduleApp.controller("storeManagerController", ["$scope", "$http", "$dialog", "StoreManagerAPI", "ActionLogAPI", function ($scope, $http, $dialog, StoreManagerAPI, ActionLogAPI) {
         $scope.query = {};
         $scope.storehouseManagerList = {};
         $scope.choiceItem = null;
@@ -14,7 +14,7 @@ define(function (require, exports) {
             pageSize: 10,
             pageNum: 1
         };
-        $scope.getStorehouseList = function(){
+        $scope.getStorehouseList = function () {
             $scope.storehouseManagerList = {};
             $scope.queryBtnLoading = true;
             $scope.choiceItem = null;
@@ -27,7 +27,7 @@ define(function (require, exports) {
                 $scope.storehouseManagerList = angular.copy(result.data);
                 $scope.pageSetting = result.pageBean;
                 $scope.pageSetting.loadData = $scope.getStorehouseList;
-            }).$promise.finally(function(){
+            }).$promise.finally(function () {
                 $scope.queryBtnLoading = false;
             });
         }
@@ -75,7 +75,7 @@ define(function (require, exports) {
                     url: "../storeManager/storehouseAction.jsp",
                     params: {
                         id: item.id,
-                        action:"INNER_STORE"
+                        action: "INNER_STORE"
                     }
                 });
             } else {
@@ -88,7 +88,7 @@ define(function (require, exports) {
                     url: "../storeManager/storehouseAction.jsp",
                     params: {
                         id: item.id,
-                        action:"OUT_STORE"
+                        action: "OUT_STORE"
                     }
                 });
             } else {
@@ -102,7 +102,7 @@ define(function (require, exports) {
                     url: "../actionLog/actionLogList.jsp",
                     params: {
                         actionType: "STORE_ACTION_TYPE",
-                        parentId:$scope.id
+                        parentId: $scope.id
                     }
                 });
             } else {

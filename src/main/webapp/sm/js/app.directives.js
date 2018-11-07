@@ -300,7 +300,7 @@ define(function (require, exports) {
             },
             require: ["?ngModel", "select"],
             templateUrl: '<option value>请选择</option>\n' +
-            '<option ng-repeat="item in dictInfoList" ng-selected = "item.selected" value = "{{item.dictCode}}">{{item.dictName}}</option>',
+                '<option ng-repeat="item in dictInfoList" ng-selected = "item.selected" value = "{{item.dictCode}}">{{item.dictName}}</option>',
             link: function (scope, elem, attrs, ctrls) {
                 scope.isChange = false;
                 if (angular.isUndefined(attrs.dictCode)) {
@@ -365,7 +365,8 @@ define(function (require, exports) {
                 };
                 if (!angular.isDefined(attrs.dictParentCode) || (angular.isDefined(attrs.dictParentCode) && scope.dictParentCode)) {
                     getDictInfoList();
-                };
+                }
+                ;
             }
         }
     }])

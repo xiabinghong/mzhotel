@@ -11,7 +11,7 @@ define(function (require, exports) {
             pageSize: 10,
             pageNum: 1
         };
-        $scope.getPersonalReservationList = function(){
+        $scope.getPersonalReservationList = function () {
             $scope.personalReservationManagerList = {};
             $scope.queryBtnLoading = true;
             $scope.choiceItem = null;
@@ -26,7 +26,7 @@ define(function (require, exports) {
                 $scope.personalReservationManagerList = angular.copy(result.data);
                 $scope.pageSetting = result.pageBean;
                 $scope.pageSetting.loadData = $scope.getPersonalReservationList;
-            }).$promise.finally(function(){
+            }).$promise.finally(function () {
                 $scope.queryBtnLoading = false;
             });
         }

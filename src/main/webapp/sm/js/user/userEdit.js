@@ -2,8 +2,8 @@ define(function (require, exports) {
     var moduleName = "userEditModule";
     require("../app.directives");
     require("./userRest");
-    var moduleApp = angular.module(moduleName, ["common","User.REST"]);
-    moduleApp.controller("userEditController", ["$scope", "$UrlUtils", "UserAPI", function ($scope, $UrlUtils,UserAPI) {
+    var moduleApp = angular.module(moduleName, ["common", "User.REST"]);
+    moduleApp.controller("userEditController", ["$scope", "$UrlUtils", "UserAPI", function ($scope, $UrlUtils, UserAPI) {
         $scope.query = {};
         $scope.file = null;
         $scope.pageSetting = {
