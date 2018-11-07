@@ -16,19 +16,14 @@ public class UserInfoController {
     @Autowired
     UserInfoService userInfoService;
 
-    @RequestMapping(value = "/delete",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public int deleteByPrimaryKey(@PathVariable(value = "id") String id) {
         return userInfoService.deleteByPrimaryKey(id);
     }
 
-    @RequestMapping(value = "/insert",method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public int insert(@RequestBody @Valid UserInfo record) {
         return userInfoService.insert(record);
-    }
-
-    @RequestMapping(value = "/insertSelective",method = RequestMethod.POST)
-    public int insertSelective(@RequestBody @Valid UserInfo record) {
-        return userInfoService.insertSelective(record);
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
@@ -36,14 +31,11 @@ public class UserInfoController {
         return userInfoService.selectByPrimaryKey(id);
     }
 
-    @RequestMapping(value = "/update",method = RequestMethod.POST)
-    public int updateByPrimaryKeySelective(@RequestBody @Valid UserInfo record) {
+    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+    public int update(@RequestBody @Valid UserInfo record,
+                      @PathVariable(value = "id") String id) {
+        record.setId(id);
         return userInfoService.updateByPrimaryKeySelective(record);
-    }
-
-    @RequestMapping(value = "/updateByPrimaryKey",method = RequestMethod.POST)
-    public int updateByPrimaryKey(@RequestBody @Valid UserInfo record) {
-        return userInfoService.updateByPrimaryKey(record);
     }
 
     @RequestMapping(method = RequestMethod.GET)

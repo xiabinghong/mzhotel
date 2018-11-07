@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: In The Future
-  Date: 2018/6/5
-  Time: 18:23
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../common/header_inner.jsp"%>
 <div ng-controller="userEditController" style="align-content: left;">
@@ -21,11 +14,11 @@
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label text-right">账号</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="user.id">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="user.userId">
                                     </div>
                                     <label class="col-sm-1 control-label text-right">用户名称</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="user.userName">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="user.username">
                                     </div>
                                     <label class="col-sm-1 control-label text-right">用户密码</label>
                                     <div class="col-sm-3">
@@ -35,19 +28,19 @@
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label text-right">联系方式</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="resource.tel">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="user.tel">
                                     </div>
                                     <label class="col-sm-1 control-label text-right">地址</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="resource.address">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="user.address">
                                     </div>
                                     <label class="col-sm-1 control-label text-right">状态</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="resource.state">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="user.state">
                                     </div>
                                     <label class="col-sm-1 control-label text-right">备注</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="resource.remark">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="user.remark">
                                     </div>
                                 </div>
                             </div>

@@ -76,11 +76,6 @@ public class StorehouseController {
         return storehouseService.insert(record);
     }
 
-    @RequestMapping(value = "/insertSelective", method = RequestMethod.POST)
-    public int insertSelective(@RequestBody @Valid Storehouse record) {
-        return storehouseService.insertSelective(record);
-    }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Storehouse selectByPrimaryKey(@PathVariable(value = "id") String id) {
         return storehouseService.selectByPrimaryKey(id);

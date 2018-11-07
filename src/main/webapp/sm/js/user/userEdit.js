@@ -2,9 +2,8 @@ define(function (require, exports) {
     var moduleName = "userEditModule";
     require("../app.directives");
     require("./userRest");
-    require("../tools/ng-file-upload");
-    var moduleApp = angular.module(moduleName, ["common", "StoreManager.REST"]);
-    moduleApp.controller("userEditController", ["$scope", "$http", "$UrlUtils", "UserAPI","Upload", function ($scope, $http, $UrlUtils,UserAPI,Upload) {
+    var moduleApp = angular.module(moduleName, ["common","User.REST"]);
+    moduleApp.controller("userEditController", ["$scope", "$UrlUtils", "UserAPI", function ($scope, $UrlUtils,UserAPI) {
         $scope.query = {};
         $scope.file = null;
         $scope.pageSetting = {
@@ -21,7 +20,7 @@ define(function (require, exports) {
             } else {
                 $scope.pageSetting.disabled = false;
             }
-        }
+        };
         $scope.save = function () {
             if (params.id) {
                 UserAPI.update({id: params.id}, $scope.user, function (result) {
@@ -53,13 +52,13 @@ define(function (require, exports) {
         $scope.cancel = function () {
             $scope.pageSetting.disabled = true;
             $scope.init();
-        }
+        };
         $scope.close = function () {
             window.close();
-        }
+        };
         $scope.edit = function () {
             $scope.pageSetting.disabled = false;
-        }
+        };
         $scope.init();
     }]);
     window.angular.bootstrap(document, [moduleName]);

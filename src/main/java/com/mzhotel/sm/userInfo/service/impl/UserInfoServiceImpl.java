@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -58,6 +59,8 @@ public class UserInfoServiceImpl implements UserInfoService{
     @Transactional
     @Override
     public int insert(UserInfo record) {
+        record.setCreatedBy(getCurrUser());
+        record.setCreatedDate(new Date());
         return userInfoMapper.insert(record);
     }
 
