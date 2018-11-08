@@ -56,16 +56,6 @@ public class PersonalReservationServiceImpl implements PersonalReservationServic
         record.setCreatedBy(userInfoService.getCurrUser());
         int result = personalReservationMapper.insert(record);
         if (result == 1) {
-            if(record.getDocumentInfoId() != null){
-                DocumentInfoRelation documentInfoRelation = new DocumentInfoRelation();
-                documentInfoRelation.setCreatedBy(userInfoService.getCurrUser());
-                documentInfoRelation.setCreatedDate(new Date());
-                documentInfoRelation.setDocumentId(record.getDocumentInfoId());
-                documentInfoRelation.setRelationId(record.getId());
-                documentInfoRelation.setRelationCode(record.getId());
-                documentInfoRelation.setRelationType("STORE_HOUSE");
-                documentInfoRelationService.insert(documentInfoRelation);
-            }
             return getOnePersonalReservation(record.getId());
         }
         return null;

@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../common/header_inner.jsp"%>
-    <div ng-controller="personalReservationController" style="align-content: left;">
+    <div ng-controller="personalManagerEditController" style="align-content: center;">
         <div class="form-element">
             <div class="col-md-12 padding-0">
                 <form>
@@ -25,7 +25,7 @@
                                     </div>
                                     <label class="col-sm-1 control-label text-right">房间</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="personalReservation.roomcode">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="personalReservation.roomCode">
                                     </div>
                                     <label class="col-sm-1 control-label text-right">用户</label>
                                     <div class="col-sm-3">
@@ -42,29 +42,26 @@
                                     </div>
                                     <label class="col-sm-1 control-label text-right">联系方式</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="personalReservation.tel"> //数据库需添加联系方式字段
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="personalReservation.tel">
                                     </div>
                                     <label class="col-sm-1 control-label text-right">订台人</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="personalReservation.manage"> //数据库需添加订台人字段（为经理）
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="personalReservation.manager">
                                     </div>
-
-
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label text-right">操作人</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="personalReservation.createdBy"> //
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="personalReservation.createdBy">
                                     </div>
                                     <label class="col-sm-1 control-label text-right">桌数</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="personalReservation.tableNum"> //数据库需添加桌数字段
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="personalReservation.tablenum">
                                     </div>
                                     <label class="col-sm-1 control-label text-right">状态</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="personalReservation.status"> //数据库需添加状态字段
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="personalReservation.status">
                                     </div>
-
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label text-right">备注</label>
@@ -151,5 +148,5 @@
     </div>
 <%@include file="../common/common.jsp"%>
 <script type = "text/javascript">
-    seajs.use('../../js/personalReservation/personalReservationEdit');
+    seajs.use('../../../sm/js/personalManager/personalManagerEdit');
 </script>

@@ -2,14 +2,10 @@ define(function (require, exports) {
     var moduleName = "personalReservationEditModule";
     require("../app.directives");
     require("./personalManagerRest");
-    require("../tools/ng-file-upload");
-    require("../document/documentInfoRest");
-    var moduleApp = angular.module(moduleName, ["common", "PersonalManager.REST", "DocumentInfo.REST", "ngFileUpload"]);
-    moduleApp.controller("personalReservationEditController", ["$scope", "$http", "$UrlUtils", "PersonalManagerAPI", "DocumentInfoAPI", "Upload", function ($scope, $http, $UrlUtils, PersonalManagerAPI, DocumentInfoAPI, Upload) {
+    var moduleApp = angular.module(moduleName, ["common", "PersonalManager.REST"]);
+    moduleApp.controller("personalManagerEditController", ["$scope", "$UrlUtils", "PersonalManagerAPI", function ($scope, $UrlUtils, PersonalManagerAPI) {
         $scope.query = {};
         $scope.file = null;
-        $scope.documentInfo = {};
-        $scope.documentInfo.url = null;
         $scope.pageSetting = {
             disabled: true,
             loading: false
@@ -25,20 +21,8 @@ define(function (require, exports) {
                 $scope.pageSetting.disabled = false;
             }
         }
-        $scope.uploadFile = function () {
-            console.log($scope.file);
-            Upload.upload({
-                method: "POST",
-                url: appname + "/documentInfo/upload",
-                file: $scope.file
-            }).success(function (result) {
-                $scope.documentInfo = result;
-
-            })
-        }
         $scope.save = function () {
             if (params.id) {
-                $scope.personalReservation.documentInfoId = $scope.documentInfo.id;
                 PersonalManagerAPI.update({id: params.id}, $scope.personalReservation, function (result) {
                     params.id = result.id;
                     $scope.pageSetting.disabled = true;
@@ -48,7 +32,6 @@ define(function (require, exports) {
                     $scope.pageSetting.loading = false;
                 });
             } else {
-                $scope.personalReservation.documentInfoId = $scope.documentInfo.id;
                 PersonalManagerAPI.save($scope.personalReservation, function (result) {
                     params.id = result.id;
                     $scope.pageSetting.disabled = true;
@@ -69,13 +52,13 @@ define(function (require, exports) {
         $scope.cancel = function () {
             $scope.pageSetting.disabled = true;
             $scope.init();
-        }
+        };
         $scope.close = function () {
             window.close();
-        }
+        };
         $scope.edit = function () {
             $scope.pageSetting.disabled = false;
-        }
+        };
         $scope.init();
     }]);
     window.angular.bootstrap(document, [moduleName]);

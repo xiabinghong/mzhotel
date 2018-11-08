@@ -3,7 +3,7 @@ define(function (require, exports) {
     require("../app.directives");
     require("./personalManagerRest");
     var moduleApp = angular.module(moduleName, ["common", "PersonalManager.REST"]);
-    moduleApp.controller("personalManagerController", ["$scope", "$http", "$dialog", "PersonalManagerAPI", function ($scope, $http, $dialog, PersonalManagerAPI) {
+    moduleApp.controller("personalReservationController", ["$scope", "$http", "$dialog", "PersonalManagerAPI", function ($scope, $http, $dialog, PersonalManagerAPI) {
         $scope.query = {};
         $scope.personalReservationManagerList = {};
         $scope.choiceItem = null;
@@ -38,13 +38,13 @@ define(function (require, exports) {
         };
         $scope.add = function () {
             $dialog.modal({
-                url: "../personalManager/personalManagerEdit.jsp",
+                url: "../personalReservation/personalManagerEdit.jsp",
             });
         };
         $scope.view = function (item) {
             if (item && item.id) {
                 $dialog.modal({
-                    url: "../personalManager/personalManagerEdit.jsp",
+                    url: "../personalReservation/personalManagerEdit.jsp",
                     params: {
                         id: item.id
                     }
@@ -67,15 +67,6 @@ define(function (require, exports) {
             } else {
                 alert("请选择单据");
             }
-        };
-        $scope.statusIn = function () {
-
-        };
-        $scope.statusCancel = function () {
-
-        };
-        $scope.storeLog = function () {
-
         };
         $scope.init();
         window.doCallback = function () {

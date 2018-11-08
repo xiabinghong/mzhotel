@@ -199,4 +199,8 @@
       UPDATED_DATE = #{updatedDate,jdbcType=DATE}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+  <select id="getPersonalReservation" parameterType="com.mzhotel.sm.personalReservation.dto.QueryPersonalReservation"
+          resultType="com.mzhotel.sm.personalReservation.dto.PersonalReservation">
+      select * from T_PERSONAL_RESERVATION
+  </select>
 </mapper>

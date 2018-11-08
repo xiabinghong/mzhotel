@@ -35,26 +35,6 @@ public class PersonalReservationController {
         return personalReservationService.getPersonalReservationList(queryPersonalReservation);
     }
 
-    @RequestMapping(value = "/export", method = RequestMethod.GET)
-    public ModelAndView exportData(QueryPersonalReservation queryPersonalReservation, ModelMap modelMap) {
-        List<Map<String,Object>> list = Lists.newArrayList();
-        List<PersonalReservation> personalReservationList = personalReservationService.getPersonalReservationList(queryPersonalReservation);
-        Map<String,Object> params = Maps.newHashMap();
-        ExportParams personalReservationparams = new ExportParams();
-        personalReservationparams.setTitle("订台管理");
-        personalReservationparams.setSheetName("订台管理");
-        params.put("title",personalReservationparams);
-        params.put("entity",PersonalReservation.class);
-        params.put("data",personalReservationList);
-        list.add(params);
-        ExportParams exportParams = new ExportParams();
-        exportParams.setType(ExcelType.HSSF);
-        modelMap.put(MultipleSheetExcelConstants.FILE_NAME, "订台管理");
-        modelMap.put(MultipleSheetExcelConstants.PARAMS, exportParams);
-        modelMap.put(MultipleSheetExcelConstants.MULTIPLLE_SHEET_LIST, list);
-        return new ModelAndView(MultipleSheetExcelConstants.JEECG_MULTIPLE_SHEET_EXCEL_VIEW);
-    }
-
     @RequestMapping(method = RequestMethod.GET)
     public PageResult<PersonalReservation> getPersonalReservation(QueryPersonalReservation queryPersonalReservation) {
         return personalReservationService.getPersonalReservation(queryPersonalReservation);
@@ -70,25 +50,14 @@ public class PersonalReservationController {
         return personalReservationService.insert(record);
     }
 
-    @RequestMapping(value = "/insertSelective", method = RequestMethod.POST)
-    public int insertSelective(@RequestBody @Valid PersonalReservation record) {
-        return personalReservationService.insertSelective(record);
-    }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public PersonalReservation selectByPrimaryKey(@PathVariable(value = "id") String id) {
         return personalReservationService.selectByPrimaryKey(id);
     }
 
-    @RequestMapping(value = "/updateByPrimaryKeySelective", method = RequestMethod.DELETE)
-    public int updateByPrimaryKeySelective(@PathVariable(value = "id") String id,
-                                           @RequestBody @Valid PersonalReservation record) {
-        return personalReservationService.updateByPrimaryKeySelective(record);
-    }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public PersonalReservation updateByPrimaryKey(@PathVariable(value = "id") String id,
-                                         @RequestBody @Valid PersonalReservation record) {
+    public PersonalReservation update(@PathVariable(value = "id") String id,
+                                      @RequestBody @Valid PersonalReservation record) {
         record.setId(id);
         return personalReservationService.updateByPrimaryKey(record);
     }

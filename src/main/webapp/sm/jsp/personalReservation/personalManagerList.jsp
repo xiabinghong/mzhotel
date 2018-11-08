@@ -23,7 +23,9 @@
                             </select>
                         </div>
                         <label class="col-sm-1 control-label text-right" name ="dinnerTimeCode" ng-model="query.dinnerTimeCode">用餐时间</label>
-                        <label class="col-sm-1 control-label text-right" name ="roomCode" ng-model="query.roomCode">房间名称</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control">
+                        </div>
                         <label class="col-sm-1 control-label text-right" name ="contactUser" ng-model="query.contactUser">用户</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control">
@@ -66,11 +68,8 @@
                                             <td>订台人</td>
                                             <td>操作人</td>
                                             <td>状态</td>
-                                            <td>备注</td>
                                             <td>创建人</td>
                                             <td>创建时间</td>
-                                            <td>修改人</td>
-                                            <td>修改时间</td>
                                         </tr>
                                         <tr align="center" ng-show="personalReservationManagerList"
                                             ng-repeat="list in personalReservationManagerList"
@@ -84,15 +83,11 @@
                                             <td ng-bind="list.contactUser"></td>
                                             <td ng-bind="list.dinnerTimeCode"></td>
                                             <td ng-bind="list.tel"></td>
-                                            <td ng-bind="list.manage"></td>
-                                            <td ng-bind="list.createdBy"></td>
-                                            <td ng-bind="list.tableNum"></td>
+                                            <td ng-bind="list.manager"></td>
+                                            <td ng-bind="list.tablenum"></td>
                                             <td ng-bind="list.status"></td>
-                                            <td ng-bind="list.remark"></td>
                                             <td ng-bind="list.createdName"></td>
                                             <td ng-bind="list.createdDate | date:'yyyy-MM-dd HH:mm:ss'"></td>
-                                            <td ng-bind="list.updatedName"></td>
-                                            <td ng-bind="list.updatedDate | date:'yyyy-MM-dd HH:mm:ss'"></td>
                                         </tr>
                                     </table>
                                     <div ng-show="!personalReservationManagerList || personalReservationManagerList.length == 0">未查询到相关数据</div>
@@ -110,5 +105,5 @@
 </div>
 <%@include file="../common/common.jsp"%>
 <script type = "text/javascript">
-    seajs.use('../../js/personalReservation/personalReservationList');
+    seajs.use('../../../sm/js/personalManager/personalManagerList');
 </script>
