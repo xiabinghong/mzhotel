@@ -25,9 +25,9 @@
 
                             </select>
                         </div>
-                        <label class="col-sm-1 control-label text-right" name ="goodsName" ng-model="query.goodsName">物品名称</label>
+                        <label class="col-sm-1 control-label text-right">物品名称</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name ="goodsName" ng-model="query.goodsName">
                         </div>
                         <div class="col-sm-2">
                             <input class="btn btn-info" btn-loading="queryBtnLoading" type="button" ng-click="init();" value="搜索">

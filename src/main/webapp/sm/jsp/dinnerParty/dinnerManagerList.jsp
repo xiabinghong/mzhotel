@@ -22,11 +22,9 @@
                                 <option>option four</option>
                             </select>
                         </div>
-                        <label class="col-sm-1 control-label text-right" name=dinnerPartyUser ng-model="query.dinnerPartyUser">用户</label>
-                        <label class="col-sm-1 control-label text-right" name=tel ng-model="query.tel">联系方式</label>
-                        <label class="col-sm-1 control-label text-right" name=consumptionItem ng-model="query.consumptionItem">消费项目</label>
+                        <label class="col-sm-1 control-label text-right">消费项目</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name=consumptionItem ng-model="query.consumptionItem">
                         </div>
                         <div class="col-sm-2">
                             <input class="btn btn-info" type="button" ng-click="init();" value="搜索">

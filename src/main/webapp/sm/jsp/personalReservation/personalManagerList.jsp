@@ -22,13 +22,13 @@
                                 <option>option four</option>
                             </select>
                         </div>
-                        <label class="col-sm-1 control-label text-right" name ="dinnerTimeCode" ng-model="query.dinnerTimeCode">用餐时间</label>
+                        <label class="col-sm-1 control-label text-right">用餐时间</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name ="dinnerTimeCode" ng-model="query.dinnerTimeCode">
                         </div>
-                        <label class="col-sm-1 control-label text-right" name ="contactUser" ng-model="query.contactUser">用户</label>
+                        <label class="col-sm-1 control-label text-right">用户</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name ="contactUser" ng-model="query.contactUser">
                         </div>
                         <div class="col-sm-2">
                             <input class="btn btn-info" btn-loading="queryBtnLoading" type="button" ng-click="init();" value="搜索">
