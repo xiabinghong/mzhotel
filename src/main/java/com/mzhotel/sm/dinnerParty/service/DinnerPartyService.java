@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface DinnerPartyService {
 
-    int deleteByPrimaryKey(String id);
+    void delete(String id);
 
     DinnerParty insert(DinnerParty record);
 

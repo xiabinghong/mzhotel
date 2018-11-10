@@ -35,8 +35,8 @@ public class DinnerPartyController {
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
-    public void deleteByPrimaryKey(@PathVariable(value = "id") String id) {
-        dinnerPartyService.deleteByPrimaryKey(id);
+    public void delete(@PathVariable(value = "id") String id) {
+        dinnerPartyService.delete(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -49,6 +49,11 @@ public class DinnerPartyController {
                       @RequestBody @Valid DinnerParty record) {
         record.setId(id);
         return dinnerPartyService.update(record);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public DinnerParty selectOne(@PathVariable(value = "id") String id) {
+        return dinnerPartyService.getOneDinnerParty(id);
     }
 
 }

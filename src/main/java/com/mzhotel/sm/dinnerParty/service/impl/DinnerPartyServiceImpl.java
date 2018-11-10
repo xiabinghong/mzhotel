@@ -8,10 +8,12 @@ import com.mzhotel.sm.documentInfoRelation.service.DocumentInfoRelationService;
 import com.mzhotel.sm.pageUtil.PageResult;
 import com.mzhotel.sm.userInfo.service.UserInfoService;
 import com.mzhotel.sm.util.MyBatisDAO;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -31,13 +33,18 @@ public class DinnerPartyServiceImpl implements DinnerPartyService {
 
     @Override
     @Transactional
-    public int deleteByPrimaryKey(String id) {
-        return dinnerPartyMapper.deleteByPrimaryKey(id);
+    public void delete(String id) {
+        if(StringUtils.isEmpty(id)){
+            return;
+        }
+        dinnerPartyMapper.deleteByPrimaryKey(id);
     }
 
     @Override
     @Transactional
     public DinnerParty insert(DinnerParty record) {
+        record.setCreatedBy(userInfoService.getCurrUser());
+        record.setCreatedDate(new Date());
         int result = dinnerPartyMapper.insert(record);
         if (result == 1) {
             return getOneDinnerParty(record.getId());
@@ -48,8 +55,10 @@ public class DinnerPartyServiceImpl implements DinnerPartyService {
     @Override
     @Transactional
     public DinnerParty update(DinnerParty record) {
+        record.setUpdatedBy(userInfoService.getCurrUser());
+        record.setUpdatedDate(new Date());
         int result = dinnerPartyMapper.updateByPrimaryKeySelective(record);
-        if(result == 1){
+        if (result == 1) {
             return getOneDinnerParty(record.getId());
         }
         return null;
@@ -68,7 +77,7 @@ public class DinnerPartyServiceImpl implements DinnerPartyService {
 
     @Override
     public DinnerParty getOneDinnerParty(String id) {
-        if (id == null) {
+        if (StringUtils.isEmpty(id)) {
             return null;
         }
         return dinnerPartyMapper.selectByPrimaryKey(id);

@@ -68,6 +68,7 @@
                                             ng-repeat="list in dinnerPartyManagerList"
                                             ng-class="{'current-tr':choiceItem.id == list.id}"
                                             ng-click="choiceViewItem(list)"
+                                            ng-dblclick="view(choiceItem)"
                                             data-ng-dbclick="choiceViewItem(list)">
                                             <td ng-bind="$index+1"></td>
                                             <td ng-bind="list.dinnerPartyType"></td>
