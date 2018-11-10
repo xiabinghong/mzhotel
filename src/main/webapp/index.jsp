@@ -93,13 +93,13 @@
 
     <!-- start: content -->
     <div id="content">
-        <div class="panel">
+        <%--<div class="panel">
             <div class="panel-body">
                 <div class="col-md-6 col-sm-12">
                     <h3 class="animated fadeInLeft">欢迎您：张三</h3>
                 </div>
             </div>
-        </div>
+        </div>--%>
         <div class="col-md-12" style="position: absolute; width:88%; height:80%;padding: 20px;">
             <iframe src="../mzhotel/shouye.jsp" frameborder="0" height="100%" width="100%" scrolling="yes"></iframe>
         </div>
