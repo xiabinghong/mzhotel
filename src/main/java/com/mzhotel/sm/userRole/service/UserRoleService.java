@@ -4,16 +4,12 @@ import com.mzhotel.sm.userRole.dto.UserRoleRelation;
 
 public interface UserRoleService {
 
-    int deleteByPrimaryKey(String id);
+    void delete(String id);
 
-    int insert(UserRoleRelation record);
+    UserRoleRelation insert(UserRoleRelation record);
 
-    int insertSelective(UserRoleRelation record);
+    UserRoleRelation selectOne(String id);
 
-    UserRoleRelation selectByPrimaryKey(String id);
-
-    int updateByPrimaryKeySelective(UserRoleRelation record);
-
-    int updateByPrimaryKey(UserRoleRelation record);
+    UserRoleRelation update(UserRoleRelation record);
 
 }

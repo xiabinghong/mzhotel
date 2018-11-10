@@ -194,6 +194,9 @@
       <if test="id">
         and id = #{id,jdbcType=VARCHAR}
       </if>
+      <if test="roleName">
+        and role_name like '%'||#{roleName,jdbcType=VARCHAR}||'%'
+      </if>
     </where>
   </select>
 </mapper>

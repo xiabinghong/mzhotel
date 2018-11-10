@@ -10,40 +10,30 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(value = "/UserRoleRelation")
 public class UserRoleController {
-    
+
     @Autowired
     UserRoleService userRoleService;
 
-    @RequestMapping(method = RequestMethod.DELETE)
-    public int deleteByPrimaryKey(@PathVariable(value = "id") String id){
-        return userRoleService.deleteByPrimaryKey(id);
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable(value = "id") String id) {
+        userRoleService.delete(id);
     }
 
-    @RequestMapping(value="/insert",method = RequestMethod.POST)
-    public int insert(@RequestBody @Valid UserRoleRelation record){
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
+    public UserRoleRelation insert(@RequestBody @Valid UserRoleRelation record) {
         return userRoleService.insert(record);
     }
 
-    @RequestMapping(value="/insertSelective",method = RequestMethod.POST)
-    public int insertSelective(@RequestBody @Valid UserRoleRelation record){
-        return userRoleService.insertSelective(record);
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public UserRoleRelation selectOne(@PathVariable(value = "id") String id) {
+        return userRoleService.selectOne(id);
     }
 
-    @RequestMapping(value="/selectByPrimaryKey",method = RequestMethod.GET)
-    public UserRoleRelation selectByPrimaryKey(@PathVariable(value = "id") String id){
-        return userRoleService.selectByPrimaryKey(id);
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public UserRoleRelation update(@PathVariable(value = "id") String id,
+                                   @RequestBody @Valid UserRoleRelation record) {
+        record.setId(id);
+        return userRoleService.update(record);
     }
 
-    @RequestMapping(value="/updateByPrimaryKeySelective",method = RequestMethod.DELETE)
-    public int updateByPrimaryKeySelective(@PathVariable(value = "id") String id,
-                                           @RequestBody @Valid UserRoleRelation record){
-        return userRoleService.updateByPrimaryKeySelective(record);
-    }
-
-    @RequestMapping(value="/updateByPrimaryKey",method = RequestMethod.DELETE)
-    public int updateByPrimaryKey(@PathVariable(value = "id") String id,
-                                  @RequestBody @Valid UserRoleRelation record){
-        return userRoleService.updateByPrimaryKey(record);
-    }
-    
 }

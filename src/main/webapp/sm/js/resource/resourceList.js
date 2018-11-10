@@ -59,6 +59,7 @@ define(function (require, exports) {
                 ResourceAPI.remove({
                     id: item.id
                 }, function () {
+                    $scope.init();
                     alert("单据删除成功");
                 })
             } else {

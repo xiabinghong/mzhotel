@@ -11,17 +11,13 @@ public interface UserInfoService {
 
     PageResult<UserInfo> queryPage(QueryUserInfo queryUserInfo);
 
-    int deleteByPrimaryKey(String id);
+    void delete(String id);
 
-    int insert(UserInfo record);
+    UserInfo insert(UserInfo record);
 
-    int insertSelective(UserInfo record);
+    UserInfo selectOne(String id);
 
-    UserInfo selectByPrimaryKey(String id);
-
-    int updateByPrimaryKeySelective(UserInfo record);
-
-    int updateByPrimaryKey(UserInfo record);
+    UserInfo update(UserInfo record);
 
     String getCurrUser();
 

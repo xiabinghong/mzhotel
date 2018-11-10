@@ -10,15 +10,9 @@ public interface RoleService {
 
     int deleteByPrimaryKey(String id);
 
-    int insert(Role record);
+    Role insert(Role record);
 
-    int insertSelective(Role record);
-
-    Role selectByPrimaryKey(String id);
-
-    int updateByPrimaryKeySelective(Role record);
-
-    int updateByPrimaryKey(Role record);
+    Role update(Role record);
 
     List<Role> getRoleList(QueryRole queryRole);
 

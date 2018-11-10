@@ -32,38 +32,26 @@ public class ResourceController {
     public PageResult<Resource> getResource(QueryResource queryResource) {
         return resourceService.getResource(queryResource);
     }
-    @RequestMapping(method = RequestMethod.DELETE)
+    @RequestMapping(value="/{id}",method = RequestMethod.DELETE)
     public int deleteByPrimaryKey(@PathVariable(value = "id") String id){
-        return resourceService.deleteByPrimaryKey(id);
+        return resourceService.delete(id);
     }
 
-    @RequestMapping(value="/insert",method = RequestMethod.POST)
-    public int insert(@RequestBody @Valid Resource record){
+    @RequestMapping(method = RequestMethod.POST)
+    public Resource insert(@RequestBody @Valid Resource record){
         return resourceService.insert(record);
     }
 
-    @RequestMapping(value="/insertSelective",method = RequestMethod.POST)
-    public int insertSelective(@RequestBody @Valid Resource record){
-        return resourceService.insertSelective(record);
-    }
-
-    @RequestMapping(value="/selectByPrimaryKey",method = RequestMethod.GET)
-    public Resource selectByPrimaryKey(@PathVariable(value = "id") String id){
-        return resourceService.selectByPrimaryKey(id);
-    }
-
-    @RequestMapping(value="/updateByPrimaryKeySelective",method = RequestMethod.DELETE)
-    public int updateByPrimaryKeySelective(@PathVariable(value = "id") String id,
+    @RequestMapping(value="/{id}",method = RequestMethod.PUT)
+    public Resource updateByPrimaryKeySelective(@PathVariable(value = "id") String id,
                                            @RequestBody @Valid Resource record){
-        return resourceService.updateByPrimaryKeySelective(record);
+        record.setId(id);
+        return resourceService.update(record);
     }
 
-    @RequestMapping(value="/updateByPrimaryKey",method = RequestMethod.DELETE)
-    public int updateByPrimaryKey(@PathVariable(value = "id") String id,
-                                  @RequestBody @Valid Resource record){
-        return resourceService.updateByPrimaryKey(record);
+    @RequestMapping(value="/{id}",method = RequestMethod.GET)
+    public Resource selectOne(@PathVariable(value = "id") String id){
+        return resourceService.getOneResource(id);
     }
-
-
     
 }

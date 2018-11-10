@@ -1,10 +1,9 @@
 package com.mzhotel.sm.role.controller;
 
 import com.mzhotel.sm.pageUtil.PageResult;
-import com.mzhotel.sm.role.dto.Role;
-import com.mzhotel.sm.role.service.RoleService;
 import com.mzhotel.sm.role.dto.QueryRole;
 import com.mzhotel.sm.role.dto.Role;
+import com.mzhotel.sm.role.service.RoleService;
 import com.mzhotel.sm.userInfo.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,38 +31,27 @@ public class RoleController {
     public PageResult<Role> getRole(QueryRole queryRole) {
         return roleService.getRole(queryRole);
     }
-    @RequestMapping(value="/{id}",method = RequestMethod.DELETE)
-    public int deleteByPrimaryKey(@PathVariable(value = "id") String id){
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public int delete(@PathVariable(value = "id") String id) {
         return roleService.deleteByPrimaryKey(id);
     }
 
-    @RequestMapping(value="/insert",method = RequestMethod.POST)
-    public int insert(@RequestBody @Valid Role record){
+    @RequestMapping(method = RequestMethod.POST)
+    public Role insert(@RequestBody @Valid Role record) {
         return roleService.insert(record);
     }
 
-    @RequestMapping(value="/insertSelective",method = RequestMethod.POST)
-    public int insertSelective(@RequestBody @Valid Role record){
-        return roleService.insertSelective(record);
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Role selectOne(@PathVariable(value = "id") String id) {
+        return roleService.getOneRole(id);
     }
 
-    @RequestMapping(value="/selectByPrimaryKey",method = RequestMethod.GET)
-    public Role selectByPrimaryKey(@PathVariable(value = "id") String id){
-        return roleService.selectByPrimaryKey(id);
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public Role update(@PathVariable(value = "id") String id,
+                       @RequestBody @Valid Role record) {
+        record.setId(id);
+        return roleService.update(record);
     }
-
-    @RequestMapping(value="/updateByPrimaryKeySelective",method = RequestMethod.DELETE)
-    public int updateByPrimaryKeySelective(@PathVariable(value = "id") String id,
-                                           @RequestBody @Valid Role record){
-        return roleService.updateByPrimaryKeySelective(record);
-    }
-
-    @RequestMapping(value="/updateByPrimaryKey",method = RequestMethod.DELETE)
-    public int updateByPrimaryKey(@PathVariable(value = "id") String id,
-                                  @RequestBody @Valid Role record){
-        return roleService.updateByPrimaryKey(record);
-    }
-
-
 
 }

@@ -25,9 +25,9 @@
 
                             </select>
                         </div>
-                        <label class="col-sm-1 control-label text-right" name ="roleName" ng-model="query.roleName">角色名称</label>
+                        <label class="col-sm-1 control-label text-right" >角色名称</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name ="roleName" ng-model="query.roleName">
                         </div>
                         <div class="col-sm-2">
                             <input class="btn btn-info" btn-loading="queryBtnLoading" type="button" ng-click="init();" value="搜索">
@@ -38,16 +38,9 @@
             </div>
             <div class="panel">
                 <div align="right" style="padding-top: 10px;">
-
-                        <input class="btn btn-info" type="button" ng-click="add();" value="新增">
-
-                        <input class="btn btn-info" type="button" ng-click="view(choiceItem);" value="查看">
-
-                        <input class="btn btn-info" type="button" ng-click="delete(choiceItem)" value="删除">
-
-                    <btn-download download-params="query" download-href="/mzhotel/storehouse/export" btn-text="导出"></btn-download>
-                    <%--<input class="btn btn-info" type="button" ng-click="export()" value="导出">--%>
-
+                    <input class="btn btn-info" type="button" ng-click="add();" value="新增">
+                    <input class="btn btn-info" type="button" ng-click="view(choiceItem);" value="查看">
+                    <input class="btn btn-info" type="button" ng-click="delete(choiceItem)" value="删除">
                 </div>
                 <div class="panel-body">
                     <div class="responsive-table">

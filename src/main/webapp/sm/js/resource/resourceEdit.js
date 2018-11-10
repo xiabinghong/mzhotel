@@ -1,60 +1,51 @@
 define(function (require, exports) {
     var moduleName = "resourceModule";
-    var moduleApp = angular.module(moduleName, []);
-    moduleApp.controller("resourceEditController", ["$scope", "$http", function ($scope, $http) {
+    require("../app.directives");
+    require("./resourceRest");
+    var moduleApp = angular.module(moduleName, ["common","Resource.REST"]);
+    moduleApp.controller("resourceEditController", ["$scope","ResourceAPI","$UrlUtils", function ($scope,ResourceAPI,$UrlUtils) {
         $scope.query = {};
-        $scope.resourceList = {};
-        $scope.pageSetting = {
-            disabled: true
-        };
-        var params = {
-            id: null
-        };
         $scope.resource = {};
+        $scope.pageSetting = {
+            disabled: true,
+            loading: false
+        };
+        var params = $UrlUtils.getParameters();
         $scope.init = function () {
-            if (params.id) {
-                $http({
-                    method: "GET",
-                    url: "/mzhotel/resource/selectByPrimaryKey",
-                    data: params.id
-                }).then(function successCallback(result) {
+            if (params && params.id) {
+                ResourceAPI.get({id:params.id},function(result){
                     $scope.resource = result;
-                }, function errorCallback() {
-
-                })
+                });
             } else {
                 $scope.pageSetting.disabled = false;
             }
         }
         $scope.save = function () {
             if (params.id) {
-                $http({
-                    method: "POST",
-                    url: "/mzhotel/resource/update",
-                    data: $scope.resource
-                }).then(function successCallback(result) {
-                    params.id = result.data.id;
+                ResourceAPI.update({id: params.id}, $scope.resource, function (result) {
+                    params.id = result.id;
                     $scope.pageSetting.disabled = true;
-                    $scope.resource = result.data;
                     alert("更新成功");
-                }, function errorCallback() {
-                    alert("更新失败");
-                })
+                    callback();
+                }).$promise.finally(function () {
+                    $scope.pageSetting.loading = false;
+                });
             } else {
-                $http({
-                    method: "POST",
-                    url: "/mzhotel/resource/insert",
-                    data: $scope.resource
-                }).then(function successCallback(result) {
-                    params.id = result.data.id;
+                ResourceAPI.save($scope.resource, function (result) {
+                    params.id = result.id;
                     $scope.pageSetting.disabled = true;
-                    $scope.resource = result.data;
                     alert("新增成功");
-                }, function errorCallback() {
-                    alert("新增失败");
-                })
+                    callback();
+                }).$promise.finally(function () {
+                    $scope.pageSetting.loading = false;
+                });
             }
         };
+        function callback() {
+            if (self.opener && self.opener.doCallback) {
+                self.opener.doCallback();
+            }
+        }
         $scope.cancel = function () {
             $scope.pageSetting.disabled = true;
             $scope.init();

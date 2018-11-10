@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -50,31 +51,26 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional
-    public int insert(Role record){
-        return roleMapper.insert(record);
+    public Role insert(Role record){
+        record.setUpdatedBy(userInfoService.getCurrUser());
+        record.setUpdatedDate(new Date());
+        int result = roleMapper.insert(record);
+        if(result == 1){
+           return getOneRole(record.getId());
+        }
+        return null;
     }
 
     @Override
     @Transactional
-    public int insertSelective(Role record){
-        return roleMapper.insertSelective(record);
-    }
-
-    @Override
-    public Role selectByPrimaryKey(String id){
-        return roleMapper.selectByPrimaryKey(id);
-    }
-
-    @Override
-    @Transactional
-    public int updateByPrimaryKeySelective(Role record){
-        return roleMapper.updateByPrimaryKeySelective(record);
-    }
-
-    @Override
-    @Transactional
-    public int updateByPrimaryKey(Role record) {
-        return  roleMapper.updateByPrimaryKey(record);
+    public Role update(Role record){
+        record.setUpdatedDate(new Date());
+        record.setUpdatedBy(userInfoService.getCurrUser());
+        int result = roleMapper.updateByPrimaryKeySelective(record);
+        if(result == 1){
+            return getOneRole(record.getId());
+        }
+        return null;
     }
 
     @Override

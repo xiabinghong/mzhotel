@@ -8,17 +8,11 @@ import java.util.List;
 
 public interface ResourceService {
 
-    int deleteByPrimaryKey(String id);
+    int delete(String id);
 
-    int insert(Resource record);
+    Resource insert(Resource record);
 
-    int insertSelective(Resource record);
-
-    Resource selectByPrimaryKey(String id);
-
-    int updateByPrimaryKeySelective(Resource record);
-
-    int updateByPrimaryKey(Resource record);
+    Resource update(Resource record);
     
     List<Resource> getResourceList(QueryResource queryResource);
 

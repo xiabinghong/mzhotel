@@ -13,7 +13,7 @@
             <div class="panel form-element-padding">
                 <div style="padding-bottom:20px;">
                     <div class="form-group">
-                        <label class="col-sm-1 control-label text-right">资源类别</label>
+                        <label class="col-sm-1 control-label text-right">资源类型</label>
                         <div class="col-sm-2">
                             <select class="form-control" ng-model="query.resourceType" name="resourceType">
                                 <option  align="center" ng-show="resourceList"
@@ -25,9 +25,9 @@
 
                             </select>
                         </div>
-                        <label class="col-sm-1 control-label text-right" name ="resourceName" ng-model="query.resourceName">物品名称</label>
+                        <label class="col-sm-1 control-label text-right">资源名称</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name ="resourceName" ng-model="query.resourceName">
                         </div>
                         <div class="col-sm-2">
                             <input class="btn btn-info" btn-loading="queryBtnLoading" type="button" ng-click="init();" value="搜索">
@@ -38,14 +38,9 @@
             </div>
             <div class="panel">
                 <div align="right" style="padding-top: 10px;">
-
-                        <input class="btn btn-info" type="button" ng-click="add();" value="新增">
-
-                        <input class="btn btn-info" type="button" ng-click="view(choiceItem);" value="查看">
-
-                        <input class="btn btn-info" type="button" ng-click="delete(choiceItem)" value="删除">
-
-
+                    <input class="btn btn-info" type="button" ng-click="add();" value="新增">
+                    <input class="btn btn-info" type="button" ng-click="view(choiceItem);" value="查看">
+                    <input class="btn btn-info" type="button" ng-click="delete(choiceItem)" value="删除">
                 </div>
                 <div class="panel-body">
                     <div class="responsive-table">

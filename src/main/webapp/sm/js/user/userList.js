@@ -28,7 +28,19 @@ define(function (require, exports) {
             }).$promise.finally(function () {
                 $scope.queryBtnLoading = false;
             });
-        }
+        };
+        $scope.assigneRole = function(item){
+            if (item && item.id) {
+                $dialog.modal({
+                    url: "../user/userEdit.jsp",
+                    params: {
+                        id: item.id
+                    }
+                });
+            } else {
+                alert("请选择单据！");
+            }
+        };
         $scope.init = function () {
             $scope.getUserList();
         };
@@ -60,6 +72,7 @@ define(function (require, exports) {
                 UserAPI.remove({
                     id: item.id
                 }, function () {
+                    $scope.init();
                     alert("单据删除成功");
                 })
             } else {

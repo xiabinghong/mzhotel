@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -36,7 +37,7 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Override
     @Transactional
-    public int deleteByPrimaryKey(String id){
+    public int delete(String id){
         return resourceMapper.deleteByPrimaryKey(id);
     }
 
@@ -50,31 +51,26 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Override
     @Transactional
-    public int insert(Resource record){
-        return resourceMapper.insert(record);
+    public Resource insert(Resource record){
+        record.setCreatedBy(userInfoService.getCurrUser());
+        record.setCreatedDate(new Date());
+        int result = resourceMapper.insert(record);
+        if(result == 1){
+            return getOneResource(record.getId());
+        }
+        return null;
     }
 
     @Override
     @Transactional
-    public int insertSelective(Resource record){
-        return resourceMapper.insertSelective(record);
-    }
-
-    @Override
-    public Resource selectByPrimaryKey(String id){
-        return resourceMapper.selectByPrimaryKey(id);
-    }
-
-    @Override
-    @Transactional
-    public int updateByPrimaryKeySelective(Resource record){
-        return resourceMapper.updateByPrimaryKeySelective(record);
-    }
-
-    @Override
-    @Transactional
-    public int updateByPrimaryKey(Resource record) {
-return  resourceMapper.updateByPrimaryKey(record);
+    public Resource update(Resource record){
+        record.setUpdatedBy(userInfoService.getCurrUser());
+        record.setUpdatedDate(new Date());
+        int result = resourceMapper.updateByPrimaryKeySelective(record);
+        if(result == 1){
+            return getOneResource(record.getId());
+        }
+        return null;
     }
 
     @Override
