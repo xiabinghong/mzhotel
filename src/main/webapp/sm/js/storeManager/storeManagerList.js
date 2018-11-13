@@ -30,7 +30,7 @@ define(function (require, exports) {
             }).$promise.finally(function () {
                 $scope.queryBtnLoading = false;
             });
-        }
+        };
         $scope.init = function () {
             $scope.getStorehouseList();
         };
