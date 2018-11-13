@@ -46,6 +46,7 @@ public class ActionLogServiceImpl implements ActionLogService {
     @Transactional
     public int insert(String parentId, ActionLogEnum actionLogEnum) {
         ActionLog record = new ActionLog();
+        record.setParentId(parentId);
         record.setActionDate(new Date());
         record.setApplyUser(userInfoService.getCurrUser());
         record.setCreatedBy(userInfoService.getCurrUser());
