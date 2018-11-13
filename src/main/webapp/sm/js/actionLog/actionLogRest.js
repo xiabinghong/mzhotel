@@ -8,7 +8,7 @@ define(function (require, exports) {
             update: {method: "PUT", params: {id: "@id"}},
             save: {method: "POST"},
             remove: {method: "DELETE"},
-            queryActionLog: {isArray: true, method: "GET", url: appname + "/actionLog/queryActionLog"}
+            queryActionLogList: {isArray: true, method: "GET", url: appname + "/actionLog/queryActionLogList"}
         })
     }])
 })
