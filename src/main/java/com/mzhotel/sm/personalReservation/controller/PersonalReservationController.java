@@ -42,7 +42,7 @@ public class PersonalReservationController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public int deleteByPrimaryKey(@PathVariable(value = "id") String id) {
-        return personalReservationService.deleteByPrimaryKey(id);
+        return personalReservationService.delete(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -52,14 +52,14 @@ public class PersonalReservationController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public PersonalReservation selectByPrimaryKey(@PathVariable(value = "id") String id) {
-        return personalReservationService.selectByPrimaryKey(id);
+        return personalReservationService.getOnePersonalReservation(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public PersonalReservation update(@PathVariable(value = "id") String id,
                                       @RequestBody @Valid PersonalReservation record) {
         record.setId(id);
-        return personalReservationService.updateByPrimaryKey(record);
+        return personalReservationService.update(record);
     }
 
 }
