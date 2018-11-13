@@ -17,9 +17,9 @@ public class MyBatisDAOImpl<T> implements MyBatisDAO<T> {
         return new Date();
     }
 
-    public PageResult<T> queryPage(List<T> list, Integer pageNum, Integer pageSize){
-        PageHelper.startPage(pageNum,pageSize);
-        return new PageResult<T>((Page<T>)list);
+    public PageResult<T> queryPage(List<T> list, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return new PageResult<T>((Page<T>) list);
     }
 
     /*@Override
@@ -29,7 +29,7 @@ public class MyBatisDAOImpl<T> implements MyBatisDAO<T> {
 
 
     @Override
-    public PageResult selectPage(List list,int pageNum,int pageSize) {
+    public PageResult selectPage(List list, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         Page page = (Page) list;
         return new PageResult(page);

@@ -38,10 +38,10 @@ public class LoginController {
     SecurityService securityService;
 
     @RequestMapping(value = "/login", method = POST)
-    public Map<String,Object> login(@RequestBody @Valid QueryUserInfo queryUserInfo, HttpServletRequest request) {
-        logger.info(queryUserInfo.getUserId()+"开始登陆");
-        Map<String , Object> result = Maps.newHashMap();
-        result.put("DATA","FAIL");
+    public Map<String, Object> login(@RequestBody @Valid QueryUserInfo queryUserInfo, HttpServletRequest request) {
+        logger.info(queryUserInfo.getUserId() + "开始登陆");
+        Map<String, Object> result = Maps.newHashMap();
+        result.put("DATA", "FAIL");
         try {
             HttpSession session = request.getSession();
             boolean isSuccess = loginService.isSuccess(queryUserInfo);
@@ -60,11 +60,11 @@ public class LoginController {
                 session.setAttribute("logonInfo", user);//登陆信息放入会话中
                 Set<String> permissions = securityService.getPermissions(userInfo.getUserId());
                 session.setAttribute("UserPermissionsJSON", JSONObject.toJSONString(permissions));//将资源加入到会话中，方便页面进行调取
-                logger.info(userInfo.getUserId()+"登陆成功,跳入首页");
-                result.put("DATA","SUCCESS");
+                logger.info(userInfo.getUserId() + "登陆成功,跳入首页");
+                result.put("DATA", "SUCCESS");
                 return result;
             } else {
-                logger.info(queryUserInfo.getUserId()+"登陆失败,跳入重新登陆的页面");
+                logger.info(queryUserInfo.getUserId() + "登陆失败,跳入重新登陆的页面");
                 return result;
             }
         } catch (Exception e) {

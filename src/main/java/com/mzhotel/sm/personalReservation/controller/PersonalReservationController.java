@@ -40,12 +40,12 @@ public class PersonalReservationController {
         return personalReservationService.getPersonalReservation(queryPersonalReservation);
     }
 
-    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public int deleteByPrimaryKey(@PathVariable(value = "id") String id) {
         return personalReservationService.deleteByPrimaryKey(id);
     }
 
-    @RequestMapping( method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public PersonalReservation insert(@RequestBody @Valid PersonalReservation record) {
         return personalReservationService.insert(record);
     }

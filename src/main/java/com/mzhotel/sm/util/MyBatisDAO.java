@@ -13,5 +13,5 @@ public interface MyBatisDAO<T> {
 
     Date getCurrmentDate();
 
-    public PageResult<T> queryPage(List<T> list,Integer pageNum,Integer pageSize);
+    public PageResult<T> queryPage(List<T> list, Integer pageNum, Integer pageSize);
 }

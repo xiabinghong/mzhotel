@@ -15,6 +15,6 @@ public class MapWrapperFactory implements ObjectWrapperFactory {
 
     @Override
     public ObjectWrapper getWrapperFor(MetaObject metaObject, Object object) {
-        return new CustomWrapper(metaObject,(Map)object);
+        return new CustomWrapper(metaObject, (Map) object);
     }
 }

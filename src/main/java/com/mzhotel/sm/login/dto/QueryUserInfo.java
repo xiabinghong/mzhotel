@@ -6,7 +6,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class QueryUserInfo extends BaseQueryModel implements Serializable{
+public class QueryUserInfo extends BaseQueryModel implements Serializable {
 
     private String userId;
 

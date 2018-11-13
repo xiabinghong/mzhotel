@@ -31,13 +31,13 @@ public class ContextHolderUtils {
         String tempSessionId = request.getParameter("sessionId");
         HttpSession session = request.getSession();
         String sessionId = session.getId();
-        if(tempSessionId != null && !tempSessionId.equals(sessionId)){
+        if (tempSessionId != null && !tempSessionId.equals(sessionId)) {
             sessionId = tempSessionId;
-            if(sessionMap.containsKey(sessionId)){
+            if (sessionMap.containsKey(sessionId)) {
                 session = sessionMap.get(sessionId);
             }
         }
-        if(!sessionMap.containsKey(sessionId)){
+        if (!sessionMap.containsKey(sessionId)) {
             sessionMap.put(sessionId, session);
         }
         return session;
@@ -46,13 +46,13 @@ public class ContextHolderUtils {
 
     private static final Map<String, HttpSession> sessionMap = new HashMap<String, HttpSession>();
 
-    public static HttpSession getSession(String sessionId){
+    public static HttpSession getSession(String sessionId) {
         HttpSession session = sessionMap.get(sessionId);
         return session == null ? getSession() : session;
     }
 
-    public static void removeSession(String sessionId){
-        if(sessionMap.containsKey(sessionId)){
+    public static void removeSession(String sessionId) {
+        if (sessionMap.containsKey(sessionId)) {
             sessionMap.remove(sessionId);
         }
     }

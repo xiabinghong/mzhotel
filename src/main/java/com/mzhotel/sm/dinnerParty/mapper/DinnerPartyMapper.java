@@ -17,6 +17,6 @@ public interface DinnerPartyMapper {
     int updateByPrimaryKeySelective(DinnerParty record);
 
     int updateByPrimaryKey(DinnerParty record);
-    
+
     List<DinnerParty> getDinnerParty(QueryDinnerParty queryDinnerParty);
 }

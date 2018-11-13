@@ -15,36 +15,36 @@ public class RoleResourceServiceImpl implements RoleResourceService {
 
     @Override
     @Transactional
-    public int deleteByPrimaryKey(String id){
+    public int deleteByPrimaryKey(String id) {
         return roleResourceRelationMapper.deleteByPrimaryKey(id);
     }
 
     @Override
     @Transactional
-    public int insert(RoleResourceRelation record){
+    public int insert(RoleResourceRelation record) {
         return roleResourceRelationMapper.insert(record);
     }
 
     @Override
     @Transactional
-    public int insertSelective(RoleResourceRelation record){
+    public int insertSelective(RoleResourceRelation record) {
         return roleResourceRelationMapper.insertSelective(record);
     }
 
     @Override
-    public RoleResourceRelation selectByPrimaryKey(String id){
+    public RoleResourceRelation selectByPrimaryKey(String id) {
         return roleResourceRelationMapper.selectByPrimaryKey(id);
     }
 
     @Override
     @Transactional
-    public int updateByPrimaryKeySelective(RoleResourceRelation record){
+    public int updateByPrimaryKeySelective(RoleResourceRelation record) {
         return roleResourceRelationMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     @Transactional
-    public int updateByPrimaryKey(RoleResourceRelation record){
+    public int updateByPrimaryKey(RoleResourceRelation record) {
         return roleResourceRelationMapper.updateByPrimaryKey(record);
     }
 }

@@ -24,7 +24,7 @@ public class ExcelUtil {
             ExportParams params = (ExportParams) map.get("params");
             Class<?> entry = (Class<?>) map.get("entity");
             Collection<?> data = (Collection<?>) map.get("data");
-            server.createSheet(workbook, params,entry ,data);
+            server.createSheet(workbook, params, entry, data);
         }
         return workbook;
     }

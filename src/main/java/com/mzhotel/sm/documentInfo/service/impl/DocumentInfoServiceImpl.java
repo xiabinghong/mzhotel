@@ -15,41 +15,41 @@ public class DocumentInfoServiceImpl implements DocumentInfoService {
 
     @Override
     @Transactional
-    public int deleteByPrimaryKey(String id){
+    public int deleteByPrimaryKey(String id) {
         return documentInfoMapper.deleteByPrimaryKey(id);
     }
 
     @Override
     @Transactional
-    public DocumentInfo insert(DocumentInfo record){
+    public DocumentInfo insert(DocumentInfo record) {
         int result = documentInfoMapper.insert(record);
-        if(result == 1){
+        if (result == 1) {
             return selectByPrimaryKey(record.getId());
-        }else {
+        } else {
             return null;
         }
     }
 
     @Override
     @Transactional
-    public int insertSelective(DocumentInfo record){
+    public int insertSelective(DocumentInfo record) {
         return documentInfoMapper.insertSelective(record);
     }
 
     @Override
-    public DocumentInfo selectByPrimaryKey(String id){
+    public DocumentInfo selectByPrimaryKey(String id) {
         return documentInfoMapper.selectByPrimaryKey(id);
     }
 
     @Override
     @Transactional
-    public int updateByPrimaryKeySelective(DocumentInfo record){
+    public int updateByPrimaryKeySelective(DocumentInfo record) {
         return documentInfoMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     @Transactional
-    public int updateByPrimaryKey(DocumentInfo record){
+    public int updateByPrimaryKey(DocumentInfo record) {
         return documentInfoMapper.updateByPrimaryKey(record);
     }
 }

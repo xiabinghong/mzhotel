@@ -1,5 +1,7 @@
 package com.mzhotel.sm.resource.service.impl;
 
+import com.mzhotel.sm.actionLog.dto.ActionLogEnum;
+import com.mzhotel.sm.actionLog.service.ActionLogService;
 import com.mzhotel.sm.documentInfoRelation.service.DocumentInfoRelationService;
 import com.mzhotel.sm.pageUtil.PageResult;
 import com.mzhotel.sm.resource.dto.Resource;
@@ -31,13 +33,17 @@ public class ResourceServiceImpl implements ResourceService {
     MyBatisDAO<Resource> myBatisDAO;
 
     @Autowired
+    ActionLogService actionLogService;
+
+    @Autowired
     DocumentInfoRelationService documentInfoRelationService;
 
     private static final String mapper = "ResourceMapper";
 
     @Override
     @Transactional
-    public int delete(String id){
+    public int delete(String id) {
+        actionLogService.insert(id, ActionLogEnum.DELETE);
         return resourceMapper.deleteByPrimaryKey(id);
     }
 
@@ -51,11 +57,12 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Override
     @Transactional
-    public Resource insert(Resource record){
+    public Resource insert(Resource record) {
         record.setCreatedBy(userInfoService.getCurrUser());
         record.setCreatedDate(new Date());
         int result = resourceMapper.insert(record);
-        if(result == 1){
+        if (result == 1) {
+            actionLogService.insert(record.getId(), ActionLogEnum.SAVE);
             return getOneResource(record.getId());
         }
         return null;
@@ -63,11 +70,12 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Override
     @Transactional
-    public Resource update(Resource record){
+    public Resource update(Resource record) {
         record.setUpdatedBy(userInfoService.getCurrUser());
         record.setUpdatedDate(new Date());
         int result = resourceMapper.updateByPrimaryKeySelective(record);
-        if(result == 1){
+        if (result == 1) {
+            actionLogService.insert(record.getId(), ActionLogEnum.UPDATE);
             return getOneResource(record.getId());
         }
         return null;
@@ -81,6 +89,6 @@ public class ResourceServiceImpl implements ResourceService {
     @Override
     public PageResult<Resource> getResource(QueryResource queryResource) {
         List<Resource> resourceList = getResourceList(queryResource);
-        return myBatisDAO.queryPage(resourceList,queryResource.getPageNum(), queryResource.getPageSize());
+        return myBatisDAO.queryPage(resourceList, queryResource.getPageNum(), queryResource.getPageSize());
     }
 }

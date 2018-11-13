@@ -13,7 +13,7 @@ public interface ResourceService {
     Resource insert(Resource record);
 
     Resource update(Resource record);
-    
+
     List<Resource> getResourceList(QueryResource queryResource);
 
     PageResult<Resource> getResource(QueryResource queryResource);

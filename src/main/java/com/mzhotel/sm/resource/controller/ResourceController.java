@@ -32,26 +32,27 @@ public class ResourceController {
     public PageResult<Resource> getResource(QueryResource queryResource) {
         return resourceService.getResource(queryResource);
     }
-    @RequestMapping(value="/{id}",method = RequestMethod.DELETE)
-    public int deleteByPrimaryKey(@PathVariable(value = "id") String id){
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public int deleteByPrimaryKey(@PathVariable(value = "id") String id) {
         return resourceService.delete(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Resource insert(@RequestBody @Valid Resource record){
+    public Resource insert(@RequestBody @Valid Resource record) {
         return resourceService.insert(record);
     }
 
-    @RequestMapping(value="/{id}",method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Resource updateByPrimaryKeySelective(@PathVariable(value = "id") String id,
-                                           @RequestBody @Valid Resource record){
+                                                @RequestBody @Valid Resource record) {
         record.setId(id);
         return resourceService.update(record);
     }
 
-    @RequestMapping(value="/{id}",method = RequestMethod.GET)
-    public Resource selectOne(@PathVariable(value = "id") String id){
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Resource selectOne(@PathVariable(value = "id") String id) {
         return resourceService.getOneResource(id);
     }
-    
+
 }

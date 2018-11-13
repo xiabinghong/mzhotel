@@ -11,9 +11,9 @@ import java.util.Set;
 
 public interface SecurityService {
 
-    Set<String> getRoles(String user,String realm);
+    Set<String> getRoles(String user, String realm);
 
-    Set<Permission> getPermissions(String user,String realm);
+    Set<Permission> getPermissions(String user, String realm);
 
     List<ResourcePermissionDTO> getResoucePermissionList(String user);
 

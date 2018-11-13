@@ -1,5 +1,7 @@
 package com.mzhotel.sm.personalReservation.service.impl;
 
+import com.mzhotel.sm.actionLog.dto.ActionLogEnum;
+import com.mzhotel.sm.actionLog.service.ActionLogService;
 import com.mzhotel.sm.documentInfoRelation.dto.DocumentInfoRelation;
 import com.mzhotel.sm.documentInfoRelation.service.DocumentInfoRelationService;
 import com.mzhotel.sm.pageUtil.PageResult;
@@ -33,11 +35,15 @@ public class PersonalReservationServiceImpl implements PersonalReservationServic
     @Autowired
     DocumentInfoRelationService documentInfoRelationService;
 
+    @Autowired
+    ActionLogService actionLogService;
+
     private static final String mapper = "PersonalReservationMapper";
 
     @Override
     @Transactional
-    public int deleteByPrimaryKey(String id) {
+    public int delete(String id) {
+        actionLogService.insert(id, ActionLogEnum.DELETE);
         return personalReservationMapper.deleteByPrimaryKey(id);
     }
 
@@ -56,6 +62,7 @@ public class PersonalReservationServiceImpl implements PersonalReservationServic
         record.setCreatedBy(userInfoService.getCurrUser());
         int result = personalReservationMapper.insert(record);
         if (result == 1) {
+            actionLogService.insert(record.getId(), ActionLogEnum.SAVE);
             return getOnePersonalReservation(record.getId());
         }
         return null;
@@ -63,28 +70,15 @@ public class PersonalReservationServiceImpl implements PersonalReservationServic
 
     @Override
     @Transactional
-    public int insertSelective(PersonalReservation record) {
-        return personalReservationMapper.insertSelective(record);
-    }
-
-    @Override
-    public PersonalReservation selectByPrimaryKey(String id) {
-        return personalReservationMapper.selectByPrimaryKey(id);
-    }
-
-    @Override
-    @Transactional
-    public int updateByPrimaryKeySelective(PersonalReservation record) {
-        return personalReservationMapper.updateByPrimaryKeySelective(record);
-    }
-
-    @Override
-    @Transactional
-    public PersonalReservation updateByPrimaryKey(PersonalReservation record) {
-        Assert.notNull(record,"更新对象不能为空!");
-        Assert.isTrue(StringUtils.trimToNull(record.getId()) != null,"更新对象主键不能为空!");
-        personalReservationMapper.updateByPrimaryKey(record);
-        return getOnePersonalReservation(record.getId());
+    public PersonalReservation update(PersonalReservation record) {
+        Assert.notNull(record, "更新对象不能为空!");
+        Assert.isTrue(StringUtils.trimToNull(record.getId()) != null, "更新对象主键不能为空!");
+        int result = personalReservationMapper.updateByPrimaryKey(record);
+        if (result == 1) {
+            actionLogService.insert(record.getId(), ActionLogEnum.UPDATE);
+            return getOnePersonalReservation(record.getId());
+        }
+        return null;
     }
 
     @Override
@@ -95,6 +89,6 @@ public class PersonalReservationServiceImpl implements PersonalReservationServic
     @Override
     public PageResult<PersonalReservation> getPersonalReservation(QueryPersonalReservation queryPersonalReservation) {
         List<PersonalReservation> personalReservationList = getPersonalReservationList(queryPersonalReservation);
-        return myBatisDAO.queryPage(personalReservationList,queryPersonalReservation.getPageNum(), queryPersonalReservation.getPageSize());
+        return myBatisDAO.queryPage(personalReservationList, queryPersonalReservation.getPageNum(), queryPersonalReservation.getPageSize());
     }
 }

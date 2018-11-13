@@ -96,12 +96,12 @@ public class StorehouseController {
         storehouse.setAmount(actionLog.getStoreSumAmount());
         storehouseService.updateByPrimaryKey(storehouse);
         //添加操作日志
-        actionLogService.insert(actionLog);
+        actionLogService.insertStoreLog(actionLog);
     }
 
     @RequestMapping(value = "/storeLog", method = RequestMethod.GET)
     public List<ActionLog> storeLog(QueryActionLog queryActionLog) {
-        return actionLogService.queryActionLog(queryActionLog);
+        return actionLogService.queryActionLogList(queryActionLog);
     }
 
 }

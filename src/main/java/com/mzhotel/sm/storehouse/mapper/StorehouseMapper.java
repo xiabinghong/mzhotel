@@ -19,6 +19,6 @@ public interface StorehouseMapper {
     int updateByPrimaryKey(Storehouse record);
 
     List<Storehouse> getStorehouse(QueryStorehouse queryStorehouse);
-    
-    
+
+
 }

@@ -8,17 +8,11 @@ import java.util.List;
 
 public interface PersonalReservationService {
 
-    int deleteByPrimaryKey(String id);
+    int delete(String id);
 
     PersonalReservation insert(PersonalReservation record);
 
-    int insertSelective(PersonalReservation record);
-
-    PersonalReservation selectByPrimaryKey(String id);
-
-    int updateByPrimaryKeySelective(PersonalReservation record);
-
-    PersonalReservation updateByPrimaryKey(PersonalReservation record);
+    PersonalReservation update(PersonalReservation record);
 
     List<PersonalReservation> getPersonalReservationList(QueryPersonalReservation queryPersonalReservation);
 

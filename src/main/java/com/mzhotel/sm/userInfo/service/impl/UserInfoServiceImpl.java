@@ -1,6 +1,8 @@
 package com.mzhotel.sm.userInfo.service.impl;
 
 import com.aliyuncs.utils.StringUtils;
+import com.mzhotel.sm.actionLog.dto.ActionLogEnum;
+import com.mzhotel.sm.actionLog.service.ActionLogService;
 import com.mzhotel.sm.common.ContextHolderUtils;
 import com.mzhotel.sm.login.dto.QueryUserInfo;
 import com.mzhotel.sm.pageUtil.PageResult;
@@ -25,6 +27,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Autowired
     MyBatisDAO<UserInfo> myBatisDAO;
+
+    @Autowired
+    ActionLogService actionLogService;
 
     public String getCurrUser() {
         HttpSession session = ContextHolderUtils.getSession();
@@ -54,6 +59,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Transactional
     @Override
     public void delete(String id) {
+        actionLogService.insert(id, ActionLogEnum.DELETE);
         if (StringUtils.isEmpty(id)) {
             return;
         }
@@ -67,6 +73,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         record.setCreatedDate(new Date());
         int result = userInfoMapper.insert(record);
         if (result == 1) {
+            actionLogService.insert(record.getId(), ActionLogEnum.SAVE);
             return selectOne(record.getId());
         }
         return null;
@@ -87,6 +94,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         record.setUpdatedDate(new Date());
         int result = userInfoMapper.updateByPrimaryKeySelective(record);
         if (result == 1) {
+            actionLogService.insert(record.getId(), ActionLogEnum.UPDATE);
             return selectOne(record.getId());
         }
         return null;

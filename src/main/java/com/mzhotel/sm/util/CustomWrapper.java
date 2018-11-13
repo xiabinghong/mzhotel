@@ -16,8 +16,8 @@ public class CustomWrapper extends MapWrapper {
 
     @Override
     public String findProperty(String name, boolean useCamelCaseMapping) {
-        if(useCamelCaseMapping){
-            return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL,name);
+        if (useCamelCaseMapping) {
+            return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, name);
         }
         return name;
     }

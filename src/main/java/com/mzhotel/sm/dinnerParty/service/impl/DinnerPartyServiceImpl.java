@@ -1,5 +1,6 @@
 package com.mzhotel.sm.dinnerParty.service.impl;
 
+import com.mzhotel.sm.actionLog.service.ActionLogService;
 import com.mzhotel.sm.dinnerParty.dto.DinnerParty;
 import com.mzhotel.sm.dinnerParty.dto.QueryDinnerParty;
 import com.mzhotel.sm.dinnerParty.mapper.DinnerPartyMapper;
@@ -8,6 +9,7 @@ import com.mzhotel.sm.documentInfoRelation.service.DocumentInfoRelationService;
 import com.mzhotel.sm.pageUtil.PageResult;
 import com.mzhotel.sm.userInfo.service.UserInfoService;
 import com.mzhotel.sm.util.MyBatisDAO;
+import com.mzhotel.sm.actionLog.dto.ActionLogEnum;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,12 +31,16 @@ public class DinnerPartyServiceImpl implements DinnerPartyService {
     MyBatisDAO<DinnerParty> myBatisDAO;
 
     @Autowired
+    ActionLogService actionLogService;
+
+    @Autowired
     DocumentInfoRelationService documentInfoRelationService;
 
     @Override
     @Transactional
     public void delete(String id) {
-        if(StringUtils.isEmpty(id)){
+        actionLogService.insert(id, ActionLogEnum.DELETE);
+        if (StringUtils.isEmpty(id)) {
             return;
         }
         dinnerPartyMapper.deleteByPrimaryKey(id);
@@ -47,6 +53,7 @@ public class DinnerPartyServiceImpl implements DinnerPartyService {
         record.setCreatedDate(new Date());
         int result = dinnerPartyMapper.insert(record);
         if (result == 1) {
+            actionLogService.insert(record.getId(), ActionLogEnum.SAVE);
             return getOneDinnerParty(record.getId());
         }
         return null;
@@ -59,6 +66,7 @@ public class DinnerPartyServiceImpl implements DinnerPartyService {
         record.setUpdatedDate(new Date());
         int result = dinnerPartyMapper.updateByPrimaryKeySelective(record);
         if (result == 1) {
+            actionLogService.insert(record.getId(), ActionLogEnum.UPDATE);
             return getOneDinnerParty(record.getId());
         }
         return null;

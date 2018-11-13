@@ -1,23 +1,19 @@
 package com.mzhotel.sm.actionLog.service;
 
 import com.mzhotel.sm.actionLog.dto.ActionLog;
+import com.mzhotel.sm.actionLog.dto.ActionLogEnum;
 import com.mzhotel.sm.actionLog.dto.QueryActionLog;
+import com.mzhotel.sm.pageUtil.PageResult;
 
 import java.util.List;
 
 public interface ActionLogService {
 
-    int deleteByPrimaryKey(String id);
+    int insert(String parentId, ActionLogEnum actionLogEnum);
 
-    int insert(ActionLog record);
+    List<ActionLog> queryActionLogList(QueryActionLog queryActionLog);
 
-    int insertSelective(ActionLog record);
+    PageResult<ActionLog> queryActionLog(QueryActionLog queryActionLog);
 
-    ActionLog selectByPrimaryKey(String id);
-
-    int updateByPrimaryKeySelective(ActionLog record);
-
-    int updateByPrimaryKey(ActionLog record);
-
-    List<ActionLog> queryActionLog(QueryActionLog queryActionLog);
+    int insertStoreLog(ActionLog actionLog);
 }

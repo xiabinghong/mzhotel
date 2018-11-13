@@ -16,6 +16,6 @@ public class ResourcePermissionDTO {
     private String url;
 
     public String getJsonString() {
-        return joinerId.join(resourceCode,resourceType,action);
+        return joinerId.join(resourceCode, resourceType, action);
     }
 }

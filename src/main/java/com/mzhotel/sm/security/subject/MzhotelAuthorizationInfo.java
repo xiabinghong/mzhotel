@@ -8,8 +8,8 @@ import java.util.Map;
 import java.util.Set;
 
 @Data
-public class MzhotelAuthorizationInfo extends SimpleAuthorizationInfo{
+public class MzhotelAuthorizationInfo extends SimpleAuthorizationInfo {
 
-    private Map<String,Set<ResourcePermission>> rolePermMap;
+    private Map<String, Set<ResourcePermission>> rolePermMap;
 
 }

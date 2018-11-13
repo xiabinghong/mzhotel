@@ -56,7 +56,7 @@ public class StorehouseServiceImpl implements StorehouseService {
         record.setCreatedBy(userInfoService.getCurrUser());
         int result = storehouseMapper.insert(record);
         if (result == 1) {
-            if(record.getDocumentInfoId() != null){
+            if (record.getDocumentInfoId() != null) {
                 DocumentInfoRelation documentInfoRelation = new DocumentInfoRelation();
                 documentInfoRelation.setCreatedBy(userInfoService.getCurrUser());
                 documentInfoRelation.setCreatedDate(new Date());
@@ -91,8 +91,8 @@ public class StorehouseServiceImpl implements StorehouseService {
     @Override
     @Transactional
     public Storehouse updateByPrimaryKey(Storehouse record) {
-        Assert.notNull(record,"更新对象不能为空!");
-        Assert.isTrue(StringUtils.trimToNull(record.getId()) != null,"更新对象主键不能为空!");
+        Assert.notNull(record, "更新对象不能为空!");
+        Assert.isTrue(StringUtils.trimToNull(record.getId()) != null, "更新对象主键不能为空!");
         storehouseMapper.updateByPrimaryKeySelective(record);
         return getOneStorehouse(record.getId());
     }
@@ -105,6 +105,6 @@ public class StorehouseServiceImpl implements StorehouseService {
     @Override
     public PageResult<Storehouse> getStorehouse(QueryStorehouse queryStorehouse) {
         List<Storehouse> storehouseList = getStorehouseList(queryStorehouse);
-        return myBatisDAO.queryPage(storehouseList,queryStorehouse.getPageNum(), queryStorehouse.getPageSize());
+        return myBatisDAO.queryPage(storehouseList, queryStorehouse.getPageNum(), queryStorehouse.getPageSize());
     }
 }

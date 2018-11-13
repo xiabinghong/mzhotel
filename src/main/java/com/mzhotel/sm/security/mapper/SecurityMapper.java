@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface SecurityMapper {
 
-    List<ResourcePermissionDTO> getResoucePermissionList(@Param(value="userId") String userId);
+    List<ResourcePermissionDTO> getResoucePermissionList(@Param(value = "userId") String userId);
 
 }

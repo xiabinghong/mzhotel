@@ -10,44 +10,44 @@ import java.util.Date;
 public class PersonalReservation implements Serializable {
     private String id;
 
-    @Excel(name = "区域",width=20)
+    @Excel(name = "区域", width = 20)
     private String area;
 
-    @Excel(name = "房间",width=20)
+    @Excel(name = "房间", width = 20)
     private String roomCode;
 
 
-    @Excel(name = "用餐时间",width=20)
+    @Excel(name = "用餐时间", width = 20)
     private String dinnerTimeCode;
 
 
-    @Excel(name = "联系人",width=20)
+    @Excel(name = "联系人", width = 20)
     private String contactUser;
 
 
-    @Excel(name = "联系电话",width=20)
+    @Excel(name = "联系电话", width = 20)
     private String tel;
 
 
-    @Excel(name = "订台人",width=20)
+    @Excel(name = "订台人", width = 20)
     private String manager;
 
 
-    @Excel(name = "桌数",width=20)
+    @Excel(name = "桌数", width = 20)
     private String tablenum;
 
 
     private String status;
 
 
-    @Excel(name = "备注",width=20)
+    @Excel(name = "备注", width = 20)
     private String remark;
 
 
-    @Excel(name = "操作人",width=20)
+    @Excel(name = "操作人", width = 20)
     private String createdBy;
 
-    @Excel(name = "创建时间",width=20,format = "yyyy-MM-dd HH:mm:ss")
+    @Excel(name = "创建时间", width = 20, format = "yyyy-MM-dd HH:mm:ss")
     private Date createdDate;
 
     private String updatedBy;

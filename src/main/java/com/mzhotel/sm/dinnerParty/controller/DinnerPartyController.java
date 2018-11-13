@@ -34,7 +34,7 @@ public class DinnerPartyController {
         return dinnerPartyService.getDinnerParty(queryDinnerParty);
     }
 
-    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable(value = "id") String id) {
         dinnerPartyService.delete(id);
     }
@@ -46,7 +46,7 @@ public class DinnerPartyController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public DinnerParty update(@PathVariable(value = "id") String id,
-                      @RequestBody @Valid DinnerParty record) {
+                              @RequestBody @Valid DinnerParty record) {
         record.setId(id);
         return dinnerPartyService.update(record);
     }

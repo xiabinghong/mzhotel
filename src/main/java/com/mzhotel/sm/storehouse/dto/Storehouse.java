@@ -11,19 +11,19 @@ import java.util.Date;
 public class Storehouse implements Serializable {
     private String id;
 
-    @Excel(name = "区域",width=20)
+    @Excel(name = "区域", width = 20)
     private String area;
 
-    @Excel(name = "房间",width=20)
+    @Excel(name = "房间", width = 20)
     private String room;
 
-    @Excel(name = "物品类型",width=20)
+    @Excel(name = "物品类型", width = 20)
     private String goodsType;
 
-    @Excel(name = "物品名称",width=20)
+    @Excel(name = "物品名称", width = 20)
     private String goodsName;
 
-    @Excel(name = "数量",width=20)
+    @Excel(name = "数量", width = 20)
     private BigDecimal amount;
 
     private String state;
@@ -32,14 +32,14 @@ public class Storehouse implements Serializable {
 
     private String createdBy;
 
-    @Excel(name = "创建时间",width=20,format = "yyyy-MM-dd HH:mm:ss")
+    @Excel(name = "创建时间", width = 20, format = "yyyy-MM-dd HH:mm:ss")
     private Date createdDate;
 
     private String updatedBy;
 
     private Date updatedDate;
 
-    @Excel(name = "创建人",width=20)
+    @Excel(name = "创建人", width = 20)
     private String createdName;
 
     private String updatedName;

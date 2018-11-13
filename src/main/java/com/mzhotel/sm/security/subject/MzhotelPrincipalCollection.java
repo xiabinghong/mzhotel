@@ -8,15 +8,17 @@ import org.codehaus.jackson.annotate.JsonProperty;
 import java.io.Serializable;
 import java.util.Set;
 
-public class MzhotelPrincipalCollection extends SimplePrincipalCollection implements Serializable{
+public class MzhotelPrincipalCollection extends SimplePrincipalCollection implements Serializable {
 
     private static final long serialVersionUID = -5860818524788029613l;
 
-    public MzhotelPrincipalCollection(){super();}
+    public MzhotelPrincipalCollection() {
+        super();
+    }
 
     @JSONCreator
-    public MzhotelPrincipalCollection(@JsonProperty("principal") Object principal,@JsonProperty("realmName") String realmName){
-        super(principal,realmName);
+    public MzhotelPrincipalCollection(@JsonProperty("principal") Object principal, @JsonProperty("realmName") String realmName) {
+        super(principal, realmName);
         this.principal = principal;
         this.realmName = realmName;
     }

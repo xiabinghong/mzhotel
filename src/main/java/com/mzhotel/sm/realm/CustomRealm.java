@@ -96,6 +96,7 @@ public class CustomRealm extends ResourceRealm {
         authenticationInfo.setPrincipals(mzhotelPrincipalCollection);
         return authenticationInfo;
     }
+
     /**
      * 授权,当jsp页面遇到shiro标签会执行该方法
      */
