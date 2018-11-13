@@ -10,7 +10,7 @@ define(function (require, exports) {
         $scope.getActionLogList = function () {
             $scope.actionLogList = {};
             $scope.queryBtnLoading = true;
-            ActionLogAPI.queryActionLog({
+            ActionLogAPI.queryActionLogList({
                 actionType: $scope.params.actionType,
                 parentId: $scope.params.parentId
             }, function (result) {
@@ -19,7 +19,7 @@ define(function (require, exports) {
             }).$promise.finally(function () {
                 $scope.queryBtnLoading = false;
             });
-        }
+        };
         $scope.init = function () {
             $scope.getActionLogList();
         };
