@@ -8,6 +8,7 @@
     <result column="GOODS_TYPE" property="goodsType" jdbcType="VARCHAR" />
     <result column="GOODS_NAME" property="goodsName" jdbcType="VARCHAR" />
     <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="UNIT" property="unit" jdbcType="VARCHAR" />
     <result column="STATE" property="state" jdbcType="VARCHAR" />
     <result column="REMARK" property="remark" jdbcType="VARCHAR" />
     <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
@@ -16,7 +17,7 @@
     <result column="UPDATED_DATE" property="updatedDate" jdbcType="DATE" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ID, AREA, ROOM, GOODS_TYPE, GOODS_NAME, AMOUNT, STATE, REMARK, CREATED_BY, CREATED_DATE, 
+    ID, AREA, ROOM, GOODS_TYPE, GOODS_NAME, AMOUNT, UNIT, STATE, REMARK, CREATED_BY, CREATED_DATE,
     UPDATED_BY, UPDATED_DATE
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -34,13 +35,13 @@
             select sys_guid() from dual
     </selectKey>
     insert into T_STOREHOUSE (ID, AREA, ROOM, 
-      GOODS_TYPE, GOODS_NAME, AMOUNT, 
+      GOODS_TYPE, GOODS_NAME, AMOUNT, UNIT,
       STATE, REMARK, CREATED_BY, 
       CREATED_DATE, UPDATED_BY, UPDATED_DATE
       )
     values (#{id,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{room,jdbcType=VARCHAR}, 
-      #{goodsType,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
-      #{state,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, 
+      #{goodsType,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL},#{unit,jdbcType=VARCHAR},
+    #{state,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR},
       #{createdDate,jdbcType=DATE}, #{updatedBy,jdbcType=VARCHAR}, #{updatedDate,jdbcType=DATE}
       )
   </insert>
@@ -64,6 +65,9 @@
       </if>
       <if test="amount != null" >
         AMOUNT,
+      </if>
+      <if test="unit != null" >
+        UNIT,
       </if>
       <if test="state != null" >
         STATE,
@@ -103,6 +107,9 @@
       <if test="amount != null" >
         #{amount,jdbcType=DECIMAL},
       </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
       <if test="state != null" >
         #{state,jdbcType=VARCHAR},
       </if>
@@ -141,6 +148,9 @@
       <if test="amount != null" >
         AMOUNT = #{amount,jdbcType=DECIMAL},
       </if>
+      <if test="unit != null" >
+        UNIT = #{unit,jdbcType=VARCHAR},
+      </if>
       <if test="state != null" >
         STATE = #{state,jdbcType=VARCHAR},
       </if>
@@ -169,6 +179,7 @@
       GOODS_TYPE = #{goodsType,jdbcType=VARCHAR},
       GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
       AMOUNT = #{amount,jdbcType=DECIMAL},
+      UNIT = #{unit,jdbcType=VARCHAR},
       STATE = #{state,jdbcType=VARCHAR},
       REMARK = #{remark,jdbcType=VARCHAR},
       CREATED_BY = #{createdBy,jdbcType=VARCHAR},
@@ -196,6 +207,12 @@
           </if>
           <if test="goodsName">
                and GOODS_NAME like '%'||#{goodsName,jdbcType=VARCHAR}||'%'
+          </if>
+          <if test="area">
+            and area like '%'||#{area,jdbcType=VARCHAR}||'%'
+          </if>
+          <if test="room">
+            and room like '%'||#{room,jdbcType=VARCHAR}||'%'
           </if>
       </where>
   </select>

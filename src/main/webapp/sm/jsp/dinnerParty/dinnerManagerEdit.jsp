@@ -11,51 +11,54 @@
     <div ng-controller="dinnerPartyEditController" style="align-content: center;">
         <div class="form-element">
             <div class="col-md-12 padding-0">
-                <form>
-                <div class="col-md-12">
-                    <div class="panel form-element-padding">
-                        <div class="panel-heading">
-                            <h4>宴会详情</h4>
-                        </div>
-                        <div class="panel-body" style="padding-bottom:10px;">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="col-sm-1 control-label text-right">类别</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="dinnerParty.dinnerPartyType">
-                                    </div>
-                                    <label class="col-sm-1 control-label text-right">用户</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="dinnerParty.dinnerPartyUser">
-                                    </div>
-                                    <label class="col-sm-1 control-label text-right">联系方式</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="dinnerParty.tel">
-                                    </div>
-                                    <%--<div class="col-sm-4">
-                                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">物品类型</button>
-                                    </div>--%>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-1 control-label text-right">消费项目</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="dinnerParty.consumptionItem">
-                                    </div>
-                                    <label class="col-sm-1 control-label text-right">备注</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="dinnerParty.remark">
-                                    </div>
+                <form class="bs-example bs-example-form" role="form">
+                    <div class="col-md-12">
+                        <div class="panel form-element-padding">
+                            <div class="panel-heading">
+                                <h4>宴会详情</h4>
+                            </div>
+                            <div class="panel-body" style="padding-bottom:10px;text-align: center;">
+                                <div class="col-md-12">
+                                    <table class="table" style="text-align: center;">
+                                        <tr>
+                                            <td style="text-align: right;">开始日期</td>
+                                            <td style="text-align: left;"><input type="text" ng-model="dinnerParty.startDate" name="startDate" ng-disabled="pageSetting.disabled"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right;">结束日期</td>
+                                            <td style="text-align: left;"><input type="text" ng-model="dinnerParty.endDate" name="endDate" ng-disabled="pageSetting.disabled"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right;">宴会类别</td>
+                                            <td style="text-align: left;"><input type="text" ng-model="dinnerParty.dinnerType" name="dinnerType" ng-disabled="pageSetting.disabled"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right;">联系人</td>
+                                            <td style="text-align: left;"><input type="text" ng-model="dinnerParty.linkUser" name="linkUser" ng-disabled="pageSetting.disabled"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right;">联系方式</td>
+                                            <td style="text-align: left;"><input type="text" ng-model="dinnerParty.tel" name="tel" ng-disabled="pageSetting.disabled"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right;">消费项目</td>
+                                            <td style="text-align: left;"><input type="text" ng-model="dinnerParty.dinnerProject" name="dinnerProject" ng-disabled="pageSetting.disabled"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right;">备注</td>
+                                            <td style="text-align: left;"><input type="text" ng-model="dinnerParty.remark" name="remark" ng-disabled="pageSetting.disabled"></td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-12 text-center" style="margin:20px;">
+                            <input ng-show="pageSetting.disabled" ng-click="edit();" class="btn btn-success" type="button" value="修改">
+                            <input ng-show="!pageSetting.disabled" ng-click="save();" class="btn btn-success" type="button" value="保存">
+                            <input ng-show="!pageSetting.disabled" ng-click="cancel();" class="btn btn-danger" type="button" value="取消">
+                            <input ng-click="close();" class="btn btn-warning" type="button" value="关闭">
+                        </div>
                     </div>
-                    <div class="col-md-12 text-center" style="margin:20px;">
-                        <input ng-show="pageSetting.disabled" ng-click="edit();" class="btn btn-success" type="button" value="修改">
-                        <input ng-show="!pageSetting.disabled" ng-click="save();" class="btn btn-success" type="button" value="保存">
-                        <input ng-show="!pageSetting.disabled" ng-click="cancel();" class="btn btn-danger" type="button" value="取消">
-                        <input ng-click="close();" class="btn btn-warning" type="button" value="关闭">
-                    </div>
-                </div>
                 </form>
             </div>
         </div>

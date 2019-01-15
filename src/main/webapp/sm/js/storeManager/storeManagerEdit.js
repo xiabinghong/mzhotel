@@ -33,7 +33,6 @@ define(function (require, exports) {
                 file: $scope.file
             }).success(function (result) {
                 $scope.documentInfo = result;
-
             })
         }
         $scope.save = function () {

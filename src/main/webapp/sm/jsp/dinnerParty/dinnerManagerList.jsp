@@ -54,8 +54,10 @@
                                     <table cellspacing="0" style="width: 100%;">
                                         <tr align="center">
                                             <td>序号</td>
+                                            <td>开始日期</td>
+                                            <td>结束日期</td>
                                             <td>宴会类别</td>
-                                            <td>用户</td>
+                                            <td>联系人</td>
                                             <td>联系方式</td>
                                             <td>消费项目</td>
                                             <td>备注</td>
@@ -69,10 +71,12 @@
                                             ng-dblclick="view(choiceItem)"
                                             data-ng-dbclick="choiceViewItem(list)">
                                             <td ng-bind="$index+1"></td>
-                                            <td ng-bind="list.dinnerPartyType"></td>
-                                            <td ng-bind="list.dinnerPartyUser"></td>
+                                            <td ng-bind="list.startDate | date : 'yyyy-mm-dd'"></td>
+                                            <td ng-bind="list.endDate | date : 'yyyy-mm-dd'"></td>
+                                            <td ng-bind="list.dinnerType"></td>
+                                            <td ng-bind="list.linkUser"></td>
                                             <td ng-bind="list.tel"></td>
-                                            <td ng-bind="list.consumptionItem"></td>
+                                            <td ng-bind="list.dinnerProject"></td>
                                             <td ng-bind="list.remark"></td>
                                             <td ng-bind="list.createdBy"></td>
                                             <td ng-bind="list.createdDate | date : 'yyyy-MM-dd HH:mm:ss'"></td>

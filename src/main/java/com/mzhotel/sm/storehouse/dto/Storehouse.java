@@ -26,6 +26,9 @@ public class Storehouse implements Serializable {
     @Excel(name = "数量", width = 20)
     private BigDecimal amount;
 
+    @Excel(name = "单位", width = 20)
+    private String unit;
+
     private String state;
 
     private String remark;

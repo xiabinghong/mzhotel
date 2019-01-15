@@ -9,15 +9,23 @@ import java.util.Date;
 public class DinnerParty implements Serializable {
     private String id;
 
-    private String dinnerPartyType;
+    private Date startDate;
 
-    private String dinnerPartyUser;
+    private Date endDate;
+
+    private String dinnerType;
+
+    private String linkUser;
 
     private String tel;
 
-    private String consumptionItem;
+    private String dinnerProject;
 
     private String remark;
+
+    private String isSendMessage;
+
+    private String state;
 
     private String createdBy;
 

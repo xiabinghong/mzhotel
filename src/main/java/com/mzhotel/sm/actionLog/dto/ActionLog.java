@@ -37,4 +37,8 @@ public class ActionLog implements Serializable {
     private BigDecimal storeSumAmount;
 
     private static final long serialVersionUID = 1L;
+
+    private String actionUserName;
+
+    private String actionTypeDesc;
 }

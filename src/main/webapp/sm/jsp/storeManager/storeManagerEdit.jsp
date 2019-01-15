@@ -31,9 +31,6 @@
                                     <div class="col-sm-3">
                                         <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="storehouse.goodsType">
                                     </div>
-                                    <%--<div class="col-sm-4">
-                                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">物品类型</button>
-                                    </div>--%>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label text-right">物品名称</label>
@@ -44,20 +41,26 @@
                                     <div class="col-sm-3">
                                         <input type="number" min="0" ng-required="true" class="form-control" ng-disabled="pageSetting.disabled" ng-model="storehouse.amount">
                                     </div>
-                                    <label class="col-sm-1 control-label text-right">图片</label>
+                                    <label class="col-sm-1 control-label text-right">单位</label>
                                     <div class="col-sm-3">
-                                        <input ng-model="file" ngf-select name="file" type="file" accept="image/*" ng-disabled="pageSetting.disabled"/>
-                                        <button ng-click="uploadFile()" ng-disabled="pageSetting.disabled">上传</button>
+                                        <input type="text" ng-required="true" class="form-control" ng-disabled="pageSetting.disabled" ng-model="storehouse.unit">
                                     </div>
-                                </div>
-                                <div>
-                                    <img ng-show="documentInfo != null && documentInfo.url != null" src="<%=request.getContextPath()%>\upload\image\{{documentInfo.saveName}}" />
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label text-right">描述</label>
                                     <div class="col-sm-11">
                                         <input type="text" maxlength="300" class="form-control" ng-disabled="pageSetting.disabled" ng-model="storehouse.remark">
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label text-right">图片</label>
+                                    <div class="col-sm-3">
+                                        <input ng-model="file" ngf-select name="file" type="file" accept="image/*" ng-disabled="pageSetting.disabled"/>
+                                        <button ng-click="uploadFile()" ng-disabled="pageSetting.disabled">上传</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <img ng-show="documentInfo != null && documentInfo.url != null" src="<%=request.getContextPath()%>\upload\image\{{documentInfo.saveName}}" />
                                 </div>
                             </div>
                         </div>

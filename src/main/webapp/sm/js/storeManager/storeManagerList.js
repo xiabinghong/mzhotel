@@ -19,7 +19,8 @@ define(function (require, exports) {
             $scope.queryBtnLoading = true;
             $scope.choiceItem = null;
             StoreManagerAPI.query({
-                goodsType: $scope.query.goodsType,
+                area : $scope.query.area,
+                room : $scope.query.room,
                 goodsName: $scope.query.goodsName,
                 pageNum: $scope.pageSetting.pageNum,
                 pageSize: $scope.pageSetting.pageSize
@@ -101,7 +102,6 @@ define(function (require, exports) {
                 $dialog.modal({
                     url: "../actionLog/actionLogList.jsp",
                     params: {
-                        actionType: "STORE_ACTION_TYPE",
                         parentId: $scope.id
                     }
                 });

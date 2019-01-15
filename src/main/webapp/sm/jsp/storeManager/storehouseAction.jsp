@@ -49,6 +49,8 @@
                                         <input ng-if="params.action == 'INNER_STORE'" type="number" min="0" ng-required="true" class="form-control" ng-model="actionLog.amount">
                                         <input ng-if="params.action == 'OUT_STORE'" type="number" min="0" max="{{storehouse.amount}}" ng-required="true" class="form-control" ng-model="actionLog.amount">
                                     </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-sm-1 control-label text-right">仓库数量</label>
                                     <div class="col-sm-3">
                                         <input ng-if="params.action == 'INNER_STORE'" type="number" ng-required="true" class="form-control" ng-disabled="true" ng-model="actionLog.storeSumAmount">

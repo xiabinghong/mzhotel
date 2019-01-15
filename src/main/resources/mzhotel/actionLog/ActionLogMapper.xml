@@ -194,8 +194,9 @@
 
   <select id="queryActionLog" parameterType="com.mzhotel.sm.actionLog.dto.QueryActionLog"
           resultType="com.mzhotel.sm.actionLog.dto.ActionLog">
-    select t.* from T_ACTION_LOG t
+    select t.*,u.username actionUserName,dict.dict_name actionTypeDesc from T_ACTION_LOG t
     left join T_DICT_INFO dict on dict.DICT_CODE = t.ACTION_TYPE and dict.DICT_TYPE_CODE = 'STORE_ACTION_TYPE'
+    left join t_user u on u.user_id = t.created_by
     <where>
       <if test="actionType">
         and t.ACTION_TYPE = #{actionType,jdbcType=VARCHAR}
@@ -204,7 +205,7 @@
         and t.PARENT_ID = #{parentId,jdbcType=VARCHAR}
       </if>
     </where>
-    order by t.ACTION_DATE desc
+    order by t.created_date desc
   </select>
 
 </mapper>

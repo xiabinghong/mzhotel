@@ -134,7 +134,7 @@ define(function (require, exports) {
                             $scope.pageList.push(page);
                         } else {
                             if (i == 1) {
-                                $scope.pageList.push($scope.page);
+                                $scope.pageList.push(page);
                                 continue;
                             }
                             if (i == $scope.pages) {
@@ -167,6 +167,7 @@ define(function (require, exports) {
                             }
                         }
                     }
+                    console.log($scope.pageList);
                 };
                 $scope.$watch("maxSize", function (newVal, oldVal) {
                     if (newVal != oldVal) {
@@ -366,7 +367,6 @@ define(function (require, exports) {
                 if (!angular.isDefined(attrs.dictParentCode) || (angular.isDefined(attrs.dictParentCode) && scope.dictParentCode)) {
                     getDictInfoList();
                 }
-                ;
             }
         }
     }])

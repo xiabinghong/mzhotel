@@ -28,7 +28,7 @@
                                             ng-repeat="list in actionLogList"
                                             ng-class="{'current-tr':choiceItem.id == list.id}">
                                             <td ng-bind="$index+1"></td>
-                                            <td ng-bind="list.actionTypeName"></td>
+                                            <td ng-bind="list.actionTypeDesc"></td>
                                             <td ng-bind="list.amount"></td>
                                             <td ng-bind="list.actionDate | date:'yyyy-MM-dd HH:mm:ss'"></td>
                                             <td ng-bind="list.actionUserName"></td>

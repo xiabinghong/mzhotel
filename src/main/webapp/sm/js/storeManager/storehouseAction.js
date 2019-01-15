@@ -17,8 +17,7 @@ define(function (require, exports) {
         };
         $scope.params = $UrlUtils.getParameters();
         $scope.actionLog = {
-            parentId: $scope.params.id,
-            actionType: "STORE_ACTION_TYPE"
+            parentId: $scope.params.id
         };
         $scope.actionName = $scope.params.action == "INNER_STORE" ? "入库" : "出库"
         $scope.storehouse = {};
@@ -47,6 +46,7 @@ define(function (require, exports) {
         $scope.save = function () {
             console.log($scope.actionLog);
             $scope.storehouse.documentInfoId = $scope.documentInfo.id;
+            $scope.actionLog.actionType = $scope.params.action;
             StoreManagerAPI.innerOrOutStore($scope.actionLog, function () {
                 callback();
                 window.close();
