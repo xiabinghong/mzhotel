@@ -7,6 +7,7 @@ import java.util.Date;
 
 @Data
 public class UserInfo implements Serializable {
+
     private String id;
 
     private String userId;
@@ -30,4 +31,5 @@ public class UserInfo implements Serializable {
     private String updatedBy;
 
     private Date updatedDate;
+
 }
