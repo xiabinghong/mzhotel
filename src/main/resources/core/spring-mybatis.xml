@@ -22,23 +22,29 @@
         </property>
         <property name="configLocation" value="classpath:core/mybatis-config.xml"/>
     </bean>
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${mysql.driverClass}"/>
+        <property name="url" value="${mysql.url}"/>
+        <property name="username" value="${mysql.username}"/>
+        <property name="password" value="${mysql.password}"/>
+    </bean>
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
         <property name="driverClassName" value="${driver}" />
         <property name="url" value="${url}" />
         <property name="username" value="${username}" />
         <property name="password" value="${password}" />
-        <!-- 初始化连接大小 -->
+        &lt;!&ndash; 初始化连接大小 &ndash;&gt;
         <property name="initialSize" value="${initialSize}"></property>
-        <!-- 连接池最大数量 -->
+        &lt;!&ndash; 连接池最大数量 &ndash;&gt;
         <property name="maxActive" value="${maxActive}"></property>
-        <!-- 连接池最大空闲 -->
+        &lt;!&ndash; 连接池最大空闲 &ndash;&gt;
         <property name="maxIdle" value="${maxIdle}"></property>
-        <!-- 连接池最小空闲 -->
+        &lt;!&ndash; 连接池最小空闲 &ndash;&gt;
         <property name="minIdle" value="${minIdle}"></property>
-        <!-- 获取连接最大等待时间 -->
+        &lt;!&ndash; 获取连接最大等待时间 &ndash;&gt;
         <property name="maxWait" value="${maxWait}"></property>
-    </bean>
+    </bean>-->
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
