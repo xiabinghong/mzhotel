@@ -1,6 +1,8 @@
 package com.mzhotel.sm.userInfo.service.impl;
 
 import com.aliyuncs.utils.StringUtils;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.mzhotel.sm.actionLog.dto.ActionLogEnum;
 import com.mzhotel.sm.actionLog.service.ActionLogService;
 import com.mzhotel.sm.common.ContextHolderUtils;
@@ -10,7 +12,6 @@ import com.mzhotel.sm.role.dto.Role;
 import com.mzhotel.sm.userInfo.dto.UserInfo;
 import com.mzhotel.sm.userInfo.mapper.UserInfoMapper;
 import com.mzhotel.sm.userInfo.service.UserInfoService;
-import com.mzhotel.sm.util.MyBatisDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,9 +25,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Autowired
     UserInfoMapper userInfoMapper;
-
-    @Autowired
-    MyBatisDAO<UserInfo> myBatisDAO;
 
     @Autowired
     ActionLogService actionLogService;
@@ -53,7 +51,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public PageResult<UserInfo> queryPage(QueryUserInfo queryUserInfo) {
-        return myBatisDAO.selectPage(getUserInfo(queryUserInfo), queryUserInfo.getPageNum(), queryUserInfo.getPageSize());
+        PageHelper.startPage(queryUserInfo.getPageNum(), queryUserInfo.getPageSize());
+        List<UserInfo> userInfoList = getUserInfo(queryUserInfo);
+        return new PageResult<UserInfo>((Page<UserInfo>) userInfoList);
     }
 
     @Transactional

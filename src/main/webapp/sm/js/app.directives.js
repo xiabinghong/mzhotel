@@ -105,7 +105,7 @@ define(function (require, exports) {
                     styleCss: 1
                 }, $scope.pageInfo);
                 $scope.$watch('pageInfo', function (newVal, oldVal) {
-                    if (newVal && newVal !== oldVal) {
+                    if (newVal && newVal != oldVal) {
                         $scope.load();
                     }
                 }, true);
@@ -134,7 +134,7 @@ define(function (require, exports) {
                             $scope.pageList.push(page);
                         } else {
                             if (i == 1) {
-                                $scope.pageList.push($scope.page);
+                                $scope.pageList.push(page);
                                 continue;
                             }
                             if (i == $scope.pages) {
@@ -142,7 +142,7 @@ define(function (require, exports) {
                                 continue;
                             }
                             if ($scope.curPage >= 1 && $scope.curPage <= $scope.pages) {
-                                if (($scope.curPage - 1) == i || ($scope.curPage + 1) == i || $scope.curPage) {
+                                if (($scope.curPage - 1) == i || ($scope.curPage + 1) == i || i == $scope.curPage) {
                                     if (($scope.curPage - 1) == i && i != $scope.curPage) {
                                         var page2 = angular.copy(page);
                                         page2.isOmit = true;

@@ -1,21 +1,19 @@
 package com.mzhotel.sm.resource.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.mzhotel.sm.actionLog.dto.ActionLogEnum;
 import com.mzhotel.sm.actionLog.service.ActionLogService;
 import com.mzhotel.sm.documentInfoRelation.service.DocumentInfoRelationService;
 import com.mzhotel.sm.pageUtil.PageResult;
+import com.mzhotel.sm.resource.dto.QueryResource;
 import com.mzhotel.sm.resource.dto.Resource;
 import com.mzhotel.sm.resource.mapper.ResourceMapper;
 import com.mzhotel.sm.resource.service.ResourceService;
-import com.mzhotel.sm.resource.dto.QueryResource;
-import com.mzhotel.sm.resource.dto.Resource;
 import com.mzhotel.sm.userInfo.service.UserInfoService;
-import com.mzhotel.sm.util.MyBatisDAO;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 
 import java.util.Date;
 import java.util.List;
@@ -28,9 +26,6 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Autowired
     UserInfoService userInfoService;
-
-    @Autowired
-    MyBatisDAO<Resource> myBatisDAO;
 
     @Autowired
     ActionLogService actionLogService;
@@ -88,7 +83,8 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Override
     public PageResult<Resource> getResource(QueryResource queryResource) {
+        PageHelper.startPage(queryResource.getPageNum(), queryResource.getPageSize());
         List<Resource> resourceList = getResourceList(queryResource);
-        return myBatisDAO.queryPage(resourceList, queryResource.getPageNum(), queryResource.getPageSize());
+        return new PageResult<Resource>((Page<Resource>) resourceList);
     }
 }

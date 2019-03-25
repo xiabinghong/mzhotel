@@ -1,5 +1,7 @@
 package com.mzhotel.sm.storehouse.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.mzhotel.sm.documentInfoRelation.dto.DocumentInfoRelation;
 import com.mzhotel.sm.documentInfoRelation.service.DocumentInfoRelationService;
 import com.mzhotel.sm.pageUtil.PageResult;
@@ -8,7 +10,6 @@ import com.mzhotel.sm.storehouse.dto.Storehouse;
 import com.mzhotel.sm.storehouse.mapper.StorehouseMapper;
 import com.mzhotel.sm.storehouse.service.StorehouseService;
 import com.mzhotel.sm.userInfo.service.UserInfoService;
-import com.mzhotel.sm.util.MyBatisDAO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,9 +27,6 @@ public class StorehouseServiceImpl implements StorehouseService {
 
     @Autowired
     UserInfoService userInfoService;
-
-    @Autowired
-    MyBatisDAO<Storehouse> myBatisDAO;
 
     @Autowired
     DocumentInfoRelationService documentInfoRelationService;
@@ -104,7 +102,8 @@ public class StorehouseServiceImpl implements StorehouseService {
 
     @Override
     public PageResult<Storehouse> getStorehouse(QueryStorehouse queryStorehouse) {
+        PageHelper.startPage(queryStorehouse.getPageNum(), queryStorehouse.getPageSize());
         List<Storehouse> storehouseList = getStorehouseList(queryStorehouse);
-        return myBatisDAO.queryPage(storehouseList, queryStorehouse.getPageNum(), queryStorehouse.getPageSize());
+        return new PageResult<Storehouse>((Page<Storehouse>) storehouseList);
     }
 }

@@ -1,5 +1,8 @@
 package com.mzhotel.sm.dinnerParty.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.mzhotel.sm.actionLog.dto.ActionLogEnum;
 import com.mzhotel.sm.actionLog.service.ActionLogService;
 import com.mzhotel.sm.dinnerParty.dto.DinnerParty;
 import com.mzhotel.sm.dinnerParty.dto.QueryDinnerParty;
@@ -8,8 +11,6 @@ import com.mzhotel.sm.dinnerParty.service.DinnerPartyService;
 import com.mzhotel.sm.documentInfoRelation.service.DocumentInfoRelationService;
 import com.mzhotel.sm.pageUtil.PageResult;
 import com.mzhotel.sm.userInfo.service.UserInfoService;
-import com.mzhotel.sm.util.MyBatisDAO;
-import com.mzhotel.sm.actionLog.dto.ActionLogEnum;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,9 +27,6 @@ public class DinnerPartyServiceImpl implements DinnerPartyService {
 
     @Autowired
     UserInfoService userInfoService;
-
-    @Autowired
-    MyBatisDAO<DinnerParty> myBatisDAO;
 
     @Autowired
     ActionLogService actionLogService;
@@ -79,8 +77,9 @@ public class DinnerPartyServiceImpl implements DinnerPartyService {
 
     @Override
     public PageResult<DinnerParty> getDinnerParty(QueryDinnerParty queryDinnerParty) {
+        PageHelper.startPage(queryDinnerParty.getPageNum(), queryDinnerParty.getPageSize());
         List<DinnerParty> dinnerPartyList = getDinnerPartyList(queryDinnerParty);
-        return myBatisDAO.queryPage(dinnerPartyList, queryDinnerParty.getPageNum(), queryDinnerParty.getPageSize());
+        return new PageResult<DinnerParty>((Page<DinnerParty>) dinnerPartyList);
     }
 
     @Override

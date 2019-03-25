@@ -1,8 +1,9 @@
 package com.mzhotel.sm.personalReservation.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.mzhotel.sm.actionLog.dto.ActionLogEnum;
 import com.mzhotel.sm.actionLog.service.ActionLogService;
-import com.mzhotel.sm.documentInfoRelation.dto.DocumentInfoRelation;
 import com.mzhotel.sm.documentInfoRelation.service.DocumentInfoRelationService;
 import com.mzhotel.sm.pageUtil.PageResult;
 import com.mzhotel.sm.personalReservation.dto.QueryPersonalReservation;
@@ -10,7 +11,6 @@ import com.mzhotel.sm.personalReservation.dto.PersonalReservation;
 import com.mzhotel.sm.personalReservation.mapper.PersonalReservationMapper;
 import com.mzhotel.sm.personalReservation.service.PersonalReservationService;
 import com.mzhotel.sm.userInfo.service.UserInfoService;
-import com.mzhotel.sm.util.MyBatisDAO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,9 +28,6 @@ public class PersonalReservationServiceImpl implements PersonalReservationServic
 
     @Autowired
     UserInfoService userInfoService;
-
-    @Autowired
-    MyBatisDAO<PersonalReservation> myBatisDAO;
 
     @Autowired
     DocumentInfoRelationService documentInfoRelationService;
@@ -88,7 +85,8 @@ public class PersonalReservationServiceImpl implements PersonalReservationServic
 
     @Override
     public PageResult<PersonalReservation> getPersonalReservation(QueryPersonalReservation queryPersonalReservation) {
+        PageHelper.startPage(queryPersonalReservation.getPageNum(),queryPersonalReservation.getPageSize());
         List<PersonalReservation> personalReservationList = getPersonalReservationList(queryPersonalReservation);
-        return myBatisDAO.queryPage(personalReservationList, queryPersonalReservation.getPageNum(), queryPersonalReservation.getPageSize());
+        return new PageResult<PersonalReservation>((Page<PersonalReservation>) personalReservationList);
     }
 }

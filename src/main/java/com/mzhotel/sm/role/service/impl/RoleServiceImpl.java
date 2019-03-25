@@ -1,21 +1,19 @@
 package com.mzhotel.sm.role.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.mzhotel.sm.actionLog.dto.ActionLogEnum;
 import com.mzhotel.sm.actionLog.service.ActionLogService;
 import com.mzhotel.sm.documentInfoRelation.service.DocumentInfoRelationService;
 import com.mzhotel.sm.pageUtil.PageResult;
+import com.mzhotel.sm.role.dto.QueryRole;
 import com.mzhotel.sm.role.dto.Role;
 import com.mzhotel.sm.role.mapper.RoleMapper;
 import com.mzhotel.sm.role.service.RoleService;
-import com.mzhotel.sm.role.dto.QueryRole;
-import com.mzhotel.sm.role.dto.Role;
 import com.mzhotel.sm.userInfo.service.UserInfoService;
-import com.mzhotel.sm.util.MyBatisDAO;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 
 import java.util.Date;
 import java.util.List;
@@ -28,9 +26,6 @@ public class RoleServiceImpl implements RoleService {
 
     @Autowired
     UserInfoService userInfoService;
-
-    @Autowired
-    MyBatisDAO<Role> myBatisDAO;
 
     @Autowired
     ActionLogService actionLogService;
@@ -88,7 +83,8 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public PageResult<Role> getRole(QueryRole queryRole) {
+        PageHelper.startPage(queryRole.getPageNum(), queryRole.getPageSize());
         List<Role> roleList = getRoleList(queryRole);
-        return myBatisDAO.queryPage(roleList, queryRole.getPageNum(), queryRole.getPageSize());
+        return new PageResult<Role>((Page<Role>) roleList);
     }
 }
