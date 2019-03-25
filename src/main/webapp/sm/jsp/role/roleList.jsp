@@ -13,18 +13,6 @@
             <div class="panel form-element-padding">
                 <div style="padding-bottom:20px;">
                     <div class="form-group">
-                        <label class="col-sm-1 control-label text-right">角色类型</label>
-                        <div class="col-sm-2">
-                            <select class="form-control" ng-model="query.roleType" name="roleType">
-                                <option  align="center" ng-show="roleList"
-                                         ng-repeat="list in roleList"
-                                         ng-class="{'current-tr':choiceItem.id == list.id}"
-                                         ng-click="choiceViewItem(list)"
-                                         ng-dblclick="view(list)"
-                                         data-ng-dbclick="choiceViewItem(list)" ng-bind="list.goodsType"> </option>
-
-                            </select>
-                        </div>
                         <label class="col-sm-1 control-label text-right" >角色名称</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control" name ="roleName" ng-model="query.roleName">
@@ -50,7 +38,7 @@
                                     <table cellspacing="0" style="width: 100%;border:0px;">
                                         <tr align="center">
                                             <td>序号</td>
-                                            <td>角色名</td>
+                                            <td>角色名称</td>
                                             <td>角色编号</td>
                                             <td>角色类型</td>
                                             <td>创建人</td>

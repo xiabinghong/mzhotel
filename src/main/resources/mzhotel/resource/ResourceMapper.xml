@@ -32,7 +32,7 @@
   </delete>
   <insert id="insert" parameterType="com.mzhotel.sm.resource.dto.Resource" >
     <selectKey keyProperty="id" resultType="java.lang.String" keyColumn="id" order="BEFORE">
-      select sys_guid() from dual
+      select uuid() from dual
     </selectKey>
     insert into T_RESOURCE (ID, RESOURCE_NAME, RESOURCE_CODE, 
       RESOURCE_TYPE, URL, RESOURCE_PARENT, STATE, ORDER_NO,
@@ -46,7 +46,7 @@
   </insert>
   <insert id="insertSelective" parameterType="com.mzhotel.sm.resource.dto.Resource" >
     <selectKey keyProperty="id" resultType="java.lang.String" keyColumn="id" order="BEFORE">
-      select sys_guid() from dual
+      select uuid() from dual
     </selectKey>
     insert into T_RESOURCE
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -206,6 +206,9 @@
     <where>
       <if test="id">
         and id = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="resourceName != null and resourceName != ''">
+           and t.RESOURCE_NAME like concat('%',#{resourceName},'%')
       </if>
     </where>
   </select>

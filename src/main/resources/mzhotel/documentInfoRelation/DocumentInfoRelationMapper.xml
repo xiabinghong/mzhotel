@@ -29,7 +29,7 @@
   </delete>
   <insert id="insert" parameterType="com.mzhotel.sm.documentInfoRelation.dto.DocumentInfoRelation" >
     <selectKey keyProperty="id" resultType="java.lang.String" keyColumn="id" order="BEFORE">
-      select sys_guid() from dual
+      select uuid() from dual
     </selectKey>
     insert into T_DOCUMENT_INFO_RELATION (ID, DOCUMENT_ID, RELATION_ID, 
       RELATION_TYPE, RELATION_CODE, REMARK, 

@@ -15,14 +15,9 @@
                     <div class="form-group">
                         <label class="col-sm-1 control-label text-right">区域</label>
                         <div class="col-sm-2">
-                            <select class="form-control" ng-model="query.area" name="area">
-                                <option>option one</option>
-                                <option>option two</option>
-                                <option>option three</option>
-                                <option>option four</option>
-                            </select>
+                            <input type="text" class="form-control" name ="area" ng-model="query.area">
                         </div>
-                        <label class="col-sm-1 control-label text-right">用餐时间</label>
+                        <label class="col-sm-1 control-label text-right">用餐日期</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control" name ="dinnerTimeCode" ng-model="query.dinnerTimeCode">
                         </div>

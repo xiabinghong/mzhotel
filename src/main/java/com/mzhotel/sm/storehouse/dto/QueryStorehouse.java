@@ -13,4 +13,8 @@ public class QueryStorehouse extends BaseQueryModel implements Serializable {
     private String goodsType;
 
     private String goodsName;
+
+    private String area;
+
+    private String room;
 }

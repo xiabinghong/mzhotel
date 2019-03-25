@@ -27,7 +27,7 @@
   </delete>
   <insert id="insert" parameterType="com.mzhotel.sm.documentInfo.dto.DocumentInfo" >
     <selectKey keyProperty="id" resultType="java.lang.String" keyColumn="id" order="BEFORE">
-      select sys_guid() from dual
+      select uuid() from dual
     </selectKey>
     insert into T_DOCUMENT_INFO (ID, NAME, URL, 
       SAVE_NAME, REMARK, CREATED_BY, 

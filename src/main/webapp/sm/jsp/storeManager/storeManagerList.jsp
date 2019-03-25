@@ -13,17 +13,13 @@
             <div class="panel form-element-padding">
                 <div style="padding-bottom:20px;">
                     <div class="form-group">
-                        <label class="col-sm-1 control-label text-right">物品类别</label>
+                        <label class="col-sm-1 control-label text-right">所属区域</label>
                         <div class="col-sm-2">
-                            <select class="form-control" ng-model="query.goodsType" name="goodsType">
-                                <option  align="center" ng-show="storehouseManagerList"
-                                         ng-repeat="list in storehouseManagerList"
-                                         ng-class="{'current-tr':choiceItem.id == list.id}"
-                                         ng-click="choiceViewItem(list)"
-                                         ng-dblclick="view(list)"
-                                         data-ng-dbclick="choiceViewItem(list)" ng-bind="list.goodsType"> </option>
-
-                            </select>
+                            <input type="text" class="form-control" name ="area" ng-model="query.area">
+                        </div>
+                        <label class="col-sm-1 control-label text-right">所属房间</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name ="room" ng-model="query.room">
                         </div>
                         <label class="col-sm-1 control-label text-right">物品名称</label>
                         <div class="col-sm-2">
@@ -56,7 +52,6 @@
                                             <td>序号</td>
                                             <td>所属区域</td>
                                             <td>所属房间</td>
-                                            <td>物品类型</td>
                                             <td>物品名称</td>
                                             <td>图片</td>
                                             <td>数量</td>
@@ -74,7 +69,6 @@
                                             <td ng-bind="$index+1"></td>
                                             <td ng-bind="list.area"></td>
                                             <td ng-bind="list.room"></td>
-                                            <td ng-bind="list.goodsType"></td>
                                             <td ng-bind="list.goodsName"></td>
                                             <td><img ng-if="list.saveName && list.saveName != null" width="40px" height="20px" src="<%=request.getContextPath()%>\sm\upload\image\{{list.saveName}}" /></td>
                                             <td ng-bind="list.amount"></td>

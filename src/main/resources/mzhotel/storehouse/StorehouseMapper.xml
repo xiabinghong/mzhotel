@@ -31,7 +31,7 @@
   </delete>
   <insert id="insert" parameterType="com.mzhotel.sm.storehouse.dto.Storehouse" >
     <selectKey keyProperty="id" resultType="java.lang.String" keyColumn="id" order="BEFORE">
-            select sys_guid() from dual
+            select uuid() from dual
     </selectKey>
     insert into T_STOREHOUSE (ID, AREA, ROOM, 
       GOODS_TYPE, GOODS_NAME, AMOUNT, 
@@ -195,7 +195,13 @@
                and id = #{id,jdbcType=VARCHAR}
           </if>
           <if test="goodsName">
-               and GOODS_NAME like '%'||#{goodsName,jdbcType=VARCHAR}||'%'
+               and GOODS_NAME like concat('%',#{goodsName,jdbcType=VARCHAR},'%')
+          </if>
+          <if test="area">
+            and area like concat('%',#{area,jdbcType=VARCHAR},'%')
+          </if>
+          <if test="room">
+            and room like concat('%',#{room,jdbcType=VARCHAR},'%')
           </if>
       </where>
   </select>

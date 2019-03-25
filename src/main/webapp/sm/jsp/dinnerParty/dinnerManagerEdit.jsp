@@ -22,11 +22,11 @@
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label text-right">类别</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="dinnerParty.dinnerPartyType">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="dinnerParty.dinnerType">
                                     </div>
                                     <label class="col-sm-1 control-label text-right">用户</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="dinnerParty.dinnerPartyUser">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="dinnerParty.linkUser">
                                     </div>
                                     <label class="col-sm-1 control-label text-right">联系方式</label>
                                     <div class="col-sm-3">
@@ -39,7 +39,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label text-right">消费项目</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="dinnerParty.consumptionItem">
+                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="dinnerParty.dinnerProject">
                                     </div>
                                     <label class="col-sm-1 control-label text-right">备注</label>
                                     <div class="col-sm-3">

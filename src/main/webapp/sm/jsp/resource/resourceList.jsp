@@ -13,18 +13,6 @@
             <div class="panel form-element-padding">
                 <div style="padding-bottom:20px;">
                     <div class="form-group">
-                        <label class="col-sm-1 control-label text-right">资源类型</label>
-                        <div class="col-sm-2">
-                            <select class="form-control" ng-model="query.resourceType" name="resourceType">
-                                <option  align="center" ng-show="resourceList"
-                                         ng-repeat="list in resourceList"
-                                         ng-class="{'current-tr':choiceItem.id == list.id}"
-                                         ng-click="choiceViewItem(list)"
-                                         ng-dblclick="view(list)"
-                                         data-ng-dbclick="choiceViewItem(list)" ng-bind="list.resourceType"> </option>
-
-                            </select>
-                        </div>
                         <label class="col-sm-1 control-label text-right">资源名称</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control" name ="resourceName" ng-model="query.resourceName">

@@ -31,7 +31,7 @@
   </delete>
   <insert id="insert" parameterType="com.mzhotel.sm.role.dto.Role" >
     <selectKey keyProperty="id" resultType="java.lang.String" keyColumn="id" order="BEFORE">
-      select sys_guid() from dual
+      select uuid() from dual
     </selectKey>
     insert into T_ROLE (ID, ROLE_NAME, ROLE_CODE, 
       ROLE_TYPE, ROLE_PARENT, STATE, 
@@ -195,7 +195,7 @@
         and id = #{id,jdbcType=VARCHAR}
       </if>
       <if test="roleName">
-        and role_name like '%'||#{roleName,jdbcType=VARCHAR}||'%'
+        and role_name like concat ('%',#{roleName,jdbcType=VARCHAR},'%')
       </if>
     </where>
   </select>

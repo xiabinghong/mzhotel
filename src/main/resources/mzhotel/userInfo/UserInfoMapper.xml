@@ -31,7 +31,7 @@
   </delete>
   <insert id="insert" parameterType="com.mzhotel.sm.userInfo.dto.UserInfo" >
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
-      select sys_guid() from dual
+      select uuid() from dual
     </selectKey>
     insert into T_USER (ID, USER_ID, USERNAME, 
       PASSWORD, TEL, ADDRESS, 
@@ -46,7 +46,7 @@
   </insert>
   <insert id="insertSelective" parameterType="com.mzhotel.sm.userInfo.dto.UserInfo" >
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
-        select sys_guid() from dual
+        select uuid() from dual
     </selectKey>
     insert into T_USER
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -215,5 +215,10 @@
   <select id="getUserInfo" parameterType="com.mzhotel.sm.login.dto.QueryUserInfo"
           resultType="com.mzhotel.sm.userInfo.dto.UserInfo">
     select * from T_USER t
+    <where>
+            <if test="username != null and username != ''">
+                 and t.username like concat('%',#{username},'%')
+            </if>
+    </where>
   </select>
 </mapper>

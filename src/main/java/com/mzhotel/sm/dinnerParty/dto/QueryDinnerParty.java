@@ -10,11 +10,11 @@ public class QueryDinnerParty extends BaseQueryModel implements Serializable {
 
     private String id;
 
-    private String dinnerPartyType;
+    private String dinnerType;
 
-    private String dinnerPartyUser;
+    private String linkUser;
 
     private String tel;
 
-    private String consumptionItem;
+    private String dinnerProject;
 }

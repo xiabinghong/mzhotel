@@ -15,16 +15,15 @@
                     <div class="form-group">
                         <label class="col-sm-1 control-label text-right">宴会类别</label>
                         <div class="col-sm-2">
-                            <select class="form-control" ng-model="query.dinnerPartyType">
-                                <option>option one</option>
-                                <option>option two</option>
-                                <option>option three</option>
-                                <option>option four</option>
-                            </select>
+                            <input type="text" class="form-control" name=dinnerType ng-model="query.dinnerType">
                         </div>
                         <label class="col-sm-1 control-label text-right">消费项目</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" name=consumptionItem ng-model="query.consumptionItem">
+                            <input type="text" class="form-control" name=dinnerProject ng-model="query.dinnerProject">
+                        </div>
+                        <label class="col-sm-1 control-label text-right">联系方式</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="tel" ng-model="query.tel">
                         </div>
                         <div class="col-sm-2">
                             <input class="btn btn-info" type="button" ng-click="init();" value="搜索">
@@ -69,10 +68,10 @@
                                             ng-dblclick="view(choiceItem)"
                                             data-ng-dbclick="choiceViewItem(list)">
                                             <td ng-bind="$index+1"></td>
-                                            <td ng-bind="list.dinnerPartyType"></td>
-                                            <td ng-bind="list.dinnerPartyUser"></td>
+                                            <td ng-bind="list.dinnerType"></td>
+                                            <td ng-bind="list.linkUser"></td>
                                             <td ng-bind="list.tel"></td>
-                                            <td ng-bind="list.consumptionItem"></td>
+                                            <td ng-bind="list.dinnerProject"></td>
                                             <td ng-bind="list.remark"></td>
                                             <td ng-bind="list.createdBy"></td>
                                             <td ng-bind="list.createdDate | date : 'yyyy-MM-dd HH:mm:ss'"></td>

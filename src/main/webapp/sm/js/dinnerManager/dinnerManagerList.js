@@ -16,10 +16,10 @@ define(function (require, exports) {
             $scope.queryBtnLoading = true;
             $scope.choiceItem = null;
             DinnerManagerAPI.query({
-                dinnerPartyType: $scope.query.dinnerPartyType,
-                dinnerPartyUser: $scope.query.dinnerPartyUser,
+                dinnerType: $scope.query.dinnerType,
+                linkUser: $scope.query.linkUser,
                 tel: $scope.query.tel,
-                consumptionItem: $scope.query.consumptionItem,
+                dinnerProject: $scope.query.dinnerProject,
                 pageNum: $scope.pageSetting.pageNum,
                 pageSize: $scope.pageSetting.pageSize
             }, function (result) {

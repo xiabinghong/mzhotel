@@ -19,7 +19,8 @@ define(function (require, exports) {
             $scope.queryBtnLoading = true;
             $scope.choiceItem = null;
             StoreManagerAPI.query({
-                goodsType: $scope.query.goodsType,
+                area: $scope.query.area,
+                room: $scope.query.room,
                 goodsName: $scope.query.goodsName,
                 pageNum: $scope.pageSetting.pageNum,
                 pageSize: $scope.pageSetting.pageSize

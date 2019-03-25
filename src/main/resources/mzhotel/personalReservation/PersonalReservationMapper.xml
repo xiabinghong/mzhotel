@@ -33,7 +33,7 @@
   </delete>
   <insert id="insert" parameterType="com.mzhotel.sm.personalReservation.dto.PersonalReservation" >
     <selectKey keyProperty="id" resultType="java.lang.String" keyColumn="id" order="BEFORE">
-      select sys_guid() from dual
+      select uuid() from dual
     </selectKey>
     insert into T_PERSONAL_RESERVATION (ID, AREA, ROOM_CODE,
       DINNER_TIME_CODE, CONTACT_USER, TEL, 
@@ -201,6 +201,17 @@
   </update>
   <select id="getPersonalReservation" parameterType="com.mzhotel.sm.personalReservation.dto.QueryPersonalReservation"
           resultType="com.mzhotel.sm.personalReservation.dto.PersonalReservation">
-      select * from T_PERSONAL_RESERVATION
+      select * from T_PERSONAL_RESERVATION t
+      <where>
+          <if test="area != null and area != ''">
+               and t.area like concat('%',#{area,jdbcType=VARCHAR},'%')
+          </if>
+          <if test="contactUser != null and contactUser != ''">
+            and t.contact_user like concat('%',#{contactUser,jdbcType=VARCHAR},'%')
+          </if>
+          <if test="dinnerTimeCode">
+            and t.dinner_time_code = #{dinnerTimeCode,jdbcType=TIMESTAMP}
+          </if>
+      </where>
   </select>
 </mapper>
