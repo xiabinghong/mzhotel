@@ -87,6 +87,7 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
+    @Transactional
     public void addUserRole(String roleCode,String userId) {
         if (userId == null || roleCode == null) {
             return;
@@ -102,6 +103,7 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
+    @Transactional
     public void removeUserRole(String roleCode,String userId) {
         if (userId == null || roleCode == null) {
             return;
