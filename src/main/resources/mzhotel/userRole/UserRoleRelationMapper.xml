@@ -23,6 +23,10 @@
     delete from T_USER_ROLE_RELATION
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
+  <delete id="deleteByUserRoleCode">
+    delete from T_USER_ROLE_RELATION
+    where user_id = #{userId,jdbcType=VARCHAR} and role_code = #{roleCode,jdbcType=VARCHAR}
+  </delete>
   <insert id="insert" parameterType="com.mzhotel.sm.userRole.dto.UserRoleRelation" >
     insert into T_USER_ROLE_RELATION (ID, ROLE_CODE, USER_ID, 
       CREATED_BY, CREATED_DATE, UPDATED_BY, 
@@ -32,6 +36,9 @@
       #{updatedDate,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.mzhotel.sm.userRole.dto.UserRoleRelation" >
+    <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">
+      select uuid() from dual
+    </selectKey>
     insert into T_USER_ROLE_RELATION
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -115,13 +122,28 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
 
-  <select id="getRoleByUserId">
-      select * from T_USER_ROLE_RELATION t
-      left join t_dict_info dict on dict.dict_code = t.ROLE_CODE and dict.dict_type_code = ''
-      <where>
-         <if test="userId != null and userId != ''">
-            and USER_ID = #{userId}
-         </if>
-      </where>
+  <select id="getUserRoleRelation" parameterType="com.mzhotel.sm.userRole.dto.QueryUserRoleRelation"
+          resultType="com.mzhotel.sm.role.dto.Role">
+    select
+    t.*,
+    created.username createdName,
+    updated.username updatedName,
+    info.SAVE_NAME saveName
+    from T_ROLE t
+    left join t_user created on created.user_id = t.created_by
+    left join t_user updated on updated.user_id = t.updated_by
+    left join T_DOCUMENT_INFO_RELATION relation on relation.RELATION_ID = t.id and relation.RELATION_TYPE='ROLE'
+    left join T_DOCUMENT_INFO info on info.id = relation.DOCUMENT_ID
+    <where>
+      <if test="roleName">
+        and t.role_name like concat ('%',#{roleName,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="userHasRole != null and userHasRole != ''">
+        and t.role_code in (select role_code from t_user_role_relation where USER_ID = #{userHasRole,jdbcType=VARCHAR})
+      </if>
+      <if test="userNotHasRole != null and userNotHasRole != ''">
+        and t.role_code not in (select role_code from t_user_role_relation where USER_ID = #{userNotHasRole,jdbcType=VARCHAR})
+      </if>
+    </where>
   </select>
 </mapper>

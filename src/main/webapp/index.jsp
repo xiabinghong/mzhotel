@@ -20,10 +20,10 @@
             <div class="opener-left-menu is-open"> <span class="top"></span> <span class="middle"></span> <span class="bottom"></span> </div>
             <a href="index.html" class="navbar-brand"> <b>明珠酒店后台管理</b> </a>
             <ul class="nav navbar-nav navbar-right user-nav">
-                <li class="user-name"><span>张三  </span></li>
+                <li class="user-name"><span><%=request.getSession().getAttribute("username")%> </span></li>
                 <li class="dropdown avatar-dropdown"> <img src="${pageContext.request.contextPath}/sm/img/avatar.jpg" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
                     <ul class="dropdown-menu user-dropdown">
-                        <li><a href="#"><span class="fa fa-power-off"></span> 退出登录</a></li>
+                        <li><a href="<%=request.getContextPath()%>/login.jsp"><span class="fa fa-power-off"></span> 退出登录</a></li>
                     </ul>
                 </li>
             </ul>
@@ -39,53 +39,32 @@
                 <li>
                     <div class="left-bg"></div>
                 </li>
-                <li class="active ripple"> <a class="tree-toggle nav-header" ng-click="transPage('../mzhotel/shouye.jsp')"><span class="fa-home fa"></span> 首页 <span class="fa-angle-right fa right-arrow text-right"></span> </a> </li>
-                <shiro:hasPermission name="STOREHOUSE_MANAGER_ENUM:ENUM:VIEW">
+                <li class="active ripple"> <a class="tree-toggle nav-header" ng-click="transPage('/mzhotel/sm/jsp/user/userList.jsp')"><span class="fa-home fa"></span> 用户管理 </a> </li>
                     <li class="ripple"> <a class="tree-toggle nav-header"> <span class="fa-diamond fa"></span> 仓库管理 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
                         <ul class="nav nav-list tree">
-                            <shiro:hasPermission name="STOREHOUSE_INFO_ENUM:ENUM:VIEW">
                                 <li><a href="javascript:void(0);" ng-click="transPage('/mzhotel/sm/jsp/storeManager/storeManagerList.jsp')">仓库信息</a></li>
-                            </shiro:hasPermission>
                         </ul>
                     </li>
-                </shiro:hasPermission>
-                <shiro:hasPermission name="PERSONAL_RESERVATION_ENUM:ENUM:VIEW">
                     <li class=" ripple"> <a class="tree-toggle nav-header"><span class="fa fa-check-square-o"></span> 订台管理 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
                         <ul class="nav nav-list tree">
-                            <shiro:hasPermission name="STOREHOUSE_INFO_ENUM:ENUM:VIEW">
                                 <li><a href="javascript:void(0);" ng-click="transPage('/mzhotel/sm/jsp/personalReservation/personalManagerList.jsp')">订台信息</a></li>
-                            </shiro:hasPermission>
                         </ul>
                     </li>
-                </shiro:hasPermission>
-                <shiro:hasPermission name="DINNER_MANAGER_ENUM:ENUM:VIEW">
                     <li class=" ripple"> <a class="tree-toggle nav-header"><span class="fa fa-calendar-o"></span> 宴会信息管理 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
                         <ul class="nav nav-list tree">
 
                                 <li><a href="javascript:void(0);" ng-click="transPage('/mzhotel/sm/jsp/dinnerParty/dinnerManagerList.jsp')">宴会信息</a></li>
 
-                            <shiro:hasPermission name="SHORT_MESSAGE_ENUM:ENUM:VIEW">
                                 <li><a href="javascript:void(0);">短信管理 </a> </li>
-                            </shiro:hasPermission>
                         </ul>
                     </li>
-                </shiro:hasPermission>
 
-                <shiro:hasPermission name="SYSTEM_SETTIN_ENUM:ENUM:VIEW">
                     <li class=" ripple"> <a class="tree-toggle nav-header"><span class="fa fa-gears"></span> 系统设置 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
                         <ul class="nav nav-list tree">
-                            <shiro:hasPermission name="USER_MANAGER_ENUM:ENUM:VIEW">
-                                <li><a href="javascript:void(0);" ng-click="transPage('/mzhotel/sm/jsp/user/userList.jsp')">用户管理</a></li>
-                            </shiro:hasPermission>
-                            <shiro:hasPermission name="ROLE_MANAGER_ENUM:ENUM:VIEW">
                                 <li><a href="javascript:void(0);" ng-click="transPage('/mzhotel/sm/jsp/role/roleList.jsp')">角色管理</a></li>
-                            </shiro:hasPermission>
-                            <shiro:hasPermission name="RESOURCE_MANAGER_ENUM:ENUM:VIEW">
                                 <li><a href="javascript:void(0);" ng-click="transPage('/mzhotel/sm/jsp/resource/resourceList.jsp')">资源管理</a></li>
-                            </shiro:hasPermission>
                         </ul>
                     </li>
-                </shiro:hasPermission>
             </ul>
         </div>
     </div>
@@ -101,7 +80,7 @@
             </div>
         </div>--%>
         <div class="col-md-12" style="position: absolute; width:88%; height:80%;padding: 20px;">
-            <iframe src="../mzhotel/shouye.jsp" frameborder="0" height="100%" width="100%" scrolling="yes"></iframe>
+            <iframe src="/mzhotel/sm/jsp/user/userList.jsp" frameborder="0" height="100%" width="100%" scrolling="yes"></iframe>
         </div>
     </div>
     <!-- end: content -->

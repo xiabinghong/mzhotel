@@ -58,6 +58,7 @@ public class LoginController {
                 user.put("loginName", userInfo.getUsername());
                 user.put("ipAddr", InetAddress.getLocalHost().getHostAddress());
                 session.setAttribute("logonInfo", user);//登陆信息放入会话中
+                session.setAttribute("username",userInfo.getUsername());
                 Set<String> permissions = securityService.getPermissions(userInfo.getUserId());
                 session.setAttribute("UserPermissionsJSON", JSONObject.toJSONString(permissions));//将资源加入到会话中，方便页面进行调取
                 logger.info(userInfo.getUserId() + "登陆成功,跳入首页");
