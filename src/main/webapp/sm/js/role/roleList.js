@@ -27,7 +27,19 @@ define(function (require, exports) {
             }).$promise.finally(function () {
                 $scope.queryBtnLoading = false;
             });
-        }
+        };
+        $scope.assigneResource = function(item){
+            if (item && item.id) {
+                $dialog.modal({
+                    url: "../role/roleResourceRelation.jsp",
+                    params: {
+                        roleCode: item.roleCode
+                    }
+                });
+            } else {
+                alert("请选择单据！");
+            }
+        };
         $scope.init = function () {
             $scope.getRoleList();
         };

@@ -4,6 +4,9 @@ import com.mzhotel.sm.pageUtil.PageResult;
 import com.mzhotel.sm.role.dto.QueryRole;
 import com.mzhotel.sm.role.dto.Role;
 import com.mzhotel.sm.role.service.RoleService;
+import com.mzhotel.sm.roleResource.dto.QueryRoleResource;
+import com.mzhotel.sm.roleResource.dto.RoleResourceRelation;
+import com.mzhotel.sm.roleResource.service.RoleResourceService;
 import com.mzhotel.sm.userInfo.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +23,9 @@ public class RoleController {
 
     @Autowired
     UserInfoService userInfoService;
+
+    @Autowired
+    RoleResourceService roleResourceService;
 
     @RequestMapping(value = "/getRoleList", method = RequestMethod.GET)
     public List<Role> getRoleList(QueryRole queryRole) {
@@ -52,6 +58,25 @@ public class RoleController {
                        @RequestBody @Valid Role record) {
         record.setId(id);
         return roleService.update(record);
+    }
+
+    @RequestMapping(value = "/getUserRoleRelation", method = RequestMethod.GET)
+    public RoleResourceRelation getUserRoleRelation(QueryRoleResource queryRoleResource) {
+        return roleResourceService.getRoleResource(queryRoleResource);
+    }
+
+    @RequestMapping(value = "/addRoleResource", method = RequestMethod.POST)
+    public void addUserRole(@RequestParam(value = "roleCode", required = true) String roleCode,
+                            @RequestParam(value = "resourceCode", required = true) String resourceCode,
+                            @RequestParam(value = "action", required = true) String action) {
+        roleResourceService.addRoleResource(roleCode, resourceCode,action);
+    }
+
+    @RequestMapping(value = "/removeRoleResource", method = RequestMethod.DELETE)
+    public void removeUserRole(@RequestParam(value = "roleCode", required = true) String roleCode,
+                               @RequestParam(value = "resourceCode", required = true) String resourceCode,
+                               @RequestParam(value = "action", required = false) String action) {
+        roleResourceService.removeRoleResource(roleCode, resourceCode,action);
     }
 
 }

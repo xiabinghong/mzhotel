@@ -8,7 +8,10 @@ define(function (require, exports) {
             update: {method: "PUT", params: {id: "@id"}},
             save: {method: "POST"},
             remove: {method: "DELETE"},
-            getRoleList: {isArray: true, method: "GET", url: appname + "/role/getRoleList"}
+            getRoleList: {isArray: true, method: "GET", url: appname + "/role/getRoleList"},
+            roleResourceRelation: {method: "GET", url: appname + "/role/getUserRoleRelation"},
+            addRoleResource:{method: "POST", url: appname + "/role/addRoleResource", params:{roleCode:"@roleCode",resourceCode:"@resourceCode",action:"@action"}},
+            removeRoleResource:{method: "DELETE", url: appname + "/role/removeRoleResource"}
         })
     }])
 })
