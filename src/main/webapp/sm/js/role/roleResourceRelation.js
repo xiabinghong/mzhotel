@@ -68,8 +68,8 @@ define(function (require, exports) {
                 });
             } else {
                 RoleAPI.removeRoleResource({
-                    userId:params.userId,
-                    roleCode: $scope.hasResourceItem.roleCode,
+                    roleCode:params.roleCode,
+                    resourceCode: item.resourceCode,
                     action: entry.action
                 }, function (result) {
                     $scope.init();

@@ -11,7 +11,7 @@ define(function (require, exports) {
             getRoleList: {isArray: true, method: "GET", url: appname + "/role/getRoleList"},
             roleResourceRelation: {method: "GET", url: appname + "/role/getUserRoleRelation"},
             addRoleResource:{method: "POST", url: appname + "/role/addRoleResource", params:{roleCode:"@roleCode",resourceCode:"@resourceCode",action:"@action"}},
-            removeRoleResource:{method: "DELETE", url: appname + "/role/removeRoleResource"}
+            removeRoleResource:{method: "DELETE", url: appname + "/role/removeRoleResource", params:{roleCode:"@roleCode",resourceCode:"@resourceCode",action:"@action"}}
         })
     }])
 })
