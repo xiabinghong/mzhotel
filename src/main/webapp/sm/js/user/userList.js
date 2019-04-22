@@ -32,9 +32,9 @@ define(function (require, exports) {
         $scope.assigneRole = function(item){
             if (item && item.id) {
                 $dialog.modal({
-                    url: "../user/userEdit.jsp",
+                    url: "../user/userRoleRelation.jsp",
                     params: {
-                        id: item.id
+                        userId: item.userId
                     }
                 });
             } else {
