@@ -60,7 +60,7 @@
                                             <td ng-bind="list.address"></td>
                                             <td ng-bind="list.state"></td>
                                             <td ng-bind="list.createdBy"></td>
-                                            <td ng-bind="list.createdDate | date:'yyyy-mm-dd'"></td>
+                                            <td ng-bind="list.createdDate | date:'yyyy-MM-dd HH:mm:ss'"></td>
                                         </tr>
                                     </table>
                                 </div>

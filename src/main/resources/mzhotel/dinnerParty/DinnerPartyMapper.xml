@@ -3,8 +3,8 @@
 <mapper namespace="com.mzhotel.sm.dinnerParty.mapper.DinnerPartyMapper" >
   <resultMap id="BaseResultMap" type="com.mzhotel.sm.dinnerParty.dto.DinnerParty" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
-    <result column="START_DATE" property="startDate" jdbcType="DATE" />
-    <result column="END_DATE" property="endDate" jdbcType="DATE" />
+    <result column="START_DATE" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="END_DATE" property="endDate" jdbcType="TIMESTAMP" />
     <result column="DINNER_TYPE" property="dinnerType" jdbcType="VARCHAR" />
     <result column="LINK_USER" property="linkUser" jdbcType="VARCHAR" />
     <result column="TEL" property="tel" jdbcType="VARCHAR" />
@@ -13,9 +13,9 @@
     <result column="is_send_message" property="isSendMessage" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="VARCHAR" />
     <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
-    <result column="CREATED_DATE" property="createdDate" jdbcType="DATE" />
+    <result column="CREATED_DATE" property="createdDate" jdbcType="TIMESTAMP" />
     <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
-    <result column="UPDATED_DATE" property="updatedDate" jdbcType="DATE" />
+    <result column="UPDATED_DATE" property="updatedDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
     ID, START_DATE,END_DATE,DINNER_TYPE, LINK_USER, TEL, DINNER_PROJECT, REMARK, is_send_message,state,CREATED_BY,
@@ -39,12 +39,12 @@
       TEL, DINNER_PROJECT, REMARK, is_send_message,state,
       CREATED_BY, CREATED_DATE, UPDATED_BY, 
       UPDATED_DATE)
-    values (#{id,jdbcType=VARCHAR}, #{startDate,jdbcType=DATE},#{endDate,jdbcType=DATE},
+    values (#{id,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP},#{endDate,jdbcType=TIMESTAMP},
     #{dinnerType,jdbcType=VARCHAR}, #{linkUser,jdbcType=VARCHAR},
       #{tel,jdbcType=VARCHAR}, #{dinnerProject,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
     #{isSendMessage,jdbcType=VARCHAR},#{state,jdbcType=VARCHAR},
-    #{createdBy,jdbcType=VARCHAR}, #{createdDate,jdbcType=DATE}, #{updatedBy,jdbcType=VARCHAR},
-      #{updatedDate,jdbcType=DATE})
+    #{createdBy,jdbcType=VARCHAR}, #{createdDate,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR},
+      #{updatedDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.mzhotel.sm.dinnerParty.dto.DinnerParty" >
     insert into T_DINNER_PARTY
@@ -100,10 +100,10 @@
         #{dinnerType,jdbcType=VARCHAR},
       </if>
       <if test="startDate != null" >
-        #{startDate,jdbcType=DATE},
+        #{startDate,jdbcType=TIMESTAMP},
       </if>
       <if test="endDate != null" >
-        #{endDate,jdbcType=DATE},
+        #{endDate,jdbcType=TIMESTAMP},
       </if>
       <if test="linkUser != null" >
         #{linkUser,jdbcType=VARCHAR},
@@ -127,13 +127,13 @@
         #{createdBy,jdbcType=VARCHAR},
       </if>
       <if test="createdDate != null" >
-        #{createdDate,jdbcType=DATE},
+        #{createdDate,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedBy != null" >
         #{updatedBy,jdbcType=VARCHAR},
       </if>
       <if test="updatedDate != null" >
-        #{updatedDate,jdbcType=DATE},
+        #{updatedDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -144,10 +144,10 @@
         DINNER_TYPE = #{dinnerType,jdbcType=VARCHAR},
       </if>
       <if test="startDate != null" >
-        start_date = #{startDate,jdbcType=DATE},
+        start_date = #{startDate,jdbcType=TIMESTAMP},
       </if>
       <if test="endDate != null" >
-        end_date = #{endDate,jdbcType=DATE},
+        end_date = #{endDate,jdbcType=TIMESTAMP},
       </if>
       <if test="linkUser != null" >
         LINK_USER = #{linkUser,jdbcType=VARCHAR},
@@ -171,13 +171,13 @@
         CREATED_BY = #{createdBy,jdbcType=VARCHAR},
       </if>
       <if test="createdDate != null" >
-        CREATED_DATE = #{createdDate,jdbcType=DATE},
+        CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedBy != null" >
         UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
       </if>
       <if test="updatedDate != null" >
-        UPDATED_DATE = #{updatedDate,jdbcType=DATE},
+        UPDATED_DATE = #{updatedDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
@@ -185,8 +185,8 @@
   <update id="updateByPrimaryKey" parameterType="com.mzhotel.sm.dinnerParty.dto.DinnerParty" >
     update T_DINNER_PARTY
     set
-      start_date = #{startDate,jdbcType=DATE},
-      end_date = #{endDate,jdbcType=DATE},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
       DINNER_TYPE = #{dinnerType,jdbcType=VARCHAR},
       LINK_USER = #{linkUser,jdbcType=VARCHAR},
       TEL = #{tel,jdbcType=VARCHAR},
@@ -195,9 +195,9 @@
       is_send_message = #{isSendMessage,jdbcType=VARCHAR},
       state = #{state,jdbcType=VARCHAR},
       CREATED_BY = #{createdBy,jdbcType=VARCHAR},
-      CREATED_DATE = #{createdDate,jdbcType=DATE},
+      CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP},
       UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
-      UPDATED_DATE = #{updatedDate,jdbcType=DATE}
+      UPDATED_DATE = #{updatedDate,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <select id="getDinnerParty" parameterType="com.mzhotel.sm.dinnerParty.dto.QueryDinnerParty"

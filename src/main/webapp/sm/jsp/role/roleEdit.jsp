@@ -23,10 +23,6 @@
                                     <div class="col-sm-3">
                                         <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="role.roleName">
                                     </div>
-                                    <label class="col-sm-1 control-label text-right">角色类型</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="role.roleType">
-                                    </div>
                                     <label class="col-sm-1 control-label text-right">角色编号</label>
                                     <div class="col-sm-3">
                                         <input type="text" class="form-control" ng-disabled="pageSetting.disabled" ng-model="role.roleCode">

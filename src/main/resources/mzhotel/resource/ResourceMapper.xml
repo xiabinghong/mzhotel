@@ -12,9 +12,9 @@
     <result column="ORDER_NO" property="orderNo" jdbcType="DECIMAL" />
     <result column="REMARK" property="remark" jdbcType="VARCHAR" />
     <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
-    <result column="CREATED_DATE" property="createdDate" jdbcType="DATE" />
+    <result column="CREATED_DATE" property="createdDate" jdbcType="TIMESTAMP" />
     <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
-    <result column="UPDATED_DATE" property="updatedDate" jdbcType="DATE" />
+    <result column="UPDATED_DATE" property="updatedDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
     ID, RESOURCE_NAME, RESOURCE_CODE, RESOURCE_TYPE, URL, RESOURCE_PARENT, STATE,
@@ -41,8 +41,8 @@
     values (#{id,jdbcType=VARCHAR}, #{resourceName,jdbcType=VARCHAR}, #{resourceCode,jdbcType=VARCHAR}, 
       #{resourceType,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{resourceParent,jdbcType=VARCHAR}, 
       #{state,jdbcType=VARCHAR}, #{orderNo,jdbcType=DECIMAL},
-      #{remark,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, #{createdDate,jdbcType=DATE}, 
-      #{updatedBy,jdbcType=VARCHAR}, #{updatedDate,jdbcType=DATE})
+      #{remark,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, #{createdDate,jdbcType=TIMESTAMP},
+      #{updatedBy,jdbcType=VARCHAR}, #{updatedDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.mzhotel.sm.resource.dto.Resource" >
     <selectKey keyProperty="id" resultType="java.lang.String" keyColumn="id" order="BEFORE">
@@ -122,13 +122,13 @@
         #{createdBy,jdbcType=VARCHAR},
       </if>
       <if test="createdDate != null" >
-        #{createdDate,jdbcType=DATE},
+        #{createdDate,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedBy != null" >
         #{updatedBy,jdbcType=VARCHAR},
       </if>
       <if test="updatedDate != null" >
-        #{updatedDate,jdbcType=DATE},
+        #{updatedDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -163,13 +163,13 @@
         CREATED_BY = #{createdBy,jdbcType=VARCHAR},
       </if>
       <if test="createdDate != null" >
-        CREATED_DATE = #{createdDate,jdbcType=DATE},
+        CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedBy != null" >
         UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
       </if>
       <if test="updatedDate != null" >
-        UPDATED_DATE = #{updatedDate,jdbcType=DATE},
+        UPDATED_DATE = #{updatedDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
@@ -185,9 +185,9 @@
       ORDER_NO = #{orderNo,jdbcType=DECIMAL},
       REMARK = #{remark,jdbcType=VARCHAR},
       CREATED_BY = #{createdBy,jdbcType=VARCHAR},
-      CREATED_DATE = #{createdDate,jdbcType=DATE},
+      CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP},
       UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
-      UPDATED_DATE = #{updatedDate,jdbcType=DATE}
+      UPDATED_DATE = #{updatedDate,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
 

@@ -29,24 +29,19 @@
                                         <input type="text" class="form-control" ng-disabled="pageSetting.disabled"
                                                ng-model="resource.resourceCode">
                                     </div>
-                                </div>
-                                <div class="form-group">
                                     <label class="col-sm-1 control-label text-right">资源类型</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled"
-                                               ng-model="resource.resourceType">
-                                    </div>
-                                    <label class="col-sm-1 control-label text-right">页面地址</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" ng-disabled="pageSetting.disabled"
-                                               ng-model="resource.url">
+                                        <select class="form-control" ng-disabled="pageSetting.disabled" ng-model="resource.resourceType">
+                                            <option value="">请选择</option>
+                                            <option value="ENUM">菜单</option>
+                                            <option value="BUTTON">按钮</option>
+                                        </select>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label text-right">备注</label>
                                     <div class="col-sm-3">
-                                        <textarea cols="100" rows="5" ng-disabled="pageSetting.disabled"
+                                        <textarea cols="100" rows="7" ng-disabled="pageSetting.disabled"
                                                   ng-model="resource.remark"></textarea>
                                     </div>
                                 </div>

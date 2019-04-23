@@ -41,7 +41,6 @@
                                             <td>序号</td>
                                             <td>角色名称</td>
                                             <td>角色编号</td>
-                                            <td>角色类型</td>
                                             <td>创建人</td>
                                             <td>创建时间</td>
                                         </tr>
@@ -54,7 +53,6 @@
                                             <td ng-bind="$index+1"></td>
                                             <td ng-bind="list.roleName"></td>
                                             <td ng-bind="list.roleCode"></td>
-                                            <td ng-bind="list.roleType"></td>
                                             <td ng-bind="list.createdBy"></td>
                                             <td ng-bind="list.createdDate | date:'yyyy-MM-dd HH:mm:ss'"></td>
                                         </tr>

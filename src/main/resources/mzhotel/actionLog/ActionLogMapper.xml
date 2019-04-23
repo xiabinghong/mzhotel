@@ -12,9 +12,9 @@
     <result column="HANDLE_USER" property="handleUser" jdbcType="VARCHAR" />
     <result column="REMARK" property="remark" jdbcType="VARCHAR" />
     <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
-    <result column="CREATED_DATE" property="createdDate" jdbcType="DATE" />
+    <result column="CREATED_DATE" property="createdDate" jdbcType="TIMESTAMP" />
     <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
-    <result column="UPDATED_DATE" property="updatedDate" jdbcType="DATE" />
+    <result column="UPDATED_DATE" property="updatedDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
     ID, PARENT_ID, AMOUNT, ACTION_DATE, ACTION_TYPE, APPLY_USER, AUDIT_USER, HANDLE_USER, 
@@ -40,10 +40,10 @@
       CREATED_BY, CREATED_DATE, UPDATED_BY, 
       UPDATED_DATE)
     values (#{id,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
-      #{actionDate,jdbcType=DATE}, #{actionType,jdbcType=VARCHAR}, #{applyUser,jdbcType=VARCHAR}, 
+      #{actionDate,jdbcType=TIMESTAMP}, #{actionType,jdbcType=VARCHAR}, #{applyUser,jdbcType=VARCHAR}, 
       #{auditUser,jdbcType=VARCHAR}, #{handleUser,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{createdBy,jdbcType=VARCHAR}, #{createdDate,jdbcType=DATE}, #{updatedBy,jdbcType=VARCHAR}, 
-      #{updatedDate,jdbcType=DATE})
+      #{createdBy,jdbcType=VARCHAR}, #{createdDate,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.mzhotel.sm.actionLog.dto.ActionLog" >
     <selectKey keyProperty="id" resultType="java.lang.String" keyColumn="id" order="BEFORE">
@@ -102,7 +102,7 @@
         #{amount,jdbcType=DECIMAL},
       </if>
       <if test="actionDate != null" >
-        #{actionDate,jdbcType=DATE},
+        #{actionDate,jdbcType=TIMESTAMP},
       </if>
       <if test="actionType != null" >
         #{actionType,jdbcType=VARCHAR},
@@ -123,13 +123,13 @@
         #{createdBy,jdbcType=VARCHAR},
       </if>
       <if test="createdDate != null" >
-        #{createdDate,jdbcType=DATE},
+        #{createdDate,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedBy != null" >
         #{updatedBy,jdbcType=VARCHAR},
       </if>
       <if test="updatedDate != null" >
-        #{updatedDate,jdbcType=DATE},
+        #{updatedDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -143,7 +143,7 @@
         AMOUNT = #{amount,jdbcType=DECIMAL},
       </if>
       <if test="actionDate != null" >
-        ACTION_DATE = #{actionDate,jdbcType=DATE},
+        ACTION_DATE = #{actionDate,jdbcType=TIMESTAMP},
       </if>
       <if test="actionType != null" >
         ACTION_TYPE = #{actionType,jdbcType=VARCHAR},
@@ -164,13 +164,13 @@
         CREATED_BY = #{createdBy,jdbcType=VARCHAR},
       </if>
       <if test="createdDate != null" >
-        CREATED_DATE = #{createdDate,jdbcType=DATE},
+        CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedBy != null" >
         UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
       </if>
       <if test="updatedDate != null" >
-        UPDATED_DATE = #{updatedDate,jdbcType=DATE},
+        UPDATED_DATE = #{updatedDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
@@ -179,16 +179,16 @@
     update T_ACTION_LOG
     set PARENT_ID = #{parentId,jdbcType=VARCHAR},
       AMOUNT = #{amount,jdbcType=DECIMAL},
-      ACTION_DATE = #{actionDate,jdbcType=DATE},
+      ACTION_DATE = #{actionDate,jdbcType=TIMESTAMP},
       ACTION_TYPE = #{actionType,jdbcType=VARCHAR},
       APPLY_USER = #{applyUser,jdbcType=VARCHAR},
       AUDIT_USER = #{auditUser,jdbcType=VARCHAR},
       HANDLE_USER = #{handleUser,jdbcType=VARCHAR},
       REMARK = #{remark,jdbcType=VARCHAR},
       CREATED_BY = #{createdBy,jdbcType=VARCHAR},
-      CREATED_DATE = #{createdDate,jdbcType=DATE},
+      CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP},
       UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
-      UPDATED_DATE = #{updatedDate,jdbcType=DATE}
+      UPDATED_DATE = #{updatedDate,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
 
