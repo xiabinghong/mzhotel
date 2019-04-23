@@ -11,9 +11,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -23,7 +21,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RequestMapping("/login")
 @RestController
@@ -37,7 +34,7 @@ public class LoginController {
     @Autowired
     SecurityService securityService;
 
-    @RequestMapping(value = "/login", method = POST)
+    @RequestMapping(value = "/login", method =  RequestMethod.POST)
     public Map<String, Object> login(@RequestBody @Valid QueryUserInfo queryUserInfo, HttpServletRequest request) {
         logger.info(queryUserInfo.getUserId() + "开始登陆");
         Map<String, Object> result = Maps.newHashMap();
