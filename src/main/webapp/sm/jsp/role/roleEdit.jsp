@@ -32,7 +32,9 @@
                         </div>
                     </div>
                     <div class="col-md-12 text-center" style="margin:20px;">
-                        <input ng-show="pageSetting.disabled" ng-click="edit();" class="btn btn-success" type="button" value="修改">
+                        <shiro:hasPermission name="ROLE_MANAGER_OPERATE:BUTTON:EDIT">
+                            <input ng-show="pageSetting.disabled" ng-click="edit();" class="btn btn-success" type="button" value="修改">
+                        </shiro:hasPermission>
                         <input ng-show="!pageSetting.disabled" ng-click="save();" class="btn btn-success" type="button" value="保存">
                         <input ng-show="!pageSetting.disabled" ng-click="cancel();" class="btn btn-danger" type="button" value="取消">
                         <input ng-click="close();" class="btn btn-warning" type="button" value="关闭">

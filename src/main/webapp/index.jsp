@@ -39,32 +39,51 @@
                 <li>
                     <div class="left-bg"></div>
                 </li>
-                <li class="active ripple"> <a class="tree-toggle nav-header" ng-click="transPage('/mzhotel/sm/jsp/user/userList.jsp')"><span class="fa-home fa"></span> 用户管理 </a> </li>
+                <shiro:hasPermission name="USER_MANAGER:ENUM:VIEW">
+                    <li class="active ripple"> <a class="tree-toggle nav-header" ng-click="transPage('/mzhotel/sm/jsp/user/userList.jsp')"><span class="fa-home fa"></span> 用户管理 </a> </li>
+                </shiro:hasPermission>
+                <shiro:hasPermission name="STORE_MANAGER:ENUM:VIEW">
                     <li class="ripple"> <a class="tree-toggle nav-header"> <span class="fa-diamond fa"></span> 仓库管理 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
                         <ul class="nav nav-list tree">
+                            <shiro:hasPermission name="STORE_INFO:ENUM:VIEW">
                                 <li><a href="javascript:void(0);" ng-click="transPage('/mzhotel/sm/jsp/storeManager/storeManagerList.jsp')">仓库信息</a></li>
+                            </shiro:hasPermission>
                         </ul>
                     </li>
+                </shiro:hasPermission>
+                <shiro:hasPermission name="DINNER_MANAGER:ENUM:VIEW">
                     <li class=" ripple"> <a class="tree-toggle nav-header"><span class="fa fa-check-square-o"></span> 订台管理 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
                         <ul class="nav nav-list tree">
+                            <shiro:hasPermission name="DINNER_INFO:ENUM:VIEW">
                                 <li><a href="javascript:void(0);" ng-click="transPage('/mzhotel/sm/jsp/personalReservation/personalManagerList.jsp')">订台信息</a></li>
+                            </shiro:hasPermission>
                         </ul>
                     </li>
+                </shiro:hasPermission>
+                <shiro:hasPermission name="PARTY_MANAGER:ENUM:VIEW">
                     <li class=" ripple"> <a class="tree-toggle nav-header"><span class="fa fa-calendar-o"></span> 宴会信息管理 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
                         <ul class="nav nav-list tree">
-
+                            <shiro:hasPermission name="PARTY_INFO:ENUM:VIEW">
                                 <li><a href="javascript:void(0);" ng-click="transPage('/mzhotel/sm/jsp/dinnerParty/dinnerManagerList.jsp')">宴会信息</a></li>
-
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="MESSAGE_MANAGER:ENUM:VIEW">
                                 <li><a href="javascript:void(0);">短信管理 </a> </li>
+                            </shiro:hasPermission>
                         </ul>
                     </li>
-
-                    <li class=" ripple"> <a class="tree-toggle nav-header"><span class="fa fa-gears"></span> 系统设置 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
+                </shiro:hasPermission>
+                <shiro:hasPermission name="SYSTEM_MANAGER:ENUM:VIEW">
+                    <li class=" ripple"> <a class="tree-toggle nav-header"><span class="fa fa-gears"></span> 系统管理 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
                         <ul class="nav nav-list tree">
+                            <shiro:hasPermission name="ROLE_MANAGER:ENUM:VIEW">
                                 <li><a href="javascript:void(0);" ng-click="transPage('/mzhotel/sm/jsp/role/roleList.jsp')">角色管理</a></li>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="RSOURCE_MANAGER:ENUM:VIEW">
                                 <li><a href="javascript:void(0);" ng-click="transPage('/mzhotel/sm/jsp/resource/resourceList.jsp')">资源管理</a></li>
+                            </shiro:hasPermission>
                         </ul>
                     </li>
+                </shiro:hasPermission>
             </ul>
         </div>
     </div>

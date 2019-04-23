@@ -34,13 +34,13 @@
             </div>
             <div class="panel">
                 <div align="right" style="padding-top: 10px;">
-
+                    <shiro:hasPermission name="DINNER_INFO_OPERATE:BUTTON:NEW">
                         <input class="btn btn-info" type="button" ng-click="add();" value="新增">
-
-                        <input class="btn btn-info" type="button" ng-click="view(choiceItem);" value="查看">
-
+                    </shiro:hasPermission>
+                    <input class="btn btn-info" type="button" ng-click="view(choiceItem);" value="查看">
+                    <shiro:hasPermission name="DINNER_INFO_OPERATE:BUTTON:DELETE">
                         <input class="btn btn-info" type="button" ng-click="delete(choiceItem)" value="删除">
-
+                    </shiro:hasPermission>
                     <btn-download download-params="query" download-href="/mzhotel/personalreservation/export" btn-text="导出"></btn-download>
                     <%--<input class="btn btn-info" type="button" ng-click="export()" value="导出">--%>
                     <input class="btn btn-info" type="button" ng-click="statusIn(choiceItem)" value="已入住">

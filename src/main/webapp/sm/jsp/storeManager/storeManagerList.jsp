@@ -34,10 +34,15 @@
             </div>
             <div class="panel">
                 <div align="right" style="padding-top: 10px;">
-                    <input class="btn btn-info" type="button" ng-click="add();" value="新增">
+                    <shiro:hasPermission name="STORE_INFO_OPERATE:BUTTON:NEW">
+                        <input class="btn btn-info" type="button" ng-click="add();" value="新增">
+                    </shiro:hasPermission>
                     <input class="btn btn-info" type="button" ng-click="view(choiceItem);" value="查看">
-                    <input class="btn btn-info" type="button" ng-click="delete(choiceItem)" value="删除">
-                    <btn-download download-params="query" download-href="/mzhotel/storehouse/export" btn-text="导出"></btn-download>
+                    <shiro:hasPermission name="STORE_INFO_OPERATE:BUTTON:DELETE">
+                        <input class="btn btn-info" type="button" ng-click="delete(choiceItem)" value="删除">
+                    </shiro:hasPermission>
+                    <btn-download download-params="query" download-href="/mzhotel/storehouse/export"
+                                  btn-text="导出"></btn-download>
                     <input class="btn btn-info" type="button" ng-click="innerStore(choiceItem)" value="入库">
                     <input class="btn btn-info" type="button" ng-click="outStore(choiceItem)" value="出库">
                     <input class="btn btn-info" type="button" ng-click="storeLog(choiceItem)" value="出入库记录">

@@ -26,9 +26,13 @@
             </div>
             <div class="panel">
                 <div align="right" style="padding-top: 10px;">
-                    <input class="btn btn-info" type="button" ng-click="add();" value="新增">
+                    <shiro:hasPermission name="RSOURCE_MANAGER_OPERATE:BUTTON:NEW">
+                        <input class="btn btn-info" type="button" ng-click="add();" value="新增">
+                    </shiro:hasPermission>
                     <input class="btn btn-info" type="button" ng-click="view(choiceItem);" value="查看">
-                    <input class="btn btn-info" type="button" ng-click="delete(choiceItem)" value="删除">
+                    <shiro:hasPermission name="RSOURCE_MANAGER_OPERATE:BUTTON:DELETE">
+                        <input class="btn btn-info" type="button" ng-click="delete(choiceItem)" value="删除">
+                    </shiro:hasPermission>
                 </div>
                 <div class="panel-body">
                     <div class="responsive-table">
