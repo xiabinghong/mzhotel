@@ -6,9 +6,9 @@
     <result column="ROLE_CODE" property="roleCode" jdbcType="VARCHAR" />
     <result column="RESOURCE_CODE" property="resourceCode" jdbcType="VARCHAR" />
     <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
-    <result column="CREATED_DATE" property="createdDate" jdbcType="DATE" />
+    <result column="CREATED_DATE" property="createdDate" jdbcType="TIMESTAMP" />
     <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
-    <result column="UPDATED_DATE" property="updatedDate" jdbcType="DATE" />
+    <result column="UPDATED_DATE" property="updatedDate" jdbcType="TIMESTAMP" />
     <result column="ACTION" property="action" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -37,8 +37,8 @@
       CREATED_BY, CREATED_DATE, UPDATED_BY, 
       UPDATED_DATE,ACTION)
     values (#{id,jdbcType=VARCHAR}, #{roleCode,jdbcType=VARCHAR}, #{resourceCode,jdbcType=VARCHAR}, 
-      #{createdBy,jdbcType=VARCHAR}, #{createdDate,jdbcType=DATE}, #{updatedBy,jdbcType=VARCHAR}, 
-      #{updatedDate,jdbcType=DATE},#{action,jdbcType=VARCHAR})
+      #{createdBy,jdbcType=VARCHAR}, #{createdDate,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR},
+      #{updatedDate,jdbcType=TIMESTAMP},#{action,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mzhotel.sm.roleResource.dto.RoleResourceRelation" >
     <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
@@ -85,13 +85,13 @@
         #{createdBy,jdbcType=VARCHAR},
       </if>
       <if test="createdDate != null" >
-        #{createdDate,jdbcType=DATE},
+        #{createdDate,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedBy != null" >
         #{updatedBy,jdbcType=VARCHAR},
       </if>
       <if test="updatedDate != null" >
-        #{updatedDate,jdbcType=DATE},
+        #{updatedDate,jdbcType=TIMESTAMP},
       </if>
       <if test="action != null" >
         #{action,jdbcType=VARCHAR},
@@ -111,13 +111,13 @@
         CREATED_BY = #{createdBy,jdbcType=VARCHAR},
       </if>
       <if test="createdDate != null" >
-        CREATED_DATE = #{createdDate,jdbcType=DATE},
+        CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedBy != null" >
         UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
       </if>
       <if test="updatedDate != null" >
-        UPDATED_DATE = #{updatedDate,jdbcType=DATE},
+        UPDATED_DATE = #{updatedDate,jdbcType=TIMESTAMP},
       </if>
       <if test="action != null" >
         ACTION = #{action,jdbcType=VARCHAR},
@@ -130,9 +130,9 @@
     set ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
       RESOURCE_CODE = #{resourceCode,jdbcType=VARCHAR},
       CREATED_BY = #{createdBy,jdbcType=VARCHAR},
-      CREATED_DATE = #{createdDate,jdbcType=DATE},
+      CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP},
       UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
-      UPDATED_DATE = #{updatedDate,jdbcType=DATE},
+      UPDATED_DATE = #{updatedDate,jdbcType=TIMESTAMP},
       ACTION = #{action,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
