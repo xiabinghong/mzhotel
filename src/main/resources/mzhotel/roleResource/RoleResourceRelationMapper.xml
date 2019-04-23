@@ -144,9 +144,11 @@
       t.resource_name resourceName,
       t.resource_code resourceCode,
       t.resource_type resourceType,
+      dict.dict_name resourceTypeName,
       GROUP_CONCAT(relation.action) actionType
     from T_RESOURCE t
     left join t_role_resource_relation relation on relation.resource_code = t.resource_code
+    left join t_dict_info dict on dict.dict_code = t.resource_type and dict.dict_type_code = 'RESOURCE_TYPE'
     <where>
       <if test="resourceName != null and resourceName != ''">
         and t.RESOURCE_NAME like concat('%',#{resourceName},'%')
@@ -158,6 +160,6 @@
         and t.resource_code not in (select distinct resource_code from t_role_resource_relation where role_code = #{notHasResource,jdbcType=VARCHAR})
       </if>
     </where>
-    group by relation.role_code,t.resource_name,t.resource_code,t.resource_type
+    group by relation.role_code,t.resource_name,t.resource_code,t.resource_type,dict.dict_name
   </select>
 </mapper>

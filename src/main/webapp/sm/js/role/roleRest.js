@@ -14,4 +14,4 @@ define(function (require, exports) {
             removeRoleResource:{method: "DELETE", url: appname + "/role/removeRoleResource", params:{roleCode:"@roleCode",resourceCode:"@resourceCode",action:"@action"}}
         })
     }])
-})
+});

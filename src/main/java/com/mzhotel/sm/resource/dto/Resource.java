@@ -19,6 +19,8 @@ public class Resource {
 
     private String resourceType;
 
+    private String resourceTypeName;
+
     private String url;
 
     private String resourceParent;
@@ -38,6 +40,8 @@ public class Resource {
     private Date updatedDate;
 
     public static class ActionDescriptor {
+
+        public String label;
 
         public String action;
 
@@ -64,6 +68,7 @@ public class Resource {
             ActionDescriptor actionDescriptor = new ActionDescriptor();
             actionDescriptor.action = action.name();
             actionDescriptor.isActioned = set.contains(action);
+            actionDescriptor.label = action.getDesc();
             if (action == Action.VIEW) {
                 actionDescriptor.isActioned = true;
             }

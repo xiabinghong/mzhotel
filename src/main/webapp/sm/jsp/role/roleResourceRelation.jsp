@@ -35,7 +35,7 @@
                                                     ng-click="choiceNotHasResourceItem(notHasResource)">
                                                     <td ng-bind="notHasResource.resourceCode"></td>
                                                     <td ng-bind="notHasResource.resourceName"></td>
-                                                    <td ng-bind="notHasResource.resourceType"></td>
+                                                    <td ng-bind="notHasResource.resourceTypeName"></td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -71,11 +71,11 @@
                                                         ng-click="choiceHasResourceItem(hasResource)">
                                                         <td ng-bind="hasResource.resourceCode"></td>
                                                         <td ng-bind="hasResource.resourceName"></td>
-                                                        <td ng-bind="hasResource.resourceType"></td>
+                                                        <td ng-bind="hasResource.resourceTypeName"></td>
                                                         <td>
                                                             <span ng-repeat="action in hasResource.actionEntity">
-                                                                <input id="{{hasResource.resourceCode+$index}}" type="checkbox" name="hasResource.resourceCode" ng-checked="action.isActioned==true" ng-model="action.isActioned" ng-change="permission(hasResource,action)" ng-disabled="action.action=='VIEW'"/>
-                                                                <label for="{{hasResource.resourceCode+$index}}" ng-bind="action.action"></label>
+                                                                <input id="{{hasResource.resourceCode+$index}}" type="checkbox" name="hasResource.resourceCode" ng-checked="action.isActioned==true" ng-model="action.isActioned" ng-change="permission(hasResource,action)" ng-disabled="action.action=='VIEW' || hasResource.resourceType=='ENUM'"/>
+                                                                <label for="{{hasResource.resourceCode+$index}}" ng-bind="action.label"></label>
                                                             </span>
                                                         </td>
                                                     </tr>
