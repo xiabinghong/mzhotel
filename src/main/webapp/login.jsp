@@ -28,10 +28,10 @@
 
 <div class="page-container" ng-controller="loginEditController">
     <h1>Login</h1>
-    <form action="" method="post">
+    <form>
         <input type="text"  name="userId" ng-model="user.userId" class="username" placeholder="Username" >
         <input input type="password" name="password" ng-model="user.password" class="password" placeholder="Password">
-        <button type="text" ng-click="submit();">Sign me in</button>
+        <button type="text" ng-click="loging();">Sign me in</button>
         <div class="error"><span>+</span></div>
     </form>
 
